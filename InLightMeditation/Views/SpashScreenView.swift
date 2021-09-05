@@ -23,42 +23,54 @@ struct SpashScreenView: View {
       }
     }
     var body: some View {
-        if self.isActive {
-            TimerView()
-        }
-        ZStack {
-            Image("bg-sunset")
-                .resizable()
-                .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
-                .blur(radius: 6)
-                .padding(.all, -10)
-            VStack(alignment: .leading) {
-                HStack {
-                    Spacer()
-                    Text("InLight Meditation")
-                        .font(Font.custom("NunitoSans-Bold", size: 34))
-                        .fontWeight(.heavy)
-                        .foregroundColor(.black)
-                        .multilineTextAlignment(.center)
-                        .padding(.top, 30.0/*@END_MENU_TOKEN@*/)
-                        .frame(width: 200.0)
-                    Spacer()
+        withAnimation {
+            return Group {
+                if self.isActive {
+                    withAnimation {
+                        TimerView()
+                            .animation(.easeInOut(duration: 1))
+                    }
+                } else {
+                    withAnimation {
+                        ZStack {
+                            Image("bg-sunset")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .edgesIgnoringSafeArea(.all)
+                                    .blur(radius: 6)
+                                    .padding(.all, -10)
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Spacer()
+                                    Text("InLight Meditation")
+                                        .font(Font.custom("NunitoSans-Bold", size: 34))
+                                        .fontWeight(.heavy)
+                                        .foregroundColor(.black)
+                                        .multilineTextAlignment(.center)
+                                        .padding(.top, 30.0/*@END_MENU_TOKEN@*/)
+                                        .frame(width: 200.0)
+                                    Spacer()
+                                }
+                                HStack {
+                                    Spacer()
+                                    Image("sitting_posture")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .padding(.top, 10)
+                                        .frame(width: 220, height: 220.0, alignment: .center)
+                                    Spacer()
+                                }
+                                Spacer()
+                            }
+                        }
+                        .onAppear(perform: {
+                            self.gotoTimerView(time: 2.5)
+                        })
+                        .animation(.easeInOut(duration: 1))
+                    }
                 }
-                HStack {
-                    Spacer()
-                    Image("logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 90, height: 90.0, alignment: .center)
-                    Spacer()
-                }
-                Spacer()
             }
         }
-        .onAppear(perform: {
-            self.gotoTimerView(time: 2.5)
-        })
     }
     
     func gotoTimerView(time: Double) {

@@ -9,14 +9,33 @@ import SwiftUI
 
 struct NavView: View {
     var body: some View {
-        HStack {
-            Spacer()
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            Spacer()
-            Text("profile")
-            Spacer()
+        GeometryReader { geometry in
+            NavigationView {
+                VStack {
+                    HStack {
+                        HStack {
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                        }
+                        HStack {
+                            Spacer()
+                            Image("meditation_icon")
+                                .frame(width: 30, height: 30.0)
+                            Spacer()
+                        }
+                        HStack {
+                            Spacer()
+                            Image("user_icon")
+                                .frame(width: 30, height: 30.0)
+                            Spacer()
+                        }
+                    }
+                }.navigationBarTitle("")
+                .navigationBarHidden(true)
+            }
+            .frame(width: geometry.size.width, height: 76.0)
         }
-        .frame(width: 50, height: 30)
     }
 }
 

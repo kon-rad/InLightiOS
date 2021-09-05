@@ -13,6 +13,7 @@
 		FA39A17D26DACBA80016F9F3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA39A17C26DACBA80016F9F3 /* Preview Assets.xcassets */; };
 		FA39A18826DACBA80016F9F3 /* InLightMeditationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A18726DACBA80016F9F3 /* InLightMeditationTests.swift */; };
 		FA39A19326DACBA80016F9F3 /* InLightMeditationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A19226DACBA80016F9F3 /* InLightMeditationUITests.swift */; };
+		FA7077A226E478120045F362 /* EditTimeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077A126E478120045F362 /* EditTimeAlert.swift */; };
 		FABB402526DB0E28006806CF /* NunitoSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */; };
 		FABB402626DB0E28006806CF /* NunitoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401726DB0E28006806CF /* NunitoSans-BoldItalic.ttf */; };
 		FABB402726DB0E28006806CF /* NunitoSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401826DB0E28006806CF /* NunitoSans-ExtraLight.ttf */; };
@@ -62,6 +63,7 @@
 		FA39A18E26DACBA80016F9F3 /* InLightMeditationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InLightMeditationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA39A19226DACBA80016F9F3 /* InLightMeditationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InLightMeditationUITests.swift; sourceTree = "<group>"; };
 		FA39A19426DACBA80016F9F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA7077A126E478120045F362 /* EditTimeAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimeAlert.swift; sourceTree = "<group>"; };
 		FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		FABB401726DB0E28006806CF /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		FABB401826DB0E28006806CF /* NunitoSans-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				FA39A17726DACBA40016F9F3 /* SpashScreenView.swift */,
 				FABB403426DB17D3006806CF /* TimerView.swift */,
 				FABB403626DB1C7F006806CF /* NavView.swift */,
+				FA7077A126E478120045F362 /* EditTimeAlert.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				FABB403526DB17D3006806CF /* TimerView.swift in Sources */,
 				FA39A17826DACBA40016F9F3 /* SpashScreenView.swift in Sources */,
 				FA39A17626DACBA40016F9F3 /* InLightMeditationApp.swift in Sources */,
+				FA7077A226E478120045F362 /* EditTimeAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
