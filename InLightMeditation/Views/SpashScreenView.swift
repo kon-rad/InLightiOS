@@ -27,7 +27,7 @@ struct SpashScreenView: View {
             return Group {
                 if self.isActive {
                     withAnimation {
-                        TimerView()
+                        ContentView(viewRouter: ViewRouter())
                             .animation(.easeInOut(duration: 1))
                     }
                 } else {
@@ -64,7 +64,7 @@ struct SpashScreenView: View {
                             }
                         }
                         .onAppear(perform: {
-                            self.gotoTimerView(time: 2.5)
+                            self.gotoContentView(time: 2.5)
                         })
                         .animation(.easeInOut(duration: 1))
                     }
@@ -73,7 +73,7 @@ struct SpashScreenView: View {
         }
     }
     
-    func gotoTimerView(time: Double) {
+    func gotoContentView(time: Double) {
         DispatchQueue.main.asyncAfter(deadline: .now() + Double(time)) {
             self.isActive = true
         }

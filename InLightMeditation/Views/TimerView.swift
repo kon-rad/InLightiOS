@@ -11,7 +11,6 @@ struct TimerView: View {
     @State var time: String = "10"
     @State var editTime: Bool = false
     @State var isSoundOn: Bool = true
-    @State var isRunning: Bool = false
     
     @State var hours: Int = 0
     @State var minutes: Int = 0
@@ -27,12 +26,15 @@ struct TimerView: View {
                 HStack {
                     Spacer()
                     Text(renderTime())
-                        .font(Font.system(size: 38, design: .default))
-                        .frame(width: 140, height: 100, alignment: .center)
+                        .font(Font.system(size: 38, design: .monospaced))
+                        .frame(width: 160, height: 100, alignment: .center)
                         .padding(.all, 10)
                         .onTapGesture {
-                            self.editTime = true
+                            if self.timerIsPaused {
+                                self.editTime = true
+                            }
                         }
+                        .animation(nil)
                     Spacer()
                 }
                 Spacer()
@@ -42,13 +44,14 @@ struct TimerView: View {
                         self.startTimer()
                     }) {
                         HStack {
-                            Text("start")
+                            Text(self.timerIsPaused ? "start" : "stop")
                         }
                     }.buttonStyle(StartButtonStyle())
                     Button(action: {
                         print("sound")
+                        self.isSoundOn.toggle()
                     }) {
-                        Image("volume-up-line")
+                        Image(self.isSoundOn ? "volume-up-line" : "sound_off")
                             .resizable()
                             .foregroundColor(Color.black)
                             .scaledToFit()
@@ -58,9 +61,10 @@ struct TimerView: View {
                     Spacer()
                 }
                 Spacer()
-                NavView()
-                    .frame(height: 76)
+//                NavView()
+//                    .frame(height: 76)
             }
+            .ignoresSafeArea(.keyboard, edges: .bottom)
             EditTimeAlert(title: "Minutes", isShown: self.$editTime, text: $time, onDone: { text in
                 print("onDone", text)
                 self.time = text
@@ -82,9 +86,11 @@ struct TimerView: View {
         self.resetTimer()
         self.timerIsPaused = false
         self.minutes = Int(self.time)!
+        self.attemptSound()
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
             if seconds == 0 && self.minutes == 0 {
                 print("timer complted!")
+                self.attemptSound()
                 self.stopTimer()
                 self.resetTimer()
             }
@@ -99,7 +105,6 @@ struct TimerView: View {
             } else {
                 self.seconds -= 1
             }
-            
         }
     }
     func stopTimer() {
@@ -111,6 +116,12 @@ struct TimerView: View {
         self.hours = 0
         self.minutes = 0
         self.seconds = 0
+    }
+    func attemptSound() {
+        if self.isSoundOn {
+            print("playing sound")
+            Sounds.playSounds(soundFile: "tibetan_bowl_1.m4a")
+        }
     }
 }
 
