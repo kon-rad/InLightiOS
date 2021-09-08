@@ -25,12 +25,15 @@ struct ContentView: View {
                     Spacer()
                     Group {
                         ZStack {
-                            Group {
-                                HStack {
-                                    TabBarIcon(viewRouter: viewRouter, page: .timer, width: geometry.size.width/5, height: 120, icon: "meditation_icon", tabName: "Meditate")
-                                    TabBarIcon(viewRouter: viewRouter, page: .profile, width: geometry.size.width/5, height: 120, icon: "user_icon", tabName: "Profile")
-                                }
+                            HStack {
+                                Spacer()
+                                Spacer()
+                                TabBarIcon(viewRouter: viewRouter, page: .timer, width: geometry.size.width/5, height: 120, icon: "meditation_icon", tabName: "Meditate")
+                                Spacer()
+                                TabBarIcon(viewRouter: viewRouter, page: .profile, width: geometry.size.width/5, height: 120, icon: "user_icon", tabName: "Profile")
+                                Spacer()
                             }
+                            .padding(.bottom, 18)
                         }
                     }
                 }

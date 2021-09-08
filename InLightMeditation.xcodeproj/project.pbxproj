@@ -19,6 +19,8 @@
 		FA7077AE26E70F990045F362 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077AD26E70F990045F362 /* Profile.swift */; };
 		FA7077B026E71D2B0045F362 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077AF26E71D2B0045F362 /* ViewRouter.swift */; };
 		FA7077B226E7226C0045F362 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077B126E7226C0045F362 /* ContentView.swift */; };
+		FA7077B526E8EE8C0045F362 /* InLight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA7077B326E8EE8B0045F362 /* InLight.xcdatamodeld */; };
+		FA7077F326E8F0CE0045F362 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077F226E8F0CE0045F362 /* Persistence.swift */; };
 		FABB402526DB0E28006806CF /* NunitoSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */; };
 		FABB402626DB0E28006806CF /* NunitoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401726DB0E28006806CF /* NunitoSans-BoldItalic.ttf */; };
 		FABB402726DB0E28006806CF /* NunitoSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401826DB0E28006806CF /* NunitoSans-ExtraLight.ttf */; };
@@ -74,6 +76,8 @@
 		FA7077AD26E70F990045F362 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		FA7077AF26E71D2B0045F362 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		FA7077B126E7226C0045F362 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FA7077B426E8EE8B0045F362 /* InLight.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InLight.xcdatamodel; sourceTree = "<group>"; };
+		FA7077F226E8F0CE0045F362 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		FABB401726DB0E28006806CF /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		FABB401826DB0E28006806CF /* NunitoSans-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		FA39A16926DACBA40016F9F3 = {
 			isa = PBXGroup;
 			children = (
+				FA7077B326E8EE8B0045F362 /* InLight.xcdatamodeld */,
 				FA39A17426DACBA40016F9F3 /* InLightMeditation */,
 				FA39A18626DACBA80016F9F3 /* InLightMeditationTests */,
 				FA39A19126DACBA80016F9F3 /* InLightMeditationUITests */,
@@ -146,6 +151,7 @@
 				FABB401426DB0DF4006806CF /* Fonts */,
 				FA39A1A026DAFBB40016F9F3 /* Views */,
 				FA39A17526DACBA40016F9F3 /* InLightMeditationApp.swift */,
+				FA7077F226E8F0CE0045F362 /* Persistence.swift */,
 				FA39A17926DACBA80016F9F3 /* Assets.xcassets */,
 				FA39A17E26DACBA80016F9F3 /* Info.plist */,
 				FA39A17B26DACBA80016F9F3 /* Preview Content */,
@@ -384,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7077F326E8F0CE0045F362 /* Persistence.swift in Sources */,
 				FABB403726DB1C7F006806CF /* NavView.swift in Sources */,
 				FABB403526DB17D3006806CF /* TimerView.swift in Sources */,
 				FA39A17826DACBA40016F9F3 /* SpashScreenView.swift in Sources */,
@@ -391,6 +398,7 @@
 				FA7077A926E70A090045F362 /* Sounds.swift in Sources */,
 				FA7077B226E7226C0045F362 /* ContentView.swift in Sources */,
 				FA39A17626DACBA40016F9F3 /* InLightMeditationApp.swift in Sources */,
+				FA7077B526E8EE8C0045F362 /* InLight.xcdatamodeld in Sources */,
 				FA7077A226E478120045F362 /* EditTimeAlert.swift in Sources */,
 				FA7077B026E71D2B0045F362 /* ViewRouter.swift in Sources */,
 			);
@@ -712,6 +720,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FA7077B326E8EE8B0045F362 /* InLight.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FA7077B426E8EE8B0045F362 /* InLight.xcdatamodel */,
+			);
+			currentVersion = FA7077B426E8EE8B0045F362 /* InLight.xcdatamodel */;
+			path = InLight.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FA39A16A26DACBA40016F9F3 /* Project object */;
 }
