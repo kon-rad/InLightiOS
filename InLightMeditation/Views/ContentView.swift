@@ -13,24 +13,28 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-        GeometryReader { geometry in
-            VStack {
-                Spacer()
-                switch viewRouter.currentPage {
-                case .timer:
-                    TimerView()
-                case .profile:
-                    Profile()
-                }
-                Spacer()
-                ZStack {
-                    HStack {
-                        TabBarIcon(viewRouter: viewRouter, page: .timer, width: geometry.size.width/5, height: geometry.size.height/28, icon: "meditation_icon", tabName: "Meditate")
-                        TabBarIcon(viewRouter: viewRouter, page: .profile, width: geometry.size.width/5, height: geometry.size.height/28, icon: "user_icon", tabName: "Profile")
+            GeometryReader { geometry in
+                VStack {
+                    Spacer()
+                    switch viewRouter.currentPage {
+                        case .timer:
+                            TimerView()
+                        case .profile:
+                            Profile()
+                    }
+                    Spacer()
+                    Group {
+                        ZStack {
+                            Group {
+                                HStack {
+                                    TabBarIcon(viewRouter: viewRouter, page: .timer, width: geometry.size.width/5, height: 120, icon: "meditation_icon", tabName: "Meditate")
+                                    TabBarIcon(viewRouter: viewRouter, page: .profile, width: geometry.size.width/5, height: 120, icon: "user_icon", tabName: "Profile")
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
         }
     }
 }
@@ -38,7 +42,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-        ContentView(viewRouter: ViewRouter())
+            ContentView(viewRouter: ViewRouter())
         }
     }
 }
@@ -58,7 +62,6 @@ struct TabBarIcon: View {
                 .frame(width: 30, height: 30.0)
             Text(tabName)
                 .font(.footnote)
-            Spacer()
         }
         .padding(.horizontal, -4)
         .onTapGesture {
