@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TimerView: View {
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    
     @State var time: String = "10"
     @State var editTime: Bool = false
     @State var isSoundOn: Bool = true
@@ -18,6 +21,7 @@ struct TimerView: View {
     
     @State var timerIsPaused: Bool = true
     @State var timer: Timer? = nil
+    @State var startTime: Date? = nil
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -86,10 +90,12 @@ struct TimerView: View {
         self.resetTimer()
         self.timerIsPaused = false
         self.minutes = Int(self.time)!
+        self.startTime = Date()
         self.attemptSound()
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
             if seconds == 0 && self.minutes == 0 {
                 print("timer complted!")
+                self.handleTimerCompleted()
                 self.attemptSound()
                 self.stopTimer()
                 self.resetTimer()
@@ -122,6 +128,12 @@ struct TimerView: View {
             print("playing sound")
             Sounds.playSounds(soundFile: "tibetan_bowl_1.m4a")
         }
+    }
+    func handleTimerCompleted() {
+        let newMeditation = Meditation(context: viewContext)
+        newMeditation.startTime = self.startTime
+        newMeditation.endTime = Date()
+        newMeditation.minutes =
     }
 }
 
