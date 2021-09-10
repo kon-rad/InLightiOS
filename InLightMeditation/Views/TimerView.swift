@@ -11,6 +11,10 @@ struct TimerView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
+    @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
+
+    var meditations: FetchedResults<Meditation>
+    
     @State var time: String = "10"
     @State var editTime: Bool = false
     @State var isSoundOn: Bool = true
@@ -133,7 +137,31 @@ struct TimerView: View {
         newMeditation.startTime = self.startTime
         newMeditation.endTime = Date()
         newMeditation.minutes = Int16(self.initialTime!)!
-        newMeditation.id =  UUID()
+        newMeditation.id = UUID()
+        let last = meditations.last
+        if last == nil {
+            newMeditation.currentStreak = 1
+            newMeditation.bestStreak = 1
+            newMeditation.totalMinutes = Int16(self.initialTime!)!
+        } else {
+            print("min: ", Int16(self.initialTime!)!)
+            var currentStreak = last?.currentStreak ?? 0
+            if (last?.endTime!.addingTimeInterval(86400))! >= newMeditation.endTime! {
+                currentStreak += 1
+            } else {
+                currentStreak = 1
+            }
+            newMeditation.currentStreak = currentStreak
+            let lastBestStreak = last?.bestStreak ?? 0
+            if (lastBestStreak < currentStreak) {
+                newMeditation.bestStreak = currentStreak
+            } else {
+                newMeditation.bestStreak = lastBestStreak
+            }
+            print("new min: ", newMeditation.minutes)
+            newMeditation.totalMinutes = newMeditation.minutes + last!.totalMinutes
+            print("last end time", last?.endTime ?? "undefined")
+        }
         do {
             try viewContext.save()
             print("meditation saved!")

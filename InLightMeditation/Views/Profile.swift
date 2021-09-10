@@ -11,9 +11,12 @@ struct Profile: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
-
+    
     var meditations: FetchedResults<Meditation>
     
+    @State var currentStreak: Int16?
+    @State var bestStreak: Int16?
+    @State var totalMinutes: Int16?
     
     var body: some View {
         
@@ -21,7 +24,33 @@ struct Profile: View {
             Spacer()
             Image("user_icon")
                 .resizable()
-                .frame(width: 90, height: 90.0)
+                .frame(width: 70, height: 70.0)
+                .padding(.top, 50)
+            HStack {
+                Spacer()
+                VStack {
+                    Text("\(String(self.currentStreak ?? 0))")
+                        .font(.headline)
+                        .frame(width: 60)
+                    Text("current streak")
+                        .font(.subheadline)
+                }
+                VStack {
+                    Text("\(String(self.bestStreak ?? 0))")
+                        .font(.headline)
+                        .frame(width: 60)
+                    Text("best streak")
+                        .font(.subheadline)
+                }
+                VStack {
+                    Text("\(String(self.totalMinutes ?? 0))")
+                        .font(.headline)
+                        .frame(width: 60)
+                    Text("total minutes")
+                        .font(.subheadline)
+                }
+                Spacer()
+            }
             Spacer()
             List {
                 ForEach(meditations) { meditation in
@@ -42,6 +71,11 @@ struct Profile: View {
             }
                 .listStyle(PlainListStyle())
             Spacer()
+        }.onAppear {
+            let last = meditations.last
+            self.currentStreak = last?.currentStreak
+            self.bestStreak = last?.bestStreak
+            self.totalMinutes = last?.totalMinutes
         }
     }
     func renderTime(date: Date) -> String {
