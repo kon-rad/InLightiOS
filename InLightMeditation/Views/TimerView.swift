@@ -22,6 +22,7 @@ struct TimerView: View {
     @State var timerIsPaused: Bool = true
     @State var timer: Timer? = nil
     @State var startTime: Date? = nil
+    @State var initialTime: String? = nil
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -65,10 +66,7 @@ struct TimerView: View {
                     Spacer()
                 }
                 Spacer()
-//                NavView()
-//                    .frame(height: 76)
             }
-            .ignoresSafeArea(.keyboard, edges: .bottom)
             EditTimeAlert(title: "Minutes", isShown: self.$editTime, text: $time, onDone: { text in
                 print("onDone", text)
                 self.time = text
@@ -90,11 +88,12 @@ struct TimerView: View {
         self.resetTimer()
         self.timerIsPaused = false
         self.minutes = Int(self.time)!
+        self.initialTime = self.time
         self.startTime = Date()
         self.attemptSound()
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
-            if seconds == 0 && self.minutes == 0 {
-                print("timer complted!")
+            if seconds == 0 && self.minutes == 0 || seconds == 58 {
+                print("timer completed!")
                 self.handleTimerCompleted()
                 self.attemptSound()
                 self.stopTimer()
@@ -133,7 +132,14 @@ struct TimerView: View {
         let newMeditation = Meditation(context: viewContext)
         newMeditation.startTime = self.startTime
         newMeditation.endTime = Date()
-        newMeditation.minutes =
+        newMeditation.minutes = Int16(self.initialTime!)!
+        newMeditation.id =  UUID()
+        do {
+            try viewContext.save()
+            print("meditation saved!")
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
 
