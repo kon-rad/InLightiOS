@@ -159,6 +159,8 @@ struct TimerView: View {
                 newMeditation.bestStreak = lastBestStreak
             }
             print("new min: ", newMeditation.minutes)
+            print("new bestStreak: ", newMeditation.bestStreak)
+            print("new currentStreak: ", newMeditation.currentStreak)
             newMeditation.totalMinutes = newMeditation.minutes + last!.totalMinutes
             print("last end time", last?.endTime ?? "undefined")
         }

@@ -9,6 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
+    
+    var meditations: FetchedResults<Meditation>
+    
     @StateObject var viewRouter: ViewRouter
     
     var body: some View {

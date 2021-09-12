@@ -21,6 +21,9 @@
 		FA7077B226E7226C0045F362 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077B126E7226C0045F362 /* ContentView.swift */; };
 		FA7077B526E8EE8C0045F362 /* InLight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA7077B326E8EE8B0045F362 /* InLight.xcdatamodeld */; };
 		FA7077F326E8F0CE0045F362 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077F226E8F0CE0045F362 /* Persistence.swift */; };
+		FA7077F526ECDB750045F362 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077F426ECDB740045F362 /* Color.swift */; };
+		FA7077F726ED50BD0045F362 /* CurrentStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077F626ED50BD0045F362 /* CurrentStreak.swift */; };
+		FA7077F926ED70D20045F362 /* Meditations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077F826ED70D20045F362 /* Meditations.swift */; };
 		FABB402526DB0E28006806CF /* NunitoSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */; };
 		FABB402626DB0E28006806CF /* NunitoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401726DB0E28006806CF /* NunitoSans-BoldItalic.ttf */; };
 		FABB402726DB0E28006806CF /* NunitoSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401826DB0E28006806CF /* NunitoSans-ExtraLight.ttf */; };
@@ -37,7 +40,6 @@
 		FABB403226DB0E28006806CF /* NunitoSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB402326DB0E28006806CF /* NunitoSans-ExtraBoldItalic.ttf */; };
 		FABB403326DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB402426DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf */; };
 		FABB403526DB17D3006806CF /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB403426DB17D3006806CF /* TimerView.swift */; };
-		FABB403726DB1C7F006806CF /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB403626DB1C7F006806CF /* NavView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,9 @@
 		FA7077B126E7226C0045F362 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FA7077B426E8EE8B0045F362 /* InLight.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InLight.xcdatamodel; sourceTree = "<group>"; };
 		FA7077F226E8F0CE0045F362 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		FA7077F426ECDB740045F362 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		FA7077F626ED50BD0045F362 /* CurrentStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStreak.swift; sourceTree = "<group>"; };
+		FA7077F826ED70D20045F362 /* Meditations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meditations.swift; sourceTree = "<group>"; };
 		FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		FABB401726DB0E28006806CF /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		FABB401826DB0E28006806CF /* NunitoSans-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -94,7 +99,6 @@
 		FABB402326DB0E28006806CF /* NunitoSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		FABB402426DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		FABB403426DB17D3006806CF /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		FABB403626DB1C7F006806CF /* NavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,11 +194,11 @@
 			children = (
 				FA39A17726DACBA40016F9F3 /* SpashScreenView.swift */,
 				FABB403426DB17D3006806CF /* TimerView.swift */,
-				FABB403626DB1C7F006806CF /* NavView.swift */,
 				FA7077A126E478120045F362 /* EditTimeAlert.swift */,
 				FA7077AD26E70F990045F362 /* Profile.swift */,
 				FA7077AF26E71D2B0045F362 /* ViewRouter.swift */,
 				FA7077B126E7226C0045F362 /* ContentView.swift */,
+				FA7077F626ED50BD0045F362 /* CurrentStreak.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,6 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				FA7077A826E70A090045F362 /* Sounds.swift */,
+				FA7077F426ECDB740045F362 /* Color.swift */,
+				FA7077F826ED70D20045F362 /* Meditations.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -391,11 +397,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7077F326E8F0CE0045F362 /* Persistence.swift in Sources */,
-				FABB403726DB1C7F006806CF /* NavView.swift in Sources */,
 				FABB403526DB17D3006806CF /* TimerView.swift in Sources */,
 				FA39A17826DACBA40016F9F3 /* SpashScreenView.swift in Sources */,
 				FA7077AE26E70F990045F362 /* Profile.swift in Sources */,
+				FA7077F526ECDB750045F362 /* Color.swift in Sources */,
 				FA7077A926E70A090045F362 /* Sounds.swift in Sources */,
+				FA7077F926ED70D20045F362 /* Meditations.swift in Sources */,
+				FA7077F726ED50BD0045F362 /* CurrentStreak.swift in Sources */,
 				FA7077B226E7226C0045F362 /* ContentView.swift in Sources */,
 				FA39A17626DACBA40016F9F3 /* InLightMeditationApp.swift in Sources */,
 				FA7077B526E8EE8C0045F362 /* InLight.xcdatamodeld in Sources */,

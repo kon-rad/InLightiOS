@@ -14,12 +14,11 @@ struct Profile: View {
     
     var meditations: FetchedResults<Meditation>
     
-    @State var currentStreak: Int16?
-    @State var bestStreak: Int16?
-    @State var totalMinutes: Int16?
+    @State var currentStreak: Int16 = 0
+    @State var bestStreak: Int16 = 0
+    @State var totalMinutes: Int16 = 0
     
     var body: some View {
-        
         VStack {
             Spacer()
             Image("user_icon")
@@ -29,7 +28,7 @@ struct Profile: View {
             HStack {
                 Spacer()
                 VStack {
-                    Text("\(String(self.currentStreak ?? 0))")
+                    Text("\(String(self.currentStreak))")
                         .font(.headline)
                         .frame(width: 60)
                     Text("current streak")
@@ -52,6 +51,14 @@ struct Profile: View {
                 Spacer()
             }
             Spacer()
+            VStack {
+                Text("current streak")
+                CurrentStreak()
+            }
+            .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 600)
+            .background(Color(red: 244 / 255, green: 244 / 255, blue: 244 / 255))
+            .cornerRadius(15)
+            .padding(10)
             List {
                 ForEach(meditations) { meditation in
                     HStack {
@@ -71,11 +78,13 @@ struct Profile: View {
             }
                 .listStyle(PlainListStyle())
             Spacer()
-        }.onAppear {
+        }
+        .onAppear() {
             let last = meditations.last
-            self.currentStreak = last?.currentStreak
-            self.bestStreak = last?.bestStreak
-            self.totalMinutes = last?.totalMinutes
+            self.currentStreak = last?.currentStreak ?? 0
+            self.bestStreak =  last?.bestStreak ?? 0
+            self.totalMinutes =  last?.totalMinutes ?? 0
+            print("last", last)
         }
     }
     func renderTime(date: Date) -> String {
@@ -90,4 +99,8 @@ struct Profile_Previews: PreviewProvider {
     static var previews: some View {
         Profile()
     }
+}
+
+extension Color {
+    static let bgGray = Color(hue: 0, saturation: 0, brightness: 96, opacity: 100)
 }
