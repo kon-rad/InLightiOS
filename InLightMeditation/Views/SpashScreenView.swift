@@ -53,11 +53,11 @@ struct SpashScreenView: View {
                                 }
                                 HStack {
                                     Spacer()
-                                    Image("sitting_posture")
+                                    Image("logo")
                                         .resizable()
                                         .scaledToFit()
                                         .padding(.top, 10)
-                                        .frame(width: 220, height: 220.0, alignment: .center)
+                                        .frame(width: 120, height: 120, alignment: .center)
                                     Spacer()
                                 }
                                 Spacer()

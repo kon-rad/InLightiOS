@@ -96,7 +96,8 @@ struct TimerView: View {
         self.startTime = Date()
         self.attemptSound()
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
-            if seconds == 0 && self.minutes == 0 || seconds == 58 {
+            // todo: make sure to remove the 'true' statement - it's for development purposes only
+            if seconds == 0 && self.minutes == 0 || true {
                 print("timer completed!")
                 self.handleTimerCompleted()
                 self.attemptSound()

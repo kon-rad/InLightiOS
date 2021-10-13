@@ -14,7 +14,7 @@ struct CurrentStreak: View {
     
     var meditations: FetchedResults<Meditation>
 //    @Binding var currentStreak: Int16
-    @State var currentStreak: Int16 = 16
+    @State var currentStreak: Int16 = 0
     
 //    init() {
 //        let last = meditations.last
@@ -24,21 +24,31 @@ struct CurrentStreak: View {
     
     var body: some View {
         VStack {
-            ForEach (0 ..< Int(self.currentStreak)) { index in
+            ForEach (0 ..< Int(self.currentStreak), id: \.self) { index in
                 if (index == 0 || index % 7 == 0) {
-                        StreakWeek(start: Int(index), end: self.currentStreak < index + 7 ? Int(self.currentStreak) : Int(index + 7))
+                    if (self.currentStreak < (index + 7)) {
+                        StreakWeek(start: Int(index), end: Int(self.currentStreak) - Int(index))
+                    } else {
+                        StreakWeek(start: Int(index), end: Int(index + 7))
+                    }
                 } else {
                     EmptyView()
                 }
+//                StreakWeek(start: Int(index), end: Int(self.currentStreak))
             }
         }
         .frame(width: 300)
+        .onAppear() {
+            let last = meditations.last
+            self.currentStreak = last?.currentStreak ?? 0
+            print("currentStreak", self.currentStreak)
+        }
     }
 }
 
 struct CurrentStreak_Previews: PreviewProvider {
     static var previews: some View {
-        CurrentStreak()
+        CurrentStreak(currentStreak: 16)
     }
 }
 
@@ -48,12 +58,12 @@ struct StreakWeek: View {
     
     var body: some View {
         HStack {
-            ForEach (self.start ..< self.end) { _ in
+            ForEach (self.start ..< self.start + self.end) { _ in
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.yellow)
                     .frame(width: 30, height: 30, alignment: .leading)
             }
         }
-        .frame(alignment: .leading)
+        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
     }
 }
