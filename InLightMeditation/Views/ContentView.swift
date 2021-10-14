@@ -27,6 +27,8 @@ struct ContentView: View {
                             TimerView()
                         case .profile:
                             Profile()
+                        case .timerProgress:
+                            TimerProgress()
                     }
                     Spacer()
                     Group {

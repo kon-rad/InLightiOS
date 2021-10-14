@@ -14,7 +14,7 @@ struct CurrentStreak: View {
     
     var meditations: FetchedResults<Meditation>
 //    @Binding var currentStreak: Int16
-    @State var currentStreak: Int16 = 0
+    @State var currentStreak: Int16 = 99
     
 //    init() {
 //        let last = meditations.last
@@ -27,7 +27,7 @@ struct CurrentStreak: View {
             ForEach (0 ..< Int(self.currentStreak), id: \.self) { index in
                 if (index == 0 || index % 7 == 0) {
                     if (self.currentStreak < (index + 7)) {
-                        StreakWeek(start: Int(index), end: Int(self.currentStreak) - Int(index))
+                        StreakWeek(start: Int(index), end: Int(self.currentStreak))
                     } else {
                         StreakWeek(start: Int(index), end: Int(index + 7))
                     }
@@ -37,10 +37,10 @@ struct CurrentStreak: View {
 //                StreakWeek(start: Int(index), end: Int(self.currentStreak))
             }
         }
-        .frame(width: 300)
+        .frame(width: 260)
         .onAppear() {
             let last = meditations.last
-            self.currentStreak = last?.currentStreak ?? 0
+//            self.currentStreak = last?.currentStreak ?? 0
             print("currentStreak", self.currentStreak)
         }
     }
@@ -58,12 +58,15 @@ struct StreakWeek: View {
     
     var body: some View {
         HStack {
-            ForEach (self.start ..< self.start + self.end) { _ in
+            ForEach (self.start ..< self.end) { _ in
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.yellow)
                     .frame(width: 30, height: 30, alignment: .leading)
             }
         }
-        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+        .onAppear() {
+            print("start: \(self.start) - \(self.end)")
+        }
+        .frame(width: 260, alignment: .leading)
     }
 }

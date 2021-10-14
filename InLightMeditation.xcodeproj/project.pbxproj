@@ -40,6 +40,7 @@
 		FABB403226DB0E28006806CF /* NunitoSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB402326DB0E28006806CF /* NunitoSans-ExtraBoldItalic.ttf */; };
 		FABB403326DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB402426DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf */; };
 		FABB403526DB17D3006806CF /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB403426DB17D3006806CF /* TimerView.swift */; };
+		FACABE46271805AD0074BB91 /* TimerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACABE45271805AD0074BB91 /* TimerProgress.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		FABB402326DB0E28006806CF /* NunitoSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		FABB402426DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		FABB403426DB17D3006806CF /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		FACABE45271805AD0074BB91 /* TimerProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProgress.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				FA7077AF26E71D2B0045F362 /* ViewRouter.swift */,
 				FA7077B126E7226C0045F362 /* ContentView.swift */,
 				FA7077F626ED50BD0045F362 /* CurrentStreak.swift */,
+				FACABE45271805AD0074BB91 /* TimerProgress.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				FA7077AE26E70F990045F362 /* Profile.swift in Sources */,
 				FA7077F526ECDB750045F362 /* Color.swift in Sources */,
 				FA7077A926E70A090045F362 /* Sounds.swift in Sources */,
+				FACABE46271805AD0074BB91 /* TimerProgress.swift in Sources */,
 				FA7077F926ED70D20045F362 /* Meditations.swift in Sources */,
 				FA7077F726ED50BD0045F362 /* CurrentStreak.swift in Sources */,
 				FA7077B226E7226C0045F362 /* ContentView.swift in Sources */,
