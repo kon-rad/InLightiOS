@@ -14,13 +14,13 @@ struct CurrentStreak: View {
     
     var meditations: FetchedResults<Meditation>
 //    @Binding var currentStreak: Int16
-    @State var currentStreak: Int16 = 99
+    @State var currentStreak: Int16 = 0
     
-//    init() {
-//        let last = meditations.last
-//        _currentStreak = State(initialValue: last?.currentStreak ?? 0)
-//        print("init: ", last)
-//    }
+    init() {
+        let last = meditations.last
+        _currentStreak = State(initialValue: last?.currentStreak ?? 0)
+        print("init: ", last)
+    }
     
     var body: some View {
         VStack {
@@ -34,13 +34,12 @@ struct CurrentStreak: View {
                 } else {
                     EmptyView()
                 }
-//                StreakWeek(start: Int(index), end: Int(self.currentStreak))
             }
         }
         .frame(width: 260)
         .onAppear() {
             let last = meditations.last
-//            self.currentStreak = last?.currentStreak ?? 0
+            self.currentStreak = last?.currentStreak ?? 0
             print("currentStreak", self.currentStreak)
         }
     }
@@ -48,7 +47,7 @@ struct CurrentStreak: View {
 
 struct CurrentStreak_Previews: PreviewProvider {
     static var previews: some View {
-        CurrentStreak(currentStreak: 16)
+        CurrentStreak()
     }
 }
 

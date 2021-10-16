@@ -38,7 +38,7 @@ struct SpashScreenView: View {
                                     .scaledToFill()
                                     .edgesIgnoringSafeArea(.all)
                                     .blur(radius: 6)
-                                    .padding(.all, -10)
+                                    .padding(.all, -40)
                             VStack(alignment: .leading) {
                                 HStack {
                                     Spacer()

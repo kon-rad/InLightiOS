@@ -7,6 +7,33 @@
 
 import SwiftUI
 
+extension Color {
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (1, 1, 1, 0)
+        }
+
+        self.init(
+            .sRGB,
+            red: Double(r) / 255,
+            green: Double(g) / 255,
+            blue:  Double(b) / 255,
+            opacity: Double(a) / 255
+        )
+    }
+}
+
 struct TimerView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -23,77 +50,107 @@ struct TimerView: View {
     @State var minutes: Int = 0
     @State var seconds: Int = 0
     
-    @State var timerIsPaused: Bool = true
+    @State var timerIsRunning: Bool = false
     @State var timer: Timer? = nil
     @State var startTime: Date? = nil
     @State var initialTime: String? = nil
     
     @StateObject var viewRouter: ViewRouter
     
+    private let screenWidth = UIScreen.main.bounds.width
+    private let screenHeight = UIScreen.main.bounds.height
+    
     var body: some View {
-        ZStack(alignment: .center) {
-            VStack(alignment: .leading) {
-                Spacer()
-                HStack {
+        if self.timerIsRunning {
+                ZStack {
+                    HStack {
+                        Spacer()
+                        Text(renderTime())
+                            .font(Font.system(size: 38, design: .monospaced))
+                            .frame(width: 160, height: 100, alignment: .center)
+                            .padding(.all, 10)
+                            .onTapGesture {
+                                self.startTimer()
+                            }
+                            .animation(nil)
+                        Spacer()
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                    .statusBar(hidden: true)
+                }
+                .frame(width: screenWidth, height: screenHeight)
+                .background(Color(hex: "CDD9E3").ignoresSafeArea(.all))
+                .onTapGesture {
+                    self.startTimer()
+                }
+                .edgesIgnoringSafeArea(.all)
+                .statusBar(hidden: true)
+        } else {
+            ZStack(alignment: .center) {
+                VStack(alignment: .leading) {
                     Spacer()
-                    Text(renderTime())
-                        .font(Font.system(size: 38, design: .monospaced))
-                        .frame(width: 160, height: 100, alignment: .center)
-                        .padding(.all, 10)
-                        .onTapGesture {
-                            if self.timerIsPaused {
-                                self.editTime = true
+                    HStack {
+                        Spacer()
+                        Text(renderTime())
+                            .font(Font.system(size: 38, design: .monospaced))
+                            .frame(width: 160, height: 100, alignment: .center)
+                            .padding(.all, 10)
+                            .onTapGesture {
+                                if !self.timerIsRunning {
+                                    self.editTime = true
+                                }
+                            }
+                            .animation(nil)
+                        Spacer()
+                    }
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            self.startTimer()
+                        }) {
+                            HStack {
+                                Text(!self.timerIsRunning ? "start" : "stop")
                             }
                         }
-                        .animation(nil)
-                    Spacer()
-                }
-                Spacer()
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        self.startTimer()
-                    }) {
-                        HStack {
-                            Text(self.timerIsPaused ? "start" : "stop")
+                        .buttonStyle(StartButtonStyle())
+                        Button(action: {
+                            print("sound")
+                            self.isSoundOn.toggle()
+                        }) {
+                            Image(self.isSoundOn ? "volume-up-line" : "sound_off")
+                                .resizable()
+                                .foregroundColor(Color.black)
+                                .scaledToFit()
+                                .padding(.leading, 20)
+                                .frame(width: 50, height: 30.0, alignment: .center)
                         }
-                    }.buttonStyle(StartButtonStyle())
-                    Button(action: {
-                        print("sound")
-                        self.isSoundOn.toggle()
-                    }) {
-                        Image(self.isSoundOn ? "volume-up-line" : "sound_off")
-                            .resizable()
-                            .foregroundColor(Color.black)
-                            .scaledToFit()
-                            .padding(.leading, 20)
-                            .frame(width: 50, height: 30.0, alignment: .center)
+                        Spacer()
                     }
                     Spacer()
                 }
-                Spacer()
+                EditTimeAlert(title: "Minutes", isShown: self.$editTime, text: $time, onDone: { text in
+                    print("onDone", text)
+                    self.time = text
+                })
             }
-            EditTimeAlert(title: "Minutes", isShown: self.$editTime, text: $time, onDone: { text in
-                print("onDone", text)
-                self.time = text
-            })
         }
     }
     func renderTime() -> String {
-        if self.timerIsPaused {
+        if !self.timerIsRunning {
             return "\(self.time):00"
         } else {
             return "\(self.minutes < 10 ? "0\(self.minutes)" : String(self.minutes)):\(self.seconds < 10 ? "0\(self.seconds)" : String(self.seconds))"
         }
     }
     func startTimer() {
-        if !self.timerIsPaused {
+        if self.timerIsRunning {
             self.stopTimer()
             return
         }
         self.viewRouter.currentPage = .timerProgress
         self.resetTimer()
-        self.timerIsPaused = false
+        self.timerIsRunning = true
         self.minutes = Int(self.time)!
         self.initialTime = self.time
         self.startTime = Date()
@@ -121,7 +178,7 @@ struct TimerView: View {
         }
     }
     func stopTimer() {
-        self.timerIsPaused = true
+        self.timerIsRunning = false
         self.timer?.invalidate()
         self.timer = nil
     }
