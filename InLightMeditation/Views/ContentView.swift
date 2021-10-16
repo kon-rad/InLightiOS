@@ -24,7 +24,7 @@ struct ContentView: View {
                     Spacer()
                     switch viewRouter.currentPage {
                         case .timer:
-                            TimerView()
+                            TimerView(viewRouter: ViewRouter())
                         case .profile:
                             Profile()
                         case .timerProgress:

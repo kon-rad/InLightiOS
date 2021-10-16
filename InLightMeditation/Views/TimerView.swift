@@ -28,6 +28,8 @@ struct TimerView: View {
     @State var startTime: Date? = nil
     @State var initialTime: String? = nil
     
+    @StateObject var viewRouter: ViewRouter
+    
     var body: some View {
         ZStack(alignment: .center) {
             VStack(alignment: .leading) {
@@ -89,6 +91,7 @@ struct TimerView: View {
             self.stopTimer()
             return
         }
+        self.viewRouter.currentPage = .timerProgress
         self.resetTimer()
         self.timerIsPaused = false
         self.minutes = Int(self.time)!
@@ -97,7 +100,7 @@ struct TimerView: View {
         self.attemptSound()
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
             // todo: make sure to remove the 'true' statement - it's for development purposes only
-            if seconds == 0 && self.minutes == 0 || true {
+            if seconds == 0 && self.minutes == 0 {
                 print("timer completed!")
                 self.handleTimerCompleted()
                 self.attemptSound()
@@ -177,7 +180,7 @@ struct TimerView: View {
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TimerView()
+            TimerView(viewRouter: ViewRouter())
         }
     }
 }

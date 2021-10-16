@@ -10,6 +10,9 @@ import SwiftUI
 struct TimerProgress: View {
     var body: some View {
         Text("TimerProgress Hello, World!")
+            .onAppear() {
+                print("TimerProgress")
+            }
     }
 }
 

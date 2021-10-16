@@ -16,4 +16,5 @@ class ViewRouter: ObservableObject {
 enum Page {
     case timer
     case profile
+    case timerProgress
 }
