@@ -29,22 +29,23 @@ struct EditTimeAlert: View {
                 .keyboardType(.numberPad)
                 .frame(width: 80)
             HStack(spacing: 20) {
-                Button("Save") {
+                Button("save") {
                     self.isShown = false
-                    print("save, text: ", self.text)
                     self.onDone(self.text)
                     self.endEditing()
                 }
+                .buttonStyle(SaveButtonStyle())
                 Button("Cancel") {
                     self.isShown = false
                     self.onCancel()
                     self.endEditing()
                 }
+                .buttonStyle(CancelButtonStyle())
             }
         }
         .padding()
-        .frame(width: screenSize.width * 0.7, height: screenSize.height * 0.3)
-        .background(Color(#colorLiteral(red: 0.9268686175, green: 0.9416290522, blue: 0.9456014037, alpha: 1)))
+        .frame(width: 200, height: 200)
+        .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 20.0, style: .continuous))
         .offset(y: isShown ? 0 : screenSize.height)
         .animation(.spring())

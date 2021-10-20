@@ -13,13 +13,11 @@ struct CurrentStreak: View {
     @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
     
     var meditations: FetchedResults<Meditation>
-//    @Binding var currentStreak: Int16
-    @State var currentStreak: Int16 = 0
+    @State var currentStreak: Int16 = 44
     
     init() {
         let last = meditations.last
-        _currentStreak = State(initialValue: last?.currentStreak ?? 0)
-        print("init: ", last)
+//        _currentStreak = State(initialValue: last?.currentStreak ?? 0
     }
     
     var body: some View {
@@ -39,8 +37,7 @@ struct CurrentStreak: View {
         .frame(width: 260)
         .onAppear() {
             let last = meditations.last
-            self.currentStreak = last?.currentStreak ?? 0
-            print("currentStreak", self.currentStreak)
+//            self.currentStreak = last?.currentStreak ?? 0
         }
     }
 }

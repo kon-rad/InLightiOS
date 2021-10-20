@@ -77,7 +77,6 @@ struct Profile: View {
                         }
                         .padding(.top, 10)
                     }
-//                    .listStyle(PlainListStyle())
                     Spacer()
                 }
             }
@@ -91,7 +90,7 @@ struct Profile: View {
         }
         .listStyle(PlainListStyle())
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(red: 244 / 255, green: 244 / 255, blue: 244 / 255))
+        .background(Color.white)
     }
     func renderTime(date: Date) -> String {
         let formatter = DateFormatter()

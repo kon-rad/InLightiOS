@@ -58,16 +58,24 @@ struct TimerView: View {
     @StateObject var viewRouter: ViewRouter
     
     private let screenWidth = UIScreen.main.bounds.width
-    private let screenHeight = UIScreen.main.bounds.height
+    private let screenHeight = UIScreen.main.bounds.height + 20
     
     var body: some View {
         if self.timerIsRunning {
-                ZStack {
+            ZStack {
+                Image("timer_bg")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+                    .padding(.top, -40)
+                    .blur(radius: 3)
+                VStack {
+                    Spacer()
                     HStack {
                         Spacer()
                         Text(renderTime())
                             .font(Font.system(size: 38, design: .monospaced))
-                            .frame(width: 160, height: 100, alignment: .center)
+                            .frame(width: 160, height: 60, alignment: .center)
                             .padding(.all, 10)
                             .onTapGesture {
                                 self.startTimer()
@@ -77,14 +85,16 @@ struct TimerView: View {
                     }
                     .edgesIgnoringSafeArea(.all)
                     .statusBar(hidden: true)
+                    Spacer()
+                    Spacer()
                 }
-                .frame(width: screenWidth, height: screenHeight)
-                .background(Color(hex: "CDD9E3").ignoresSafeArea(.all))
-                .onTapGesture {
-                    self.startTimer()
-                }
-                .edgesIgnoringSafeArea(.all)
-                .statusBar(hidden: true)
+            }
+            .frame(width: screenWidth, height: screenHeight)
+            .onTapGesture {
+                self.startTimer()
+            }
+            .edgesIgnoringSafeArea(.all)
+            .statusBar(hidden: true)
         } else {
             ZStack(alignment: .center) {
                 VStack(alignment: .leading) {
@@ -247,9 +257,27 @@ struct StartButtonStyle: ButtonStyle {
         configuration.label
             .foregroundColor(Color.white)
             .padding(.all, 18.0)
-            .background(Color.green)
+            .background(Color(hex: "81B29A"))
             .cornerRadius(50.0)
             .scaleEffect(configuration.isPressed ? 1.3 : 1.0)
+    }
+}
+
+struct SaveButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .foregroundColor(Color.white)
+            .padding(.all, 12.0)
+            .background(Color(hex: "81B29A"))
+            .cornerRadius(50.0)
+            .scaleEffect(configuration.isPressed ? 1.3 : 1.0)
+    }
+}
+
+struct CancelButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .foregroundColor(Color.black)
     }
 }
 

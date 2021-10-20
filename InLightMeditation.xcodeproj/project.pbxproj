@@ -41,6 +41,7 @@
 		FABB403326DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB402426DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf */; };
 		FABB403526DB17D3006806CF /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB403426DB17D3006806CF /* TimerView.swift */; };
 		FACABE46271805AD0074BB91 /* TimerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACABE45271805AD0074BB91 /* TimerProgress.swift */; };
+		FACABE48271C08850074BB91 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FACABE47271C08820074BB91 /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		FABB402426DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		FABB403426DB17D3006806CF /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		FACABE45271805AD0074BB91 /* TimerProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProgress.swift; sourceTree = "<group>"; };
+		FACABE47271C08820074BB91 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Assets.xcassets/logo.imageset/logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 				FA7077F226E8F0CE0045F362 /* Persistence.swift */,
 				FA39A17926DACBA80016F9F3 /* Assets.xcassets */,
 				FA39A17E26DACBA80016F9F3 /* Info.plist */,
+				FACABE47271C08820074BB91 /* logo.png */,
 				FA39A17B26DACBA80016F9F3 /* Preview Content */,
 			);
 			path = InLightMeditation;
@@ -369,6 +372,7 @@
 				FABB402826DB0E28006806CF /* NunitoSans-Light.ttf in Resources */,
 				FABB403126DB0E28006806CF /* NunitoSans-Black.ttf in Resources */,
 				FA39A17A26DACBA80016F9F3 /* Assets.xcassets in Resources */,
+				FACABE48271C08850074BB91 /* logo.png in Resources */,
 				FA7077AC26E70AC30045F362 /* tibetan_bowl_1.m4a in Resources */,
 				FABB402626DB0E28006806CF /* NunitoSans-BoldItalic.ttf in Resources */,
 				FABB402B26DB0E28006806CF /* NunitoSans-Regular.ttf in Resources */,
@@ -569,6 +573,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"InLightMeditation/Preview Content\"";
 				DEVELOPMENT_TEAM = GA978N825M;
@@ -591,6 +596,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"InLightMeditation/Preview Content\"";
 				DEVELOPMENT_TEAM = GA978N825M;
