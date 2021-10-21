@@ -62,6 +62,7 @@ struct Profile: View {
                 .cornerRadius(15)
                 VStack {
                     Text("Meditations List:")
+                        .padding(.top, 18)
                     VStack {
                         ForEach(meditations) { meditation in
                             HStack {

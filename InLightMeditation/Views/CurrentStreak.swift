@@ -17,7 +17,7 @@ struct CurrentStreak: View {
     
     init() {
         let last = meditations.last
-//        _currentStreak = State(initialValue: last?.currentStreak ?? 0
+        _currentStreak = State(initialValue: last?.currentStreak ?? 0)
     }
     
     var body: some View {
@@ -37,7 +37,7 @@ struct CurrentStreak: View {
         .frame(width: 260)
         .onAppear() {
             let last = meditations.last
-//            self.currentStreak = last?.currentStreak ?? 0
+            self.currentStreak = last?.currentStreak ?? 0
         }
     }
 }
