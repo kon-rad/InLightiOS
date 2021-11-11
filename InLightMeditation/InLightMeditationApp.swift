@@ -7,12 +7,15 @@
 
 import SwiftUI
 import CoreData
+import Firebase
 
 @main
 struct InLightMeditationApp: App {
     let persistenceController = PersistenceController.shared
     
-    
+    init() {
+     FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
             SpashScreenView().environment(\.managedObjectContext, persistenceController.container.viewContext)

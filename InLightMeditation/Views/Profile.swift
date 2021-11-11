@@ -22,19 +22,14 @@ struct Profile: View {
         NavigationView {
             List {
                 VStack {
-                    Spacer()
                     HStack {
-                        List {
+                        Spacer()
+                        Spacer()
+                        ZStack {
+                            Text("login/signup")
                             NavigationLink(destination: LoginView()) {
                                 EmptyView()
-                            }
-                            Spacer()
-                            Text("Test")
-                                .overlay(NavigationLink(destination: Text("Test"), label: {
-                                    EmptyView()
-                                }))
-                            .fixedSize()
-                            Text("login/signup")
+                            }.buttonStyle(PlainButtonStyle())
                         }
                     }
                     Image("user_icon")

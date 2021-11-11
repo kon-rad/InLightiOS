@@ -9,12 +9,53 @@ import SwiftUI
 import Firebase
 
 struct LoginView: View {
+    @State private var email: String = ""
+    @State private var password: String = ""
+    
     var body: some View {
         VStack {
-            Text("Login!")
+            Spacer()
+            HStack {
+                VStack {
+                    TextField(
+                        "Email",
+                        text: $email,
+                        onEditingChanged: { (isBegin) in
+                            if isBegin {
+                                print("Begins editing")
+                            } else {
+                                print("Finishes editing")
+                            }
+                        },
+                        onCommit: {
+                            print("commit")
+                        }
+                    )
+                    .padding(10)
+                    TextField(
+                        "Password",
+                        text: $password,
+                        onEditingChanged: { (isBegin) in
+                            if isBegin {
+                                print("Begins editing")
+                            } else {
+                                print("Finishes editing")
+                            }
+                        },
+                        onCommit: {
+                            print("commit")
+                        }
+                    )
+                    .padding(10)
+                }
+                .frame(maxWidth: 200, alignment: .center)
+                .padding(60)
+            }
+            Spacer()
+            Spacer()
+            Spacer()
         }
         .navigationBarTitle("")
-        .navigationBarHidden(true)
     }
     func login() {
         let email = ""

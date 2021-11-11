@@ -17,6 +17,7 @@
 		FA39A18826DACBA80016F9F3 /* InLightMeditationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A18726DACBA80016F9F3 /* InLightMeditationTests.swift */; };
 		FA39A19326DACBA80016F9F3 /* InLightMeditationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A19226DACBA80016F9F3 /* InLightMeditationUITests.swift */; };
 		FA487907273D9DE500BAF79A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA487906273D9DE500BAF79A /* LoginView.swift */; };
+		FA487909273DB8DD00BAF79A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA487908273DB8DC00BAF79A /* GoogleService-Info.plist */; };
 		FA7077A226E478120045F362 /* EditTimeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077A126E478120045F362 /* EditTimeAlert.swift */; };
 		FA7077A926E70A090045F362 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077A826E70A090045F362 /* Sounds.swift */; };
 		FA7077AC26E70AC30045F362 /* tibetan_bowl_1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FA7077AB26E70AC30045F362 /* tibetan_bowl_1.m4a */; };
@@ -88,6 +89,7 @@
 		FA39A19226DACBA80016F9F3 /* InLightMeditationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InLightMeditationUITests.swift; sourceTree = "<group>"; };
 		FA39A19426DACBA80016F9F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA487906273D9DE500BAF79A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		FA487908273DB8DC00BAF79A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA7077A126E478120045F362 /* EditTimeAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimeAlert.swift; sourceTree = "<group>"; };
 		FA7077A826E70A090045F362 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		FA7077AB26E70AC30045F362 /* tibetan_bowl_1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = tibetan_bowl_1.m4a; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 		FA39A17426DACBA40016F9F3 /* InLightMeditation */ = {
 			isa = PBXGroup;
 			children = (
+				FA487908273DB8DC00BAF79A /* GoogleService-Info.plist */,
 				FA7077AA26E70AAF0045F362 /* Resources */,
 				FA7077A526E709DF0045F362 /* Utilities */,
 				FABB401426DB0DF4006806CF /* Fonts */,
@@ -425,6 +428,7 @@
 				FABB402626DB0E28006806CF /* NunitoSans-BoldItalic.ttf in Resources */,
 				FABB402B26DB0E28006806CF /* NunitoSans-Regular.ttf in Resources */,
 				FABB402926DB0E28006806CF /* NunitoSans-BlackItalic.ttf in Resources */,
+				FA487909273DB8DD00BAF79A /* GoogleService-Info.plist in Resources */,
 				FABB403326DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf in Resources */,
 				FABB403026DB0E28006806CF /* NunitoSans-SemiBold.ttf in Resources */,
 			);
