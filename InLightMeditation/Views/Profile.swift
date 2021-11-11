@@ -19,79 +19,95 @@ struct Profile: View {
     @State var totalMinutes: Int16 = 0
     
     var body: some View {
-        List {
-            VStack {
-                Spacer()
-                Image("user_icon")
-                    .resizable()
-                    .frame(width: 70, height: 70.0)
-                    .padding(.top, 50)
-                HStack {
-                    Spacer()
-                    VStack {
-                        Text("\(String(self.currentStreak))")
-                            .font(.headline)
-                            .frame(width: 60)
-                        Text("current streak")
-                            .font(.subheadline)
-                    }
-                    VStack {
-                        Text("\(String(self.bestStreak ?? 0))")
-                            .font(.headline)
-                            .frame(width: 60)
-                        Text("best streak")
-                            .font(.subheadline)
-                    }
-                    VStack {
-                        Text("\(String(self.totalMinutes ?? 0))")
-                            .font(.headline)
-                            .frame(width: 60)
-                        Text("total minutes")
-                            .font(.subheadline)
-                    }
-                    Spacer()
-                }
-                Spacer()
+        NavigationView {
+            List {
                 VStack {
-                    Text("current streak")
-                    CurrentStreak()
-                }
-                .padding(EdgeInsets(top: 30, leading: 0, bottom: 30, trailing: 0))
-                .frame(maxWidth: .infinity)
-                .background(Color(red: 244 / 255, green: 244 / 255, blue: 244 / 255))
-                .cornerRadius(15)
-                VStack {
-                    Text("Meditations List:")
-                        .padding(.top, 18)
-                    VStack {
-                        ForEach(meditations) { meditation in
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text("\(self.renderDate(date: meditation.startTime!))")
-                                        .font(.subheadline)
-                                    Text("Duration: \(meditation.minutes) minutes - \(self.renderTime(date: meditation.startTime!))")
-                                        .font(.subheadline)
-                                }
-                                Spacer()
+                    Spacer()
+                    HStack {
+                        List {
+                            NavigationLink(destination: LoginView()) {
+                                EmptyView()
                             }
-                            .frame(height: 60)
+                            Spacer()
+                            Text("Test")
+                                .overlay(NavigationLink(destination: Text("Test"), label: {
+                                    EmptyView()
+                                }))
+                            .fixedSize()
+                            Text("login/signup")
                         }
-                        .padding(.top, 10)
+                    }
+                    Image("user_icon")
+                        .resizable()
+                        .frame(width: 70, height: 70.0)
+                        .padding(.top, 50)
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Text("\(String(self.currentStreak))")
+                                .font(.headline)
+                                .frame(width: 60)
+                            Text("current streak")
+                                .font(.subheadline)
+                        }
+                        VStack {
+                            Text("\(String(self.bestStreak ?? 0))")
+                                .font(.headline)
+                                .frame(width: 60)
+                            Text("best streak")
+                                .font(.subheadline)
+                        }
+                        VStack {
+                            Text("\(String(self.totalMinutes ?? 0))")
+                                .font(.headline)
+                                .frame(width: 60)
+                            Text("total minutes")
+                                .font(.subheadline)
+                        }
+                        Spacer()
                     }
                     Spacer()
+                    VStack {
+                        Text("current streak")
+                        CurrentStreak()
+                    }
+                    .padding(EdgeInsets(top: 30, leading: 0, bottom: 30, trailing: 0))
+                    .frame(maxWidth: .infinity)
+                    .background(Color(red: 244 / 255, green: 244 / 255, blue: 244 / 255))
+                    .cornerRadius(15)
+                    VStack {
+                        Text("Meditations List:")
+                            .padding(.top, 18)
+                        VStack {
+                            ForEach(meditations) { meditation in
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text("\(self.renderDate(date: meditation.startTime!))")
+                                            .font(.subheadline)
+                                        Text("Duration: \(meditation.minutes) minutes - \(self.renderTime(date: meditation.startTime!))")
+                                            .font(.subheadline)
+                                    }
+                                    Spacer()
+                                }
+                                .frame(height: 60)
+                            }
+                            .padding(.top, 10)
+                        }
+                        Spacer()
+                    }
+                }
+                .onAppear() {
+                    let last = meditations.last
+                    self.currentStreak = last?.currentStreak ?? 0
+                    self.bestStreak =  last?.bestStreak ?? 0
+                    self.totalMinutes =  last?.totalMinutes ?? 0
+                    print("last", last)
                 }
             }
-            .onAppear() {
-                let last = meditations.last
-                self.currentStreak = last?.currentStreak ?? 0
-                self.bestStreak =  last?.bestStreak ?? 0
-                self.totalMinutes =  last?.totalMinutes ?? 0
-                print("last", last)
-            }
+            .listStyle(PlainListStyle())
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.white)
         }
-        .listStyle(PlainListStyle())
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.white)
     }
     func renderTime(date: Date) -> String {
         let formatter = DateFormatter()
