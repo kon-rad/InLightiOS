@@ -17,37 +17,44 @@ struct ContentView: View {
     
     @StateObject var viewRouter: ViewRouter
     
+    @EnvironmentObject var session: FirebaseSession
+    
     var body: some View {
         Group {
-            GeometryReader { geometry in
-                VStack {
-                    Spacer()
-                    switch viewRouter.currentPage {
-                        case .timer:
-                            TimerView(viewRouter: ViewRouter())
-                        case .profile:
-                            Profile()
-                        case .timerProgress:
-                            TimerProgress()
-                    }
-                    Spacer()
-                    Group {
-                        ZStack {
-                            HStack {
-                                Spacer()
-                                Spacer()
-                                TabBarIcon(viewRouter: viewRouter, page: .timer, width: geometry.size.width/5, height: 120, icon: "meditation_icon", tabName: "Meditate")
-                                Spacer()
-                                TabBarIcon(viewRouter: viewRouter, page: .profile, width: geometry.size.width/5, height: 120, icon: "user_icon", tabName: "Profile")
-                                Spacer()
+                GeometryReader { geometry in
+                    VStack {
+                        if !session.isLoggedIn {
+                            Text("logged in yo")
+                            LoginView()
+                        } else {
+                            Spacer()
+                            switch viewRouter.currentPage {
+                                case .timer:
+                                    TimerView(viewRouter: ViewRouter())
+                                case .profile:
+                                    Profile()
+                                case .timerProgress:
+                                    TimerProgress()
                             }
-                            .padding(.bottom, 18)
+                            Spacer()
+                            Group {
+                                ZStack {
+                                    HStack {
+                                        Spacer()
+                                        Spacer()
+                                        TabBarIcon(viewRouter: viewRouter, page: .timer, width: geometry.size.width/5, height: 120, icon: "meditation_icon", tabName: "Meditate")
+                                        Spacer()
+                                        TabBarIcon(viewRouter: viewRouter, page: .profile, width: geometry.size.width/5, height: 120, icon: "user_icon", tabName: "Profile")
+                                        Spacer()
+                                    }
+                                    .padding(.bottom, 18)
+                                }
+                            }
                         }
                     }
+                    .ignoresSafeArea(.keyboard, edges: .bottom)
                 }
-                .ignoresSafeArea(.keyboard, edges: .bottom)
             }
-        }
     }
 }
 

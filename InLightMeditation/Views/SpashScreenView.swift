@@ -11,14 +11,17 @@ struct SpashScreenView: View {
     @State var isActive: Bool = false
     @State var animation = 0.0
     @State var percent = 0.0
-    var uAnimationDuration: Double { return 1.0 }
+    
+    let session = FirebaseSession()
+    
+    var animationDuration: Double { return 1.0 }
       
     func handleAnimations() {
       runAnimationPart1()
     }
 
     func runAnimationPart1() {
-      withAnimation(.easeIn(duration: uAnimationDuration)) {
+      withAnimation(.easeIn(duration: animationDuration)) {
         percent = 1
       }
     }
@@ -29,6 +32,7 @@ struct SpashScreenView: View {
                     withAnimation {
                         ContentView(viewRouter: ViewRouter())
                             .animation(.easeInOut(duration: 1))
+                            .environmentObject(session)
                     }
                 } else {
                     withAnimation {

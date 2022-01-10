@@ -10,7 +10,6 @@ import SwiftUI
 class ViewRouter: ObservableObject {
     
     @Published var currentPage: Page = .timer
-    
 }
 
 enum Page {

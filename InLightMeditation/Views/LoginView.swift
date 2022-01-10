@@ -11,6 +11,10 @@ import Firebase
 struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var confirmPassword: String = ""
+    @State private var isLogin: Bool = true
+    
+    @EnvironmentObject var session: FirebaseSession
     
     var body: some View {
         VStack {
@@ -32,21 +36,29 @@ struct LoginView: View {
                         }
                     )
                     .padding(10)
-                    TextField(
+                    SecureField(
                         "Password",
-                        text: $password,
-                        onEditingChanged: { (isBegin) in
-                            if isBegin {
-                                print("Begins editing")
-                            } else {
-                                print("Finishes editing")
-                            }
-                        },
-                        onCommit: {
-                            print("commit")
-                        }
+                        text: $password
                     )
                     .padding(10)
+                    if !isLogin {
+                        SecureField(
+                            "Confirm Password",
+                            text: $confirmPassword
+                        )
+                        .padding(10)
+                        
+                    }
+                    Button(action: { loginOrSignup() }) {
+                        AuthButtonContent(isLogin: $isLogin)
+                    }
+                    .padding(10)
+                    Button(action: { toggleIsLogin() }) {
+                        // this is flipped to toggle the auth flow
+                        Text(isLogin ? "Signup" : "Login")
+                    }
+                    .padding(10)
+                        
                 }
                 .frame(maxWidth: 200, alignment: .center)
                 .padding(60)
@@ -57,22 +69,29 @@ struct LoginView: View {
         }
         .navigationBarTitle("")
     }
-    func login() {
-        let email = ""
-        let password = ""
-        Auth.auth().signIn(withEmail: email, password: password) { user, error in
-            if let error = error, user == nil {
-                let alert = UIAlertController(
-                    title: "Sign in Failed",
-                    message: error.localizedDescription,
-                    preferredStyle: .alert
-                )
-
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
-
-                print("error")
-            } else {
-                print("logged in")
+    func toggleIsLogin() {
+        self.isLogin = !self.isLogin
+    }
+    func loginOrSignup() {
+        if isLogin {
+            session.logIn(email: email, password: password) { (result, error) in
+                if error != nil {
+                    print("Login Error", error)
+                } else {
+                    self.email = ""
+                    self.password = ""
+                }
+            }
+        } else {
+            if !email.isEmpty && !password.isEmpty {
+                session.signUp(email: email, password: password) { (result, error) in
+                    if error != nil {
+                        print("Signup Error", error)
+                    } else {
+                        self.email = ""
+                        self.password = ""
+                    }
+                }
             }
         }
     }
@@ -83,3 +102,17 @@ struct LoginView_Previews: PreviewProvider {
         LoginView()
     }
 }
+
+struct AuthButtonContent : View {
+    @Binding var isLogin: Bool
+    var body: some View {
+        return Text(isLogin ? "LOGIN" : "SIGNUP")
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding()
+            .frame(width: 180, height: 46)
+            .background(isLogin ? Color.green : Color.blue)
+            .cornerRadius(12.0)
+    }
+}
+

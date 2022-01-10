@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct Profile: View {
-    @Environment(\.managedObjectContext) private var viewContext
+//    @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
+//    @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
     
-    var meditations: FetchedResults<Meditation>
+//    var meditations: FetchedResults<Meditation>
+    
+    @ObservedObject var session = FirebaseSession()
     
     @State var currentStreak: Int16 = 0
     @State var bestStreak: Int16 = 0
@@ -23,15 +25,18 @@ struct Profile: View {
             List {
                 VStack {
                     HStack {
-                        Spacer()
-                        Spacer()
                         ZStack {
                             Text("login/signup")
                             NavigationLink(destination: LoginView()) {
                                 EmptyView()
                             }.buttonStyle(PlainButtonStyle())
                         }
+                        Button(action: { signOut() }) {
+                            Text("sign out")
+                        }
                     }
+                    Spacer()
+                    Spacer()
                     Image("user_icon")
                         .resizable()
                         .frame(width: 70, height: 70.0)
@@ -74,13 +79,13 @@ struct Profile: View {
                         Text("Meditations List:")
                             .padding(.top, 18)
                         VStack {
-                            ForEach(meditations) { meditation in
+                            ForEach(self.session.items) { meditation in
                                 HStack {
                                     VStack(alignment: .leading) {
-                                        Text("\(self.renderDate(date: meditation.startTime!))")
+                                        Text("\(meditation.startTime)")
                                             .font(.subheadline)
-                                        Text("Duration: \(meditation.minutes) minutes - \(self.renderTime(date: meditation.startTime!))")
-                                            .font(.subheadline)
+//                                        Text("Duration: \(meditation.minutes) minutes - \(self.renderTime(date: meditation.startTime!))")
+//                                            .font(.subheadline)
                                     }
                                     Spacer()
                                 }
@@ -92,17 +97,21 @@ struct Profile: View {
                     }
                 }
                 .onAppear() {
-                    let last = meditations.last
-                    self.currentStreak = last?.currentStreak ?? 0
-                    self.bestStreak =  last?.bestStreak ?? 0
-                    self.totalMinutes =  last?.totalMinutes ?? 0
-                    print("last", last)
+//                    let last = meditations.last
+//                    self.currentStreak = last?.currentStreak ?? 0
+//                    self.bestStreak =  last?.bestStreak ?? 0
+//                    self.totalMinutes =  last?.totalMinutes ?? 0
+//                    print("last", last)
+                    session.getSessions()
                 }
             }
             .listStyle(PlainListStyle())
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color.white)
         }
+    }
+    func signOut() {
+        session.signOut()
     }
     func renderTime(date: Date) -> String {
         let formatter = DateFormatter()

@@ -36,11 +36,13 @@ extension Color {
 
 struct TimerView: View {
     
-    @Environment(\.managedObjectContext) private var viewContext
+//    @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
+//    @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
+    
+    @ObservedObject var session = FirebaseSession()
 
-    var meditations: FetchedResults<Meditation>
+//    var meditations: FetchedResults<Meditation>
     
     @State var time: String = "10"
     @State var editTime: Bool = false
@@ -166,8 +168,8 @@ struct TimerView: View {
         self.startTime = Date()
         self.attemptSound()
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
-            // todo: make sure to remove the 'true' statement - it's for development purposes only
-            if seconds == 0 && self.minutes == 0 {
+            // note: make sure to remove the 'true' statement before committing - it's for development purposes only
+            if true || seconds == 0 && self.minutes == 0 {
                 print("timer completed!")
                 self.handleTimerCompleted()
                 self.attemptSound()
@@ -204,40 +206,46 @@ struct TimerView: View {
         }
     }
     func handleTimerCompleted() {
-        let newMeditation = Meditation(context: viewContext)
-        newMeditation.startTime = self.startTime
-        newMeditation.endTime = Date()
-        newMeditation.minutes = Int16(self.initialTime!)!
-        newMeditation.id = UUID()
-        let last = meditations.last
-        if last == nil {
-            newMeditation.currentStreak = 1
-            newMeditation.bestStreak = 1
-            newMeditation.totalMinutes = Int16(self.initialTime!)!
-        } else {
-            print("min: ", Int16(self.initialTime!)!)
-            var currentStreak = last?.currentStreak ?? 0
-            if (last?.endTime!.addingTimeInterval(86400))! >= newMeditation.endTime! {
-                currentStreak += 1
-            } else {
-                currentStreak = 1
-            }
-            newMeditation.currentStreak = currentStreak
-            let lastBestStreak = last?.bestStreak ?? 0
-            if (lastBestStreak < currentStreak) {
-                newMeditation.bestStreak = currentStreak
-            } else {
-                newMeditation.bestStreak = lastBestStreak
-            }
-            print("new min: ", newMeditation.minutes)
-            print("new bestStreak: ", newMeditation.bestStreak)
-            print("new currentStreak: ", newMeditation.currentStreak)
-            newMeditation.totalMinutes = newMeditation.minutes + last!.totalMinutes
-            print("last end time", last?.endTime ?? "undefined")
-        }
+//        let newMeditation = Meditation(context: viewContext)
+//        newMeditation.startTime = self.startTime
+//        newMeditation.endTime = Date()
+//        newMeditation.minutes = Int16(self.initialTime!)!
+//        newMeditation.id = UUID()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YY, MMM d, HH:mm:ss"
+        let startTimeString = dateFormatter.string(from: startTime!)
+        let endTimeString = dateFormatter.string(from: Date())
+//        let session = Session(startTime: startTimeString, endTime: endTimeString)
+//        let last = meditations.last
+//        if last == nil {
+//            newMeditation.currentStreak = 1
+//            newMeditation.bestStreak = 1
+//            newMeditation.totalMinutes = Int16(self.initialTime!)!
+//        } else {
+//            print("min: ", Int16(self.initialTime!)!)
+//            var currentStreak = last?.currentStreak ?? 0
+//            if (last?.endTime!.addingTimeInterval(86400))! >= newMeditation.endTime! {
+//                currentStreak += 1
+//            } else {
+//                currentStreak = 1
+//            }
+//            newMeditation.currentStreak = currentStreak
+//            let lastBestStreak = last?.bestStreak ?? 0
+//            if (lastBestStreak < currentStreak) {
+//                newMeditation.bestStreak = currentStreak
+//            } else {
+//                newMeditation.bestStreak = lastBestStreak
+//            }
+//            print("new min: ", newMeditation.minutes)
+//            print("new bestStreak: ", newMeditation.bestStreak)
+//            print("new currentStreak: ", newMeditation.currentStreak)
+//            newMeditation.totalMinutes = newMeditation.minutes + last!.totalMinutes
+//            print("last end time", last?.endTime ?? "undefined")
+//        }
         do {
-            try viewContext.save()
+//            try viewContext.save()
             print("meditation saved!")
+            session.uploadSession(startTime: startTimeString, endTime: endTimeString)
         } catch {
             print(error.localizedDescription)
         }

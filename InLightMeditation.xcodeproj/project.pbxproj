@@ -47,6 +47,9 @@
 		FABB403526DB17D3006806CF /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB403426DB17D3006806CF /* TimerView.swift */; };
 		FACABE46271805AD0074BB91 /* TimerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACABE45271805AD0074BB91 /* TimerProgress.swift */; };
 		FACABE48271C08850074BB91 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FACABE47271C08820074BB91 /* logo.png */; };
+		FAFE3701278AE1870043E0D1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE3700278AE1860043E0D1 /* User.swift */; };
+		FAFE3704278AE8220043E0D1 /* FirebaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE3703278AE8220043E0D1 /* FirebaseSession.swift */; };
+		FAFE3706278AF03A0043E0D1 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE3705278AF03A0043E0D1 /* Session.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,9 @@
 		FABB403426DB17D3006806CF /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		FACABE45271805AD0074BB91 /* TimerProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProgress.swift; sourceTree = "<group>"; };
 		FACABE47271C08820074BB91 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Assets.xcassets/logo.imageset/logo.png; sourceTree = "<group>"; };
+		FAFE3700278AE1860043E0D1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FAFE3703278AE8220043E0D1 /* FirebaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSession.swift; sourceTree = "<group>"; };
+		FAFE3705278AF03A0043E0D1 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +204,8 @@
 		FA39A17426DACBA40016F9F3 /* InLightMeditation */ = {
 			isa = PBXGroup;
 			children = (
+				FAFE3702278AE80C0043E0D1 /* Session */,
+				FAFE36FF278AE1560043E0D1 /* Models */,
 				FA487908273DB8DC00BAF79A /* GoogleService-Info.plist */,
 				FA7077AA26E70AAF0045F362 /* Resources */,
 				FA7077A526E709DF0045F362 /* Utilities */,
@@ -301,6 +309,23 @@
 				FABB402426DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf */,
 			);
 			path = Nunito_Sans;
+			sourceTree = "<group>";
+		};
+		FAFE36FF278AE1560043E0D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FAFE3700278AE1860043E0D1 /* User.swift */,
+				FAFE3705278AF03A0043E0D1 /* Session.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FAFE3702278AE80C0043E0D1 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				FAFE3703278AE8220043E0D1 /* FirebaseSession.swift */,
+			);
+			path = Session;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -562,11 +587,14 @@
 				FABB403526DB17D3006806CF /* TimerView.swift in Sources */,
 				FA39A17826DACBA40016F9F3 /* SpashScreenView.swift in Sources */,
 				FA487907273D9DE500BAF79A /* LoginView.swift in Sources */,
+				FAFE3701278AE1870043E0D1 /* User.swift in Sources */,
 				FA7077AE26E70F990045F362 /* Profile.swift in Sources */,
 				FA7077F526ECDB750045F362 /* Color.swift in Sources */,
 				FA7077A926E70A090045F362 /* Sounds.swift in Sources */,
+				FAFE3706278AF03A0043E0D1 /* Session.swift in Sources */,
 				FACABE46271805AD0074BB91 /* TimerProgress.swift in Sources */,
 				FA7077F926ED70D20045F362 /* Meditations.swift in Sources */,
+				FAFE3704278AE8220043E0D1 /* FirebaseSession.swift in Sources */,
 				FA7077F726ED50BD0045F362 /* CurrentStreak.swift in Sources */,
 				FA7077B226E7226C0045F362 /* ContentView.swift in Sources */,
 				FA39A17626DACBA40016F9F3 /* InLightMeditationApp.swift in Sources */,

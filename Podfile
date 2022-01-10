@@ -6,7 +6,8 @@ target 'InLightMeditation' do
   use_frameworks!
 
   # Pods for InLightMeditation
-
+  
+  pod 'Firebase'
   # add the Firebase pod for Google Analytics
   pod 'Firebase/Analytics'
   pod 'Firebase/Core', :inhibit_warnings => true
