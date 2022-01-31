@@ -42,6 +42,7 @@ class FirebaseSession: ObservableObject {
                 if let snapshot = child as? DataSnapshot,
                    let session = Session(snapshot: snapshot) {
                     self.items.append(session)
+                    print("session found: ", session)
                 }
             }
         }
@@ -66,18 +67,20 @@ class FirebaseSession: ObservableObject {
     }
     
     func uploadSession(startTime: String, endTime: String) {
+        print("upload session called: ", startTime, endTime)
         //Generates number going up as time goes on, sets order of TODO's by how old they are.
         let number = Int(Date.timeIntervalSinceReferenceDate * 1000)
         
         let postRef = ref.child(String(number))
         let sess = Session(startTime: startTime, endTime: endTime)
         postRef.setValue(sess.toAnyObject())
+        print("new session created: ", sess)
     }
     
     func updateSession(key: String, todo: String, isComplete: String) {
-        let update = ["todo": todo, "isComplete": isComplete]
-        let childUpdate = ["\(key)": update]
-        ref.updateChildValues(childUpdate)
+//        let update = ["todo": todo, "isComplete": isComplete]
+//        let childUpdate = ["\(key)": update]
+//        ref.updateChildValues(childUpdate)
     }
 }
 

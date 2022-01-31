@@ -14,25 +14,32 @@ struct Profile: View {
     
 //    var meditations: FetchedResults<Meditation>
     
-    @ObservedObject var session = FirebaseSession()
+//    @ObservedObject var session = FirebaseSession()
+    @EnvironmentObject var session: FirebaseSession
     
     @State var currentStreak: Int16 = 0
     @State var bestStreak: Int16 = 0
     @State var totalMinutes: Int16 = 0
     
+    init(){
+        UINavigationBar.setAnimationsEnabled(false)
+    }
     var body: some View {
         NavigationView {
             List {
                 VStack {
                     HStack {
-                        ZStack {
-                            Text("login/signup")
-                            NavigationLink(destination: LoginView()) {
-                                EmptyView()
-                            }.buttonStyle(PlainButtonStyle())
-                        }
-                        Button(action: { signOut() }) {
-                            Text("sign out")
+                        if !session.isLoggedIn {
+                            ZStack {
+                                Text("login/signup")
+                                NavigationLink(destination: LoginView()) {
+                                    EmptyView()
+                                }.buttonStyle(PlainButtonStyle())
+                            }
+                        } else {
+                            Button(action: { signOut() }) {
+                                Text("sign out")
+                            }
                         }
                     }
                     Spacer()
@@ -97,11 +104,6 @@ struct Profile: View {
                     }
                 }
                 .onAppear() {
-//                    let last = meditations.last
-//                    self.currentStreak = last?.currentStreak ?? 0
-//                    self.bestStreak =  last?.bestStreak ?? 0
-//                    self.totalMinutes =  last?.totalMinutes ?? 0
-//                    print("last", last)
                     session.getSessions()
                 }
             }

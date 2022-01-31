@@ -24,7 +24,6 @@ struct ContentView: View {
                 GeometryReader { geometry in
                     VStack {
                         if !session.isLoggedIn {
-                            Text("logged in yo")
                             LoginView()
                         } else {
                             Spacer()

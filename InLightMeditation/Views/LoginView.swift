@@ -68,6 +68,12 @@ struct LoginView: View {
             Spacer()
         }
         .navigationBarTitle("")
+        .onAppear(perform: getUser)
+    }
+    
+    //MARK: Functions
+    func getUser() {
+        session.listen()
     }
     func toggleIsLogin() {
         self.isLogin = !self.isLogin
@@ -80,6 +86,7 @@ struct LoginView: View {
                 } else {
                     self.email = ""
                     self.password = ""
+                    print("logged in")
                 }
             }
         } else {
@@ -90,6 +97,7 @@ struct LoginView: View {
                     } else {
                         self.email = ""
                         self.password = ""
+                        print("signed up")
                     }
                 }
             }
