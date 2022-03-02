@@ -36,26 +36,12 @@ struct LoginView: View {
                         }
                     )
                     .padding(10)
-                    SecureField(
-                        "Password",
-                        text: $password
-                    )
-                    .padding(10)
-                    if !isLogin {
-                        SecureField(
-                            "Confirm Password",
-                            text: $confirmPassword
-                        )
-                        .padding(10)
-                        
-                    }
                     Button(action: { loginOrSignup() }) {
                         AuthButtonContent(isLogin: $isLogin)
                     }
                     .padding(10)
                     Button(action: { toggleIsLogin() }) {
-                        // this is flipped to toggle the auth flow
-                        Text(isLogin ? "Signup" : "Login")
+                        Text("Login")
                     }
                     .padding(10)
                         
@@ -78,30 +64,65 @@ struct LoginView: View {
     func toggleIsLogin() {
         self.isLogin = !self.isLogin
     }
+    func showMessagePrompt(message: String) {
+        print("message: ", message)
+    }
     func loginOrSignup() {
-        if isLogin {
-            session.logIn(email: email, password: password) { (result, error) in
-                if error != nil {
-                    print("Login Error", error)
-                } else {
-                    self.email = ""
-                    self.password = ""
-                    print("logged in")
-                }
+        let actionCodeSettings = ActionCodeSettings()
+        
+        let scheme = "https"
+        let uriPrefix = "inlight.page.link"
+        let queryItemEmailName = "email"
+        
+        var components = URLComponents()
+        components.scheme = scheme
+        components.host = uriPrefix
+        
+        
+        actionCodeSettings.url = URL(string: "https://inlight-281fb.firebaseapp.com")
+        // The sign-in operation has to always be completed in the app.
+        actionCodeSettings.handleCodeInApp = true
+        actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
+        
+        Auth.auth().sendSignInLink(toEmail: email,
+                                   actionCodeSettings: actionCodeSettings) { error in
+          // ...
+            if let error = error {
+                self.showMessagePrompt(message: error.localizedDescription)
+              return
             }
-        } else {
-            if !email.isEmpty && !password.isEmpty {
-                session.signUp(email: email, password: password) { (result, error) in
-                    if error != nil {
-                        print("Signup Error", error)
-                    } else {
-                        self.email = ""
-                        self.password = ""
-                        print("signed up")
-                    }
-                }
-            }
+            // The link was successfully sent. Inform the user.
+            // Save the email locally so you don't need to ask the user for it again
+            // if they open the link on the same device.
+            UserDefaults.standard.set(email, forKey: "Email")
+            self.showMessagePrompt(message: "Check your email for link")
+            // ...
         }
+        
+        
+//        if isLogin {
+//            session.logIn(email: email, password: password) { (result, error) in
+//                if error != nil {
+//                    print("Login Error", error)
+//                } else {
+//                    self.email = ""
+//                    self.password = ""
+//                    print("logged in")
+//                }
+//            }
+//        } else {
+//            if !email.isEmpty && !password.isEmpty {
+//                session.signUp(email: email, password: password) { (result, error) in
+//                    if error != nil {
+//                        print("Signup Error", error)
+//                    } else {
+//                        self.email = ""
+//                        self.password = ""
+//                        print("signed up")
+//                    }
+//                }
+//            }
+//        }
     }
 }
 
