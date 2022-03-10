@@ -26,24 +26,22 @@ struct Profile: View {
     }
     var body: some View {
         NavigationView {
+            VStack {
+            if !session.isLoggedIn {
+                ZStack {
+                    Text("login/signup")
+                    NavigationLink(destination: LoginView()) {
+                        EmptyView()
+                    }.buttonStyle(PlainButtonStyle())
+                }
+            } else {
+                Button(action: { signOut() }) {
+                    Text("sign out")
+                }
+            }
+            Spacer()
             List {
                 VStack {
-                    HStack {
-                        if !session.isLoggedIn {
-                            ZStack {
-                                Text("login/signup")
-                                NavigationLink(destination: LoginView()) {
-                                    EmptyView()
-                                }.buttonStyle(PlainButtonStyle())
-                            }
-                        } else {
-                            Button(action: { signOut() }) {
-                                Text("sign out")
-                            }
-                        }
-                    }
-                    Spacer()
-                    Spacer()
                     Image("user_icon")
                         .resizable()
                         .frame(width: 70, height: 70.0)
@@ -106,10 +104,15 @@ struct Profile: View {
                 .onAppear() {
                     session.getSessions()
                 }
+                .animation(nil)
             }
             .listStyle(PlainListStyle())
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color.white)
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+            }
+            .animation(nil)
         }
     }
     func signOut() {
