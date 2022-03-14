@@ -19,6 +19,8 @@ class FirebaseSession: ObservableObject {
     @Published var items: [Session] = []
     @Published var currentStreak: Int = 0
     @Published var lastSessionStart: String = ""
+    @Published var bestStreak: Int = 0
+    @Published var totalMinutes: Int = 0
     
     var ref: DatabaseReference = Database.database().reference(withPath: "\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
     
@@ -31,8 +33,7 @@ class FirebaseSession: ObservableObject {
                 self.ref = Database.database().reference(withPath: "\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
             } else {
                 print("logged out --- session")
-                self.isLoggedIn = false
-                self.session = nil
+                self.clearMemory()
             }
         }
     }
@@ -44,15 +45,29 @@ class FirebaseSession: ObservableObject {
         ref.observe(DataEventType.value) { (snapshot) in
             self.items = []
             for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot,
-                   let session = Session(snapshot: snapshot) {
-                    self.items.append(session)
-                    print("session found: ", session)
+                if let snapshot = child as? DataSnapshot {
+                   
+                   if let datavalue = snapshot.value as? [String:Any] {
+                        let startTime = datavalue["startTime"] != nil ? datavalue["startTime"] as! String : ""
+                        let endTime = datavalue["endTime"] != nil ? datavalue["endTime"] as! String : ""
+                        let duration = datavalue["duration"] != nil ? datavalue["duration"] as! Int : 0
+                        let note = datavalue["note"] != nil ? datavalue["note"] as! String : ""
+                        let emoji = datavalue["emoji"] != nil ? datavalue["emoji"] as! String : ""
+
+                       let session = Session(startTime: startTime, endTime: endTime, duration: duration, note: note, emoji: emoji)
+                        self.items.append(session)
+                        print("session found: ", session)
+                   }
+                
                 }
             }
             if let datavalue = snapshot.value as? [String:Any] {
-                self.currentStreak = datavalue["currentStreak"] as! Int
-                self.lastSessionStart = datavalue["lastSessionStart"] as! String
+
+                self.currentStreak = datavalue["currentStreak"] != nil ? datavalue["currentStreak"] as! Int : 0
+                self.lastSessionStart = datavalue["lastSessionStart"] != nil ? datavalue["lastSessionStart"] as! String : ""
+                self.bestStreak = datavalue["bestStreak"] != nil ? datavalue["bestStreak"] as! Int : 0
+                self.totalMinutes = datavalue["totalMinutes"] != nil ? datavalue["totalMinutes"] as! Int : 0
+
             }
         }
     }
@@ -67,9 +82,16 @@ class FirebaseSession: ObservableObject {
     func signOut() {
         print("signOut is called")
         try! Auth.auth().signOut()
+        clearMemory()
+    }
+    
+    func clearMemory() {
         self.isLoggedIn = false
         self.session = nil
         self.items = []
+        self.currentStreak = 0
+        self.bestStreak = 0
+        self.totalMinutes = 0
     }
     
     func signUp(email: String, password: String, handler: @escaping AuthDataResultCallback) {
@@ -80,17 +102,40 @@ class FirebaseSession: ObservableObject {
         getSessions()
     }
     
-    func uploadSession(startTime: String, endTime: String, currentStreak: Int, lastSessionStart: String) {
+    
+//        startTime: startTimeString,
+//        endTime: endTimeString,
+//        currentStreak: currentStreak,
+//        lastSessionStart: lastSessionStart,
+//        bestStreak: bestStreak,
+//        totalMinutes: totalMinutes,
+//        duration: duration,
+//        notes: notes,
+//        emoji: emoji
+    
+    func uploadSession(
+            startTime: String,
+            endTime: String,
+            currentStreak: Int,
+            lastSessionStart: String,
+            bestStreak: Int,
+            totalMinutes: Int,
+            duration: Int,
+            note: String,
+            emoji: String
+    ) {
         print("upload session called: ", startTime, endTime)
         print("uploadSession self.items: ", self.items)
         // Generates number going up as time goes on, sets order of Sessions's by how old they are.
         let number = Int(Date.timeIntervalSinceReferenceDate * 1000)
         
         let postRef = ref.child(String(number))
-        let sess = Session(startTime: startTime, endTime: endTime)
+        let sess = Session(startTime: startTime, endTime: endTime, duration: duration, note: note, emoji: emoji)
         postRef.setValue(sess.toAnyObject())
         ref.child("currentStreak").setValue(currentStreak)
         ref.child("lastSessionStart").setValue(lastSessionStart)
+        ref.child("bestStreak").setValue(bestStreak)
+        ref.child("totalMinutes").setValue(totalMinutes)
         print("new session created: ", sess, currentStreak, lastSessionStart)
     }
     

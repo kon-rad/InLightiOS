@@ -14,40 +14,27 @@ struct Session: Identifiable {
     let startTime: String
     let endTime: String
     let id: String?
-//    let duration: String
-//    let note: String
-//    let minutes: Int16
-//    let key: String
+    let duration: Int
+    let note: String
+    let emoji: String
     
-    init(startTime: String, endTime: String) {
+    init(startTime: String, endTime: String, duration: Int, note: String, emoji: String) {
         self.ref = nil
         self.startTime = startTime
         self.endTime = endTime
+        self.duration = duration
+        self.note = note
+        self.emoji = emoji
         self.id = nil
-//        self.note = note
-    }
-    
-    init?(snapshot: DataSnapshot) {
-        guard
-            let value = snapshot.value as? [String: AnyObject],
-            let startTime = value["startTime"] as? String,
-            let endTime = value["endTime"] as? String
-            else {
-                return nil
-            }
-        
-        self.ref = snapshot.ref
-//        self.key = snapshot.key
-        self.startTime = startTime
-        self.endTime = endTime
-        self.id = snapshot.key
-        
     }
     
     func toAnyObject() -> Any {
         return [
             "startTime": startTime,
             "endTime": endTime,
+            "duration": duration,
+            "note": note,
+            "emoji": emoji,
         ]
     }
 }

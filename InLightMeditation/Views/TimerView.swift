@@ -57,7 +57,7 @@ struct TimerView: View {
     @State var timerIsRunning: Bool = false
     @State var timer: Timer? = nil
     @State var startTime: Date? = nil
-    @State var initialTime: String? = nil
+    @State var initialTime: Int = 0
     
     @StateObject var viewRouter: ViewRouter
     
@@ -166,7 +166,7 @@ struct TimerView: View {
         self.resetTimer()
         self.timerIsRunning = true
         self.minutes = Int(self.time)!
-        self.initialTime = self.time
+        self.initialTime = Int(self.time)!
         self.startTime = Date()
         self.attemptSound()
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
@@ -219,55 +219,40 @@ struct TimerView: View {
         print("handle timer completed", self.session.items.count)
         let lastSessionStart = endTimeString;
         var currentStreak = self.session.currentStreak
+        var bestStreak = self.session.bestStreak
+        var totalMinutes = self.session.totalMinutes + self.initialTime
         if (self.session.items.count > 0) {
             let lastSession = self.session.items[self.session.items.count - 1]
             let lastSessionObj = dateFormatter.date(from: lastSession.startTime)
             
             if ((lastSessionObj?.addingTimeInterval(86400))!) >= startTime! {
                 currentStreak += 1
+                bestStreak += 1
             } else {
                 currentStreak = 1
+                bestStreak = self.session.bestStreak > currentStreak + 1 ? self.session.bestStreak : currentStreak + 1;
             }
+        } else {
+            currentStreak = 1
+            bestStreak = 1
         }
-        print("currentStreak : ", currentStreak)
-        print("currentStreak in TimerView: ", self.session.currentStreak)
-        print("lastSessionStart in TimerView: ", self.session.lastSessionStart)
         
-//        if let lastDate = dateFormatter.date(from: self.session.items.last!.startTime) {
-//          // do something with date...
-//            print("last time: ", lastDate)
-//        }
-//        let session = Session(startTime: startTimeString, endTime: endTimeString)
-//        let last = meditations.last
-//        if last == nil {
-//            newMeditation.currentStreak = 1
-//            newMeditation.bestStreak = 1
-//            newMeditation.totalMinutes = Int16(self.initialTime!)!
-//        } else {
-//            print("min: ", Int16(self.initialTime!)!)
-//            var currentStreak = last?.currentStreak ?? 0
-//            if (last?.endTime!.addingTimeInterval(86400))! >= newMeditation.endTime! {
-//                currentStreak += 1
-//            } else {
-//                currentStreak = 1
-//            }
-//            newMeditation.currentStreak = currentStreak
-//            let lastBestStreak = last?.bestStreak ?? 0
-//            if (lastBestStreak < currentStreak) {
-//                newMeditation.bestStreak = currentStreak
-//            } else {
-//                newMeditation.bestStreak = lastBestStreak
-//            }
-//            print("new min: ", newMeditation.minutes)
-//            print("new bestStreak: ", newMeditation.bestStreak)
-//            print("new currentStreak: ", newMeditation.currentStreak)
-//            newMeditation.totalMinutes = newMeditation.minutes + last!.totalMinutes
-//            print("last end time", last?.endTime ?? "undefined")
-//        }
+        var note = "this is a note"
+        var duration = 99
+        var emoji = "sunny weather"
+        
         do {
-//            try viewContext.save()
-            print("meditation saved!")
-            session.uploadSession(startTime: startTimeString, endTime: endTimeString, currentStreak: currentStreak, lastSessionStart: lastSessionStart)
+            session.uploadSession(
+                startTime: startTimeString,
+                endTime: endTimeString,
+                currentStreak: currentStreak,
+                lastSessionStart: lastSessionStart,
+                bestStreak: bestStreak,
+                totalMinutes: totalMinutes,
+                duration: duration,
+                note: note,
+                emoji: emoji
+            )
         } catch {
             print(error.localizedDescription)
         }

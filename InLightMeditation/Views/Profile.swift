@@ -8,11 +8,6 @@
 import SwiftUI
 
 struct Profile: View {
-//    @Environment(\.managedObjectContext) private var viewContext
-    
-//    @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
-    
-//    var meditations: FetchedResults<Meditation>
     
     @EnvironmentObject var session: FirebaseSession
     
@@ -20,20 +15,13 @@ struct Profile: View {
     @State var bestStreak: Int16 = 0
     @State var totalMinutes: Int16 = 0
     
-    init(){
+    init() {
         UINavigationBar.setAnimationsEnabled(false)
     }
     var body: some View {
         NavigationView {
             VStack {
-            if !session.isLoggedIn {
-                ZStack {
-                    Text("login/signup")
-                    NavigationLink(destination: LoginView()) {
-                        EmptyView()
-                    }.buttonStyle(PlainButtonStyle())
-                }
-            } else {
+            if session.isLoggedIn {
                 Button(action: { signOut() }) {
                     Text("sign out")
                 }
@@ -48,21 +36,21 @@ struct Profile: View {
                     HStack {
                         Spacer()
                         VStack {
-                            Text("\(String(self.currentStreak))")
+                            Text("\(String(self.session.currentStreak))")
                                 .font(.headline)
                                 .frame(width: 60)
                             Text("current streak")
                                 .font(.subheadline)
                         }
                         VStack {
-                            Text("\(String(self.bestStreak ?? 0))")
+                            Text("\(String(self.session.bestStreak ?? 0))")
                                 .font(.headline)
                                 .frame(width: 60)
                             Text("best streak")
                                 .font(.subheadline)
                         }
                         VStack {
-                            Text("\(String(self.totalMinutes ?? 0))")
+                            Text("\(String(self.session.totalMinutes ?? 0))")
                                 .font(.headline)
                                 .frame(width: 60)
                             Text("total minutes")
@@ -73,10 +61,12 @@ struct Profile: View {
                     Spacer()
                     VStack {
                         Text("current streak")
-                        CurrentStreak()
+                        Spacer()
+                        Spacer()
+                        CurrentStreak(currentStreak: self.session.currentStreak)
                     }
                     .padding(EdgeInsets(top: 30, leading: 0, bottom: 30, trailing: 0))
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, minHeight: 120)
                     .background(Color(red: 244 / 255, green: 244 / 255, blue: 244 / 255))
                     .cornerRadius(15)
                     VStack {
@@ -88,8 +78,12 @@ struct Profile: View {
                                     VStack(alignment: .leading) {
                                         Text("\(meditation.startTime)")
                                             .font(.subheadline)
-//                                        Text("Duration: \(meditation.minutes) minutes - \(self.renderTime(date: meditation.startTime!))")
-//                                            .font(.subheadline)
+                                        Text("\(meditation.duration)")
+                                            .font(.subheadline)
+                                        Text("\(meditation.note)")
+                                            .font(.subheadline)
+                                        Text("\(meditation.emoji)")
+                                            .font(.subheadline)
                                     }
                                     Spacer()
                                 }
@@ -102,6 +96,7 @@ struct Profile: View {
                 }
                 .onAppear() {
                     session.getSessions()
+                    print("onAppear of Profile: ", self.session.items)
                 }
                 .animation(nil)
                 .padding()

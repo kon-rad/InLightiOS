@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct CurrentStreak: View {
-    @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
+    var currentStreak: Int = 0
     
-    var meditations: FetchedResults<Meditation>
-    @State var currentStreak: Int16 = 44
+//    @Environment(\.managedObjectContext) private var viewContext
     
-    init() {
-        let last = meditations.last
-        _currentStreak = State(initialValue: last?.currentStreak ?? 0)
-    }
+//    @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
+//
+//    var meditations: FetchedResults<Meditation>
+//    @State var currentStreak: Int16 = 44
+    
+//    init() {
+//        _currentStreak = State(initialValue: self.currentStreak ?? 0)
+//    }
     
     var body: some View {
         VStack {
@@ -35,10 +37,9 @@ struct CurrentStreak: View {
             }
         }
         .frame(width: 260)
-        .onAppear() {
-            let last = meditations.last
-            self.currentStreak = last?.currentStreak ?? 0
-        }
+//        .onAppear() {
+//            self.currentStreak = self.currentStreak ?? 0
+//        }
     }
 }
 
@@ -61,7 +62,7 @@ struct StreakWeek: View {
             }
         }
         .onAppear() {
-            print("start: \(self.start) - \(self.end)")
+//            print("start: \(self.start) - \(self.end)")
         }
         .frame(width: 260, alignment: .leading)
     }
