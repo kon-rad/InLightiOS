@@ -16,7 +16,7 @@ struct InLightMeditationApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     let persistenceController = PersistenceController.shared
     
-    //Firebase
+    @StateObject var session = FirebaseSession()
     
     init() {
        FirebaseApp.configure()
@@ -28,7 +28,9 @@ struct InLightMeditationApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SpashScreenView().environment(\.managedObjectContext, persistenceController.container.viewContext)
+            SpashScreenView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(session)
         }
     }
 }

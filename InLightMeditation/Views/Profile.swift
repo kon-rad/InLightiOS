@@ -14,7 +14,6 @@ struct Profile: View {
     
 //    var meditations: FetchedResults<Meditation>
     
-//    @ObservedObject var session = FirebaseSession()
     @EnvironmentObject var session: FirebaseSession
     
     @State var currentStreak: Int16 = 0
@@ -40,7 +39,7 @@ struct Profile: View {
                 }
             }
             Spacer()
-            List {
+                ScrollView(showsIndicators: false) {
                 VStack {
                     Image("user_icon")
                         .resizable()
@@ -105,6 +104,7 @@ struct Profile: View {
                     session.getSessions()
                 }
                 .animation(nil)
+                .padding()
             }
             .listStyle(PlainListStyle())
             .frame(maxWidth: .infinity, alignment: .leading)

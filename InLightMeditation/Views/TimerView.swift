@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 extension Color {
     init(hex: String) {
@@ -14,14 +15,14 @@ extension Color {
         Scanner(string: hex).scanHexInt64(&int)
         let a, r, g, b: UInt64
         switch hex.count {
-        case 3: // RGB (12-bit)
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            (a, r, g, b) = (1, 1, 1, 0)
+            case 3: // RGB (12-bit)
+                (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+            case 6: // RGB (24-bit)
+                (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+            case 8: // ARGB (32-bit)
+                (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+            default:
+                (a, r, g, b) = (1, 1, 1, 0)
         }
 
         self.init(
@@ -40,7 +41,8 @@ struct TimerView: View {
     
 //    @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
     
-    @ObservedObject var session = FirebaseSession()
+//    @ObservedObject var session = FirebaseSession()
+    @EnvironmentObject var session: FirebaseSession
 
 //    var meditations: FetchedResults<Meditation>
     
@@ -175,8 +177,7 @@ struct TimerView: View {
                 self.attemptSound()
                 self.stopTimer()
                 self.resetTimer()
-            }
-            if self.seconds == 0 {
+            } else if self.seconds == 0 {
                 self.seconds = 59
                 if self.minutes == 0 {
                     self.minutes = 59
@@ -215,6 +216,27 @@ struct TimerView: View {
         dateFormatter.dateFormat = "YY, MMM d, HH:mm:ss"
         let startTimeString = dateFormatter.string(from: startTime!)
         let endTimeString = dateFormatter.string(from: Date())
+        print("handle timer completed", self.session.items.count)
+        let lastSessionStart = endTimeString;
+        var currentStreak = self.session.currentStreak
+        if (self.session.items.count > 0) {
+            let lastSession = self.session.items[self.session.items.count - 1]
+            let lastSessionObj = dateFormatter.date(from: lastSession.startTime)
+            
+            if ((lastSessionObj?.addingTimeInterval(86400))!) >= startTime! {
+                currentStreak += 1
+            } else {
+                currentStreak = 1
+            }
+        }
+        print("currentStreak : ", currentStreak)
+        print("currentStreak in TimerView: ", self.session.currentStreak)
+        print("lastSessionStart in TimerView: ", self.session.lastSessionStart)
+        
+//        if let lastDate = dateFormatter.date(from: self.session.items.last!.startTime) {
+//          // do something with date...
+//            print("last time: ", lastDate)
+//        }
 //        let session = Session(startTime: startTimeString, endTime: endTimeString)
 //        let last = meditations.last
 //        if last == nil {
@@ -245,7 +267,7 @@ struct TimerView: View {
         do {
 //            try viewContext.save()
             print("meditation saved!")
-            session.uploadSession(startTime: startTimeString, endTime: endTimeString)
+            session.uploadSession(startTime: startTimeString, endTime: endTimeString, currentStreak: currentStreak, lastSessionStart: lastSessionStart)
         } catch {
             print(error.localizedDescription)
         }
