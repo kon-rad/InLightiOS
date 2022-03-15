@@ -50,6 +50,10 @@ struct TimerView: View {
     @State var editTime: Bool = false
     @State var isSoundOn: Bool = true
     
+    @State var showNoteModal: Bool = false
+    @State var sessionNote: String = ""
+    @State var emoji: String = ""
+    
     @State var hours: Int = 0
     @State var minutes: Int = 0
     @State var seconds: Int = 0
@@ -147,6 +151,12 @@ struct TimerView: View {
                     print("onDone", text)
                     self.time = text
                 })
+                NoteModal(isShown: self.$showNoteModal, text: "", emoji: "", onDone: {
+                    text, emoji in
+                    self.sessionNote = text
+                    self.emoji = emoji
+                    self.handleTimerCompleted()
+                })
             }
         }
     }
@@ -173,7 +183,7 @@ struct TimerView: View {
             // note: make sure to remove the 'true' statement before committing - it's for development purposes only
             if true || seconds == 0 && self.minutes == 0 {
                 print("timer completed!")
-                self.handleTimerCompleted()
+                self.showNoteModal = true
                 self.attemptSound()
                 self.stopTimer()
                 self.resetTimer()
@@ -207,11 +217,6 @@ struct TimerView: View {
         }
     }
     func handleTimerCompleted() {
-//        let newMeditation = Meditation(context: viewContext)
-//        newMeditation.startTime = self.startTime
-//        newMeditation.endTime = Date()
-//        newMeditation.minutes = Int16(self.initialTime!)!
-//        newMeditation.id = UUID()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YY, MMM d, HH:mm:ss"
         let startTimeString = dateFormatter.string(from: startTime!)
@@ -237,9 +242,9 @@ struct TimerView: View {
             bestStreak = 1
         }
         
-        var note = "this is a note"
-        var duration = 99
-        var emoji = "sunny weather"
+        var note = self.sessionNote
+        var duration = self.initialTime
+        var emoji = self.emoji
         
         do {
             session.uploadSession(

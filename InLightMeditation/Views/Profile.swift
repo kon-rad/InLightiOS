@@ -76,14 +76,15 @@ struct Profile: View {
                             ForEach(self.session.items) { meditation in
                                 HStack {
                                     VStack(alignment: .leading) {
-                                        Text("\(meditation.startTime)")
-                                            .font(.subheadline)
-                                        Text("\(meditation.duration)")
-                                            .font(.subheadline)
-                                        Text("\(meditation.note)")
-                                            .font(.subheadline)
-                                        Text("\(meditation.emoji)")
-                                            .font(.subheadline)
+                                        HStack {
+                                            Text("\(self.formatStartTime(startTime: meditation.startTime))")
+                                                .font(.headline).bold()
+                                            Spacer()
+                                            Text("\(meditation.duration) min")
+                                                .font(.system(size: 12.0))
+                                        }
+                                        Text("\(self.renderEmoji(emoji: meditation.emoji))")
+                                            .font(.system(size: 16.0))
                                     }
                                     Spacer()
                                 }
@@ -96,7 +97,6 @@ struct Profile: View {
                 }
                 .onAppear() {
                     session.getSessions()
-                    print("onAppear of Profile: ", self.session.items)
                 }
                 .animation(nil)
                 .padding()
@@ -109,6 +109,47 @@ struct Profile: View {
             }
             .animation(nil)
         }
+    }
+    func renderEmoji(emoji: String) -> String {
+        
+        var emojiText: String
+        print("render emoji: ", emoji)
+        switch emoji {
+            case "sun_with_face":
+                emojiText = "🌞"
+                break
+            case "sun_behind_small_cloud":
+                emojiText = "🌤️"
+                break
+            case "sun_behind_large_cloud":
+                emojiText = "⛅"
+                break
+            case "cloud_with_lightening":
+                emojiText = "🌩️"
+                break
+            case "lightening_bolt":
+                emojiText = "⚡"
+                break
+            default:
+                emojiText = "none"
+        }
+        print("post switch: ", emojiText)
+        
+        return emojiText
+    }
+    func formatStartTime(startTime: String) -> String {
+        let dateFormatterGet = DateFormatter()
+        
+        dateFormatterGet.dateFormat = "YY, MMM d, HH:mm:ss"
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd"
+
+        var returnValue = "unknown"
+        if let date = dateFormatterGet.date(from: startTime) {
+            returnValue = dateFormatterPrint.string(from: date)
+        }
+        return returnValue
     }
     func signOut() {
         session.signOut()

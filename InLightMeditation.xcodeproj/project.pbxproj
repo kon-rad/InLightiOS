@@ -10,6 +10,7 @@
 		BE4C1A7FAB8DA8B2611BAA5D /* Pods_InLightMeditation_InLightMeditationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CC1576D1C1C3AE050AA55 /* Pods_InLightMeditation_InLightMeditationUITests.framework */; };
 		C335CDA17037B6FF413ACD0C /* Pods_InLightMeditation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A186774CF5D21EBAA6E69F92 /* Pods_InLightMeditation.framework */; };
 		F8975736DD10ECF700F75C3A /* Pods_InLightMeditationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7313DBE0A259AD519B5363D /* Pods_InLightMeditationTests.framework */; };
+		FA25A5D527E025CC00261E6A /* NoteModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25A5D427E025CB00261E6A /* NoteModal.swift */; };
 		FA332FBF27CF041300E0AF73 /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA332FBE27CF041300E0AF73 /* Setup.swift */; };
 		FA39A17626DACBA40016F9F3 /* InLightMeditationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A17526DACBA40016F9F3 /* InLightMeditationApp.swift */; };
 		FA39A17826DACBA40016F9F3 /* SpashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A17726DACBA40016F9F3 /* SpashScreenView.swift */; };
@@ -80,6 +81,7 @@
 		D3046CF9AC12550C3998E225 /* Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig"; path = "Target Support Files/Pods-InLightMeditation-InLightMeditationUITests/Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E7313DBE0A259AD519B5363D /* Pods_InLightMeditationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InLightMeditationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F52CC1576D1C1C3AE050AA55 /* Pods_InLightMeditation_InLightMeditationUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InLightMeditation_InLightMeditationUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA25A5D427E025CB00261E6A /* NoteModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModal.swift; sourceTree = "<group>"; };
 		FA332FBD27CE9D1D00E0AF73 /* InLightMeditation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InLightMeditation.entitlements; sourceTree = "<group>"; };
 		FA332FBE27CF041300E0AF73 /* Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
 		FA39A17226DACBA40016F9F3 /* InLightMeditation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InLightMeditation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -263,6 +265,7 @@
 				FA7077F626ED50BD0045F362 /* CurrentStreak.swift */,
 				FACABE45271805AD0074BB91 /* TimerProgress.swift */,
 				FA487906273D9DE500BAF79A /* LoginView.swift */,
+				FA25A5D427E025CB00261E6A /* NoteModal.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				FA7077F926ED70D20045F362 /* Meditations.swift in Sources */,
 				FAFE3704278AE8220043E0D1 /* FirebaseSession.swift in Sources */,
 				FA332FBF27CF041300E0AF73 /* Setup.swift in Sources */,
+				FA25A5D527E025CC00261E6A /* NoteModal.swift in Sources */,
 				FA7077F726ED50BD0045F362 /* CurrentStreak.swift in Sources */,
 				FA7077B226E7226C0045F362 /* ContentView.swift in Sources */,
 				FA39A17626DACBA40016F9F3 /* InLightMeditationApp.swift in Sources */,
