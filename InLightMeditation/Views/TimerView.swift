@@ -156,6 +156,7 @@ struct TimerView: View {
                     self.sessionNote = text
                     self.emoji = emoji
                     self.handleTimerCompleted()
+                    print("emoji selected: ", emoji)
                 })
             }
         }

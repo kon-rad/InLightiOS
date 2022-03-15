@@ -102,17 +102,6 @@ class FirebaseSession: ObservableObject {
         getSessions()
     }
     
-    
-//        startTime: startTimeString,
-//        endTime: endTimeString,
-//        currentStreak: currentStreak,
-//        lastSessionStart: lastSessionStart,
-//        bestStreak: bestStreak,
-//        totalMinutes: totalMinutes,
-//        duration: duration,
-//        notes: notes,
-//        emoji: emoji
-    
     func uploadSession(
             startTime: String,
             endTime: String,

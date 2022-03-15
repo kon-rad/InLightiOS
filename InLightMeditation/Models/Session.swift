@@ -8,15 +8,15 @@
 import Foundation
 import FirebaseDatabase
 
-struct Session: Identifiable {
+struct Session: Identifiable, Hashable {
     
     let ref: DatabaseReference?
     let startTime: String
     let endTime: String
-    let id: String?
     let duration: Int
     let note: String
     let emoji: String
+    let id = UUID()
     
     init(startTime: String, endTime: String, duration: Int, note: String, emoji: String) {
         self.ref = nil
@@ -25,7 +25,6 @@ struct Session: Identifiable {
         self.duration = duration
         self.note = note
         self.emoji = emoji
-        self.id = nil
     }
     
     func toAnyObject() -> Any {

@@ -73,7 +73,7 @@ struct Profile: View {
                         Text("Meditations List:")
                             .padding(.top, 18)
                         VStack {
-                            ForEach(self.session.items) { meditation in
+                            ForEach(self.session.items, id: \.self) { meditation in
                                 HStack {
                                     VStack(alignment: .leading) {
                                         HStack {
@@ -84,6 +84,8 @@ struct Profile: View {
                                                 .font(.system(size: 12.0))
                                         }
                                         Text("\(self.renderEmoji(emoji: meditation.emoji))")
+                                            .font(.system(size: 16.0))
+                                        Text("\(meditation.emoji)")
                                             .font(.system(size: 16.0))
                                     }
                                     Spacer()
