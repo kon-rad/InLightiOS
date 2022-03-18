@@ -14,130 +14,126 @@ struct Profile: View {
     @State var currentStreak: Int16 = 0
     @State var bestStreak: Int16 = 0
     @State var totalMinutes: Int16 = 0
+    @State private var expandNote: [UUID: Bool] = [:]
     
     init() {
         UINavigationBar.setAnimationsEnabled(false)
+        UIScrollView.appearance().backgroundColor = UIColor(Color("ultralightyellow"))
     }
     var body: some View {
         NavigationView {
-            VStack {
-            if session.isLoggedIn {
-                Button(action: { signOut() }) {
-                    Text("sign out")
-                }
-            }
-            Spacer()
-                ScrollView(showsIndicators: false) {
+            ZStack {
+                Color("ultralightyellow").ignoresSafeArea()
                 VStack {
-                    Image("user_icon")
-                        .resizable()
-                        .frame(width: 70, height: 70.0)
-                        .padding(.top, 50)
-                    HStack {
-                        Spacer()
-                        VStack {
-                            Text("\(String(self.session.currentStreak))")
-                                .font(.headline)
-                                .frame(width: 60)
-                            Text("current streak")
-                                .font(.subheadline)
+                    if session.isLoggedIn {
+                        HStack {
+                            Text("signed in as: \(session.email)")
+                            Button(action: { signOut() }) {
+                                Text("sign out")
+                            }
                         }
-                        VStack {
-                            Text("\(String(self.session.bestStreak ?? 0))")
-                                .font(.headline)
-                                .frame(width: 60)
-                            Text("best streak")
-                                .font(.subheadline)
-                        }
-                        VStack {
-                            Text("\(String(self.session.totalMinutes ?? 0))")
-                                .font(.headline)
-                                .frame(width: 60)
-                            Text("total minutes")
-                                .font(.subheadline)
-                        }
-                        Spacer()
                     }
                     Spacer()
-                    VStack {
-                        Text("current streak")
-                        Spacer()
-                        Spacer()
-                        CurrentStreak(currentStreak: self.session.currentStreak)
-                    }
-                    .padding(EdgeInsets(top: 30, leading: 0, bottom: 30, trailing: 0))
-                    .frame(maxWidth: .infinity, minHeight: 120)
-                    .background(Color(red: 244 / 255, green: 244 / 255, blue: 244 / 255))
-                    .cornerRadius(15)
-                    VStack {
-                        Text("Meditations List:")
-                            .padding(.top, 18)
+                    ScrollView(showsIndicators: false) {
                         VStack {
-                            ForEach(self.session.items, id: \.self) { meditation in
-                                HStack {
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Text("\(self.formatStartTime(startTime: meditation.startTime))")
-                                                .font(.headline).bold()
-                                            Spacer()
-                                            Text("\(meditation.duration) min")
-                                                .font(.system(size: 12.0))
-                                        }
-                                        Text("\(self.renderEmoji(emoji: meditation.emoji))")
-                                            .font(.system(size: 16.0))
-                                        Text("\(meditation.emoji)")
-                                            .font(.system(size: 16.0))
-                                    }
-                                    Spacer()
+                            Image("user_icon")
+                                .resizable()
+                                .frame(width: 70, height: 70.0)
+                                .padding(.top, 50)
+                            HStack {
+                                Spacer()
+                                VStack {
+                                    Text("\(String(self.session.currentStreak))")
+                                        .font(.headline)
+                                        .frame(width: 60)
+                                    Text("current streak")
+                                        .font(.subheadline)
                                 }
-                                .frame(height: 60)
+                                VStack {
+                                    Text("\(String(self.session.bestStreak ?? 0))")
+                                        .font(.headline)
+                                        .frame(width: 60)
+                                    Text("best streak")
+                                        .font(.subheadline)
+                                }
+                                VStack {
+                                    Text("\(String(self.session.totalMinutes ?? 0))")
+                                        .font(.headline)
+                                        .frame(width: 60)
+                                    Text("total minutes")
+                                        .font(.subheadline)
+                                }
+                                Spacer()
                             }
-                            .padding(.top, 10)
+                            Spacer()
+                            VStack {
+                                Text("current streak")
+                                Spacer()
+                                Spacer()
+                                CurrentStreak(currentStreak: self.session.currentStreak)
+                            }
+                            .padding(EdgeInsets(top: 30, leading: 0, bottom: 30, trailing: 0))
+                            .frame(maxWidth: .infinity, minHeight: 120)
+                            .background(Color(red: 244 / 255, green: 244 / 255, blue: 244 / 255))
+                            .cornerRadius(15)
+                            VStack {
+                                Text("Meditations List:")
+                                    .padding(.top, 18)
+                                VStack {
+                                    ForEach(self.session.items, id: \.self) { meditation in
+                                        HStack {
+                                            VStack(alignment: .leading) {
+                                                HStack {
+                                                    Text("\(self.formatStartTime(startTime: meditation.startTime))")
+                                                        .font(.headline).bold()
+                                                    Text("\(Emoji.renderEmoji(emoji: meditation.emoji))")
+                                                        .font(.system(size: 16.0))
+                                                    Spacer()
+                                                    Text("\(meditation.duration) min")
+                                                        .font(.system(size: 12.0))
+                                                }
+                                                Text("\(self.expandNote[meditation.id] == true ? meditation.note : "\(String(meditation.note.prefix(40))) ...")")
+                                                    .font(.system(size: 16.0))
+                                            }
+                                            .onTapGesture {
+                                                withAnimation(.easeInOut(duration: 1)){
+                                                    if expandNote[meditation.id] != nil {
+                                                        self.expandNote[meditation.id] = nil
+                                                    } else {
+                                                        self.expandNote[meditation.id] = true
+                                                    }
+                                                }
+                                            }
+                                            Spacer()
+                                        }
+                                    }
+                                    .padding(.top, 10)
+                                }
+                                Spacer()
+                            }
                         }
-                        Spacer()
+                        .onAppear() {
+                            session.getSessions()
+                        }
+                        .animation(nil)
+                        .padding()
+                        .ignoresSafeArea()
                     }
-                }
-                .onAppear() {
-                    session.getSessions()
+                    .listStyle(PlainListStyle())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.white)
+                    .navigationBarTitle("")
+                    .navigationBarHidden(true)
+                    .background(Color("ultralightyellow"))
                 }
                 .animation(nil)
-                .padding()
+                .background(Color("ultralightyellow"))
             }
-            .listStyle(PlainListStyle())
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.white)
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
-            }
-            .animation(nil)
         }
-    }
-    func renderEmoji(emoji: String) -> String {
-        
-        var emojiText: String
-        print("render emoji: ", emoji)
-        switch emoji {
-            case "sun_with_face":
-                emojiText = "🌞"
-                break
-            case "sun_behind_small_cloud":
-                emojiText = "🌤️"
-                break
-            case "sun_behind_large_cloud":
-                emojiText = "⛅"
-                break
-            case "cloud_with_lightening":
-                emojiText = "🌩️"
-                break
-            case "lightening_bolt":
-                emojiText = "⚡"
-                break
-            default:
-                emojiText = "none"
-        }
-        print("post switch: ", emojiText)
-        
-        return emojiText
+        .onDisappear {
+            UIScrollView.appearance().backgroundColor = UIColor(Color.gray.opacity(0))
+         }
+        .animation(nil)
     }
     func formatStartTime(startTime: String) -> String {
         let dateFormatterGet = DateFormatter()

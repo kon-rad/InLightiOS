@@ -16,6 +16,7 @@ class FirebaseSession: ObservableObject {
     //MARK: Properties
     @Published var session: User?
     @Published var isLoggedIn: Bool = false
+    @Published var email: String = ""
     @Published var items: [Session] = []
     @Published var currentStreak: Int = 0
     @Published var lastSessionStart: String = ""
@@ -29,6 +30,7 @@ class FirebaseSession: ObservableObject {
             if let user = user {
                 self.session = User(uid: user.uid, email: user.email)
                 self.isLoggedIn = true
+                self.email = user.email ?? ""
                 print("logged in --- session")
                 self.ref = Database.database().reference(withPath: "\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
             } else {
@@ -39,9 +41,7 @@ class FirebaseSession: ObservableObject {
     }
     
     func getSessions() {
-        print("getSession is called")
         guard let userID = Auth.auth().currentUser?.uid else { return }
-        print(userID)
         ref.observe(DataEventType.value) { (snapshot) in
             self.items = []
             for child in snapshot.children {
@@ -55,32 +55,26 @@ class FirebaseSession: ObservableObject {
                         let emoji = datavalue["emoji"] != nil ? datavalue["emoji"] as! String : ""
 
                        let session = Session(startTime: startTime, endTime: endTime, duration: duration, note: note, emoji: emoji)
-                        self.items.append(session)
-                        print("session found: ", session)
+                       self.items.insert(session, at: 0)
                    }
                 
                 }
             }
             if let datavalue = snapshot.value as? [String:Any] {
-
                 self.currentStreak = datavalue["currentStreak"] != nil ? datavalue["currentStreak"] as! Int : 0
                 self.lastSessionStart = datavalue["lastSessionStart"] != nil ? datavalue["lastSessionStart"] as! String : ""
                 self.bestStreak = datavalue["bestStreak"] != nil ? datavalue["bestStreak"] as! Int : 0
                 self.totalMinutes = datavalue["totalMinutes"] != nil ? datavalue["totalMinutes"] as! Int : 0
-
             }
         }
     }
     
     func logIn(email: String, password: String, handler: @escaping AuthDataResultCallback) {
-        print("pre login")
         Auth.auth().signIn(withEmail: email, password: password, completion: handler)
-        print("post login")
         getSessions()
     }
     
     func signOut() {
-        print("signOut is called")
         try! Auth.auth().signOut()
         clearMemory()
     }
@@ -92,13 +86,12 @@ class FirebaseSession: ObservableObject {
         self.currentStreak = 0
         self.bestStreak = 0
         self.totalMinutes = 0
+        self.email = ""
     }
     
     func signUp(email: String, password: String, handler: @escaping AuthDataResultCallback) {
-        print("pre signup")
         self.items = []
         Auth.auth().createUser(withEmail: email, password: password, completion: handler)
-        print("post signup")
         getSessions()
     }
     
@@ -113,8 +106,6 @@ class FirebaseSession: ObservableObject {
             note: String,
             emoji: String
     ) {
-        print("upload session called: ", startTime, endTime)
-        print("uploadSession self.items: ", self.items)
         // Generates number going up as time goes on, sets order of Sessions's by how old they are.
         let number = Int(Date.timeIntervalSinceReferenceDate * 1000)
         
@@ -125,7 +116,6 @@ class FirebaseSession: ObservableObject {
         ref.child("lastSessionStart").setValue(lastSessionStart)
         ref.child("bestStreak").setValue(bestStreak)
         ref.child("totalMinutes").setValue(totalMinutes)
-        print("new session created: ", sess, currentStreak, lastSessionStart)
     }
     
     func updateSession(key: String, todo: String, isComplete: String) {

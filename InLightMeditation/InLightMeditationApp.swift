@@ -28,7 +28,7 @@ struct InLightMeditationApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SpashScreenView()
+            SplashScreenView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(session)
         }

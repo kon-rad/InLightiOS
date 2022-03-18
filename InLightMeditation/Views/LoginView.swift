@@ -20,65 +20,47 @@ struct LoginView: View {
     @EnvironmentObject var session: FirebaseSession
     
     var body: some View {
-        VStack {
-            Spacer()
-            HStack {
-                TextField(
-                    "Email",
-                    text: $email,
-                    onEditingChanged: { (isBegin) in
-                        if isBegin {
-                            print("Begins editing")
-                        } else {
-                            print("Finishes editing")
+        ZStack(alignment: .top) {
+            VStack {
+                Spacer()
+                Image("logo_with_name")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.top, 10)
+                    .frame(alignment: .center)
+                HStack {
+                    TextField(
+                        "Email",
+                        text: $email,
+                        onEditingChanged: { (isBegin) in
+                            if isBegin {
+                                print("Begins editing")
+                            } else {
+                                print("Finishes editing")
+                            }
+                        },
+                        onCommit: {
+                            print("commit")
                         }
-                    },
-                    onCommit: {
-                        print("commit")
-                    }
-                )
-                .font(.system(size: 15, weight: .regular, design: .default))
-                .keyboardType(.default)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 60, alignment: .center)
-            }
-            .padding(.horizontal, 15)
-            .background(Color.primary.opacity(0.05).cornerRadius(10))
-            .padding(.horizontal, 15)
-            .animation(nil)
-            
-            HStack{
-                Image(systemName: "lock.fill")
-                    .foregroundColor(password.isEmpty ? .secondary : .primary)
-                    .font(.system(size: 18, weight: .medium, design: .default))
-                    .frame(width: 18, height: 18, alignment: .center)
-                secureField(placeholder: "Password", text: $password)
-                if !password.isEmpty {
-                    Button(action: {
-                        self.showPassword.toggle()
-                    }, label: {
-                        ZStack(alignment: .trailing){
-                            Color.clear
-                                .frame(maxWidth: 29, maxHeight: 60, alignment: .center)
-                            Image(systemName: self.showPassword ? "eye.slash.fill" : "eye.fill")
-                                .font(.system(size: 18, weight: .medium))
-                                .foregroundColor(Color.init(red: 160.0/255.0, green: 160.0/255.0, blue: 160.0/255.0))
-                        }
-                    })
+                    )
+                    .textFieldStyle(PlainTextFieldStyle()) 
+                    .font(.system(size: 15, weight: .regular, design: .default))
+                    .keyboardType(.default)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 60, alignment: .center)
                 }
-            }
-            .padding(.horizontal, 15)
-            .background(Color.primary.opacity(0.05).cornerRadius(10))
-            .padding(.horizontal, 15)
-            .animation(nil)
-            if !isLogin {
+                .padding(.horizontal, 15)
+                .background(Color.primary.opacity(0.05).cornerRadius(10))
+                .padding(.horizontal, 15)
+                .animation(nil)
+                
                 HStack{
                     Image(systemName: "lock.fill")
                         .foregroundColor(password.isEmpty ? .secondary : .primary)
                         .font(.system(size: 18, weight: .medium, design: .default))
                         .frame(width: 18, height: 18, alignment: .center)
-                        secureField(placeholder: "Confirm Password", text: $confirmPassword)
+                    secureField(placeholder: "Password", text: $password)
                     if !password.isEmpty {
                         Button(action: {
                             self.showPassword.toggle()
@@ -97,30 +79,58 @@ struct LoginView: View {
                 .background(Color.primary.opacity(0.05).cornerRadius(10))
                 .padding(.horizontal, 15)
                 .animation(nil)
-                
+                if !isLogin {
+                    HStack{
+                        Image(systemName: "lock.fill")
+                            .foregroundColor(password.isEmpty ? .secondary : .primary)
+                            .font(.system(size: 18, weight: .medium, design: .default))
+                            .frame(width: 18, height: 18, alignment: .center)
+                            secureField(placeholder: "Confirm Password", text: $confirmPassword)
+                        if !password.isEmpty {
+                            Button(action: {
+                                self.showPassword.toggle()
+                            }, label: {
+                                ZStack(alignment: .trailing){
+                                    Color.clear
+                                        .frame(maxWidth: 29, maxHeight: 60, alignment: .center)
+                                    Image(systemName: self.showPassword ? "eye.slash.fill" : "eye.fill")
+                                        .font(.system(size: 18, weight: .medium))
+                                        .foregroundColor(Color.init(red: 160.0/255.0, green: 160.0/255.0, blue: 160.0/255.0))
+                                }
+                            })
+                        }
+                    }
+                    .padding(.horizontal, 15)
+                    .background(Color.primary.opacity(0.05).cornerRadius(10))
+                    .padding(.horizontal, 15)
+                    .animation(nil)
+                    
+                }
+                Text(self.errorMessage)
+                    .foregroundColor(Color.init(hex: "#FE4A49"))
+                    .padding(15)
+                Button(action: { loginOrSignup() }) {
+                    AuthButtonContent(isLogin: $isLogin)
+                }
+                    .padding()
+                Button(action: { toggleIsLogin() }) {
+                    Text(isLogin ? "signup" :  "login" )
+                }
+                    .foregroundColor(Color.init(hex: "#81b39b"))
+                    .padding()
+                Spacer()
             }
-            Text(self.errorMessage)
-                .foregroundColor(Color.red)
-                .padding(15)
-            Button(action: { loginOrSignup() }) {
-                AuthButtonContent(isLogin: $isLogin)
-            }
-            .padding()
-            Button(action: { toggleIsLogin() }) {
-                Text(isLogin ? "Signup" :  "Login" )
-            }
-            .padding()
-            Button(action: { toggleIsLogin() }) {
-                Text("Sign In With Email Link")
-            }
-            .padding()
-            .frame(maxWidth: 200, alignment: .center)
-            .padding()
-            Spacer()
-            Spacer()
+            .navigationBarTitle("")
+            .onAppear(perform: getUser)
+            .background(Color("ultralightyellow"))
+            .ignoresSafeArea()
+            Image("plant_gradient")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .edgesIgnoringSafeArea(.top)
+                .mask(LinearGradient(gradient: Gradient(colors: [.clear, Color("ultralightyellow")]), startPoint: .bottom, endPoint: .top))
         }
-        .navigationBarTitle("")
-        .onAppear(perform: getUser)
+        
     }
     @ViewBuilder
     func secureField(placeholder: String, text: Binding<String>) -> some View {
@@ -150,7 +160,6 @@ struct LoginView: View {
         self.isLogin = !self.isLogin
     }
     func showMessagePrompt(message: String = "") {
-        print("error message shown: ", message)
         self.errorMessage = message;
     }
     
@@ -243,12 +252,12 @@ struct LoginView_Previews: PreviewProvider {
 struct AuthButtonContent : View {
     @Binding var isLogin: Bool
     var body: some View {
-        return Text(isLogin ? "LOGIN" : "SIGNUP")
-            .font(.headline)
-            .foregroundColor(.white)
+        return Text(isLogin ? "login" : "signup")
+            .font(Font.body.weight(.light))
+            .foregroundColor(Color.init(hex: "#303030"))
             .padding()
             .frame(width: 180, height: 46)
-            .background(isLogin ? Color.green : Color.blue)
+            .background(Color.init(hex: "#d7d27c"))
             .cornerRadius(12.0)
     }
 }

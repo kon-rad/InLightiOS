@@ -51,7 +51,8 @@ struct ContentView: View {
                             }
                         }
                     }
-                    .ignoresSafeArea(.keyboard, edges: .bottom)
+                    .background(Color("ultralightyellow"))
+                    .ignoresSafeArea()
                 }
             }
     }

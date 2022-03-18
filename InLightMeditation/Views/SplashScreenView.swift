@@ -1,5 +1,5 @@
 //
-//  SpashScreenView.swift
+//  SplashScreenView.swift
 //  InLightMeditation
 //
 //  Created by Konrad Gnat on 8/28/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SpashScreenView: View {
+struct SplashScreenView: View {
     @State var isActive: Bool = false
     @State var animation = 0.0
     @State var percent = 0.0
@@ -81,10 +81,10 @@ struct SpashScreenView: View {
     }
 }
 
-struct SpashScreenView_Previews: PreviewProvider {
+struct SplashScreenView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SpashScreenView()
+            SplashScreenView()
         }
     }
 }

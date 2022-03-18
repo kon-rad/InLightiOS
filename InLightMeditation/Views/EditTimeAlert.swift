@@ -25,9 +25,19 @@ struct EditTimeAlert: View {
             TextField("", text: $text, onCommit:  {
                 UIApplication.shared.endEditing()
             })
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.numberPad)
+                .onReceive(Just(text), perform: self.numericValidator)
+//                .onReceive(Just(text)) { newValue in
+//                    let filtered = newValue.filter { "0123456789".contains($0) }
+//                    if filtered != newValue {
+//                        self.text = filtered
+//                    }
+                .textFieldStyle(PlainTextFieldStyle()) 
+                .padding(8)
                 .keyboardType(.numberPad)
                 .frame(width: 80)
+                .background(Color("lightgray"))
+                .cornerRadius(16)
             HStack(spacing: 20) {
                 Button("save") {
                     self.isShown = false
@@ -54,6 +64,18 @@ struct EditTimeAlert: View {
     
     private func endEditing() {
         UIApplication.shared.endEditing()
+    }
+        
+    func numericValidator(newValue: String) {
+        var validText = newValue
+        if validText.count > 3 {
+            validText = String(validText.dropLast())
+        }
+        if validText.range(of: "^\\d+$", options: .regularExpression) != nil {
+            self.text = validText
+        } else if !self.text.isEmpty {
+            self.text = String(validText.prefix(self.text.count - 1))
+        }
     }
 }
 

@@ -16,15 +16,21 @@ struct NoteModal: View {
     var onDone: (String, String) -> Void = { _,_  in }
     
     var body: some View {
-        VStack(spacing: 40) {
-            Text("describe your experience")
+        VStack(spacing: 10) {
+            Text("how was your experience?")
                 .font(.headline)
             TextEditor(text: $text)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .cornerRadius(5.0)
-                .padding()
+                .padding(16)
                 .frame(height: 200)
-            HStack(spacing: 20) {
+                .onAppear {
+                    UITextView.appearance().backgroundColor = .clear
+                }
+                .background(Color("lightgray"))
+                .cornerRadius(8)
+            Text("\(self.emoji != "" ? Emoji.renderEmoji(emoji: self.emoji) : "")")
+                .font(.headline)
+                .padding()
+            HStack(spacing: 10) {
                 Button("🌞") {
                     self.emoji = "sun_with_face"
                 }
@@ -41,7 +47,7 @@ struct NoteModal: View {
                     self.emoji = "lightening_bolt"
                 }
             }
-            HStack(spacing: 20) {
+            HStack {
                 Button("Okay") {
                     self.isShown = false
                     self.onDone(self.text, self.emoji)
@@ -50,8 +56,8 @@ struct NoteModal: View {
                 .buttonStyle(SaveButtonStyle())
             }
         }
-        .padding()
-        .frame(width: 300, height: 400)
+        .padding(20)
+        .frame(width: 300)
         .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 20.0, style: .continuous))
         .offset(y: isShown ? 0 : screenSize.height)
