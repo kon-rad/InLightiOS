@@ -869,7 +869,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7F10AF5290C87691988C037F /* Pods-InLightMeditation-InLightMeditationUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GA978N825M;
 				INFOPLIST_FILE = InLightMeditationUITests/Info.plist;
@@ -890,7 +889,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D3046CF9AC12550C3998E225 /* Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GA978N825M;
 				INFOPLIST_FILE = InLightMeditationUITests/Info.plist;
