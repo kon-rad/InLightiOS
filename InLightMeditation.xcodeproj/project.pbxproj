@@ -31,8 +31,8 @@
 		FA7077F526ECDB750045F362 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077F426ECDB740045F362 /* Color.swift */; };
 		FA7077F726ED50BD0045F362 /* CurrentStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077F626ED50BD0045F362 /* CurrentStreak.swift */; };
 		FA7077F926ED70D20045F362 /* Meditations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077F826ED70D20045F362 /* Meditations.swift */; };
-		FA873ED927F00912005EF398 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA487908273DB8DC00BAF79A /* GoogleService-Info.plist */; };
-		FA992F3027E401BA009F06A3 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA992F2F27E401BA009F06A3 /* logo.png */; };
+		FA873EDC27F00E48005EF398 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA873EDB27F00E48005EF398 /* logo.png */; };
+		FA873EDD27F00EB5005EF398 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA487908273DB8DC00BAF79A /* GoogleService-Info.plist */; };
 		FABB402526DB0E28006806CF /* NunitoSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */; };
 		FABB402626DB0E28006806CF /* NunitoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401726DB0E28006806CF /* NunitoSans-BoldItalic.ttf */; };
 		FABB402726DB0E28006806CF /* NunitoSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401826DB0E28006806CF /* NunitoSans-ExtraLight.ttf */; };
@@ -112,7 +112,7 @@
 		FA7077F626ED50BD0045F362 /* CurrentStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStreak.swift; sourceTree = "<group>"; };
 		FA7077F826ED70D20045F362 /* Meditations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meditations.swift; sourceTree = "<group>"; };
 		FA873ED827F0069C005EF398 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
-		FA992F2F27E401BA009F06A3 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../../../.Trash/logo.png; sourceTree = "<group>"; };
+		FA873EDB27F00E48005EF398 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		FABB401726DB0E28006806CF /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		FABB401826DB0E28006806CF /* NunitoSans-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 				FA7077F226E8F0CE0045F362 /* Persistence.swift */,
 				FA39A17E26DACBA80016F9F3 /* Info.plist */,
 				FA39A17926DACBA80016F9F3 /* Assets.xcassets */,
-				FA992F2F27E401BA009F06A3 /* logo.png */,
+				FA873EDB27F00E48005EF398 /* logo.png */,
 				FA39A17B26DACBA80016F9F3 /* Preview Content */,
 			);
 			path = InLightMeditation;
@@ -467,9 +467,9 @@
 				FA7077AC26E70AC30045F362 /* tibetan_bowl_1.m4a in Resources */,
 				FABB402626DB0E28006806CF /* NunitoSans-BoldItalic.ttf in Resources */,
 				FABB402B26DB0E28006806CF /* NunitoSans-Regular.ttf in Resources */,
+				FA873EDC27F00E48005EF398 /* logo.png in Resources */,
 				FABB402926DB0E28006806CF /* NunitoSans-BlackItalic.ttf in Resources */,
-				FA873ED927F00912005EF398 /* GoogleService-Info.plist in Resources */,
-				FA992F3027E401BA009F06A3 /* logo.png in Resources */,
+				FA873EDD27F00EB5005EF398 /* GoogleService-Info.plist in Resources */,
 				FABB403326DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf in Resources */,
 				FABB403026DB0E28006806CF /* NunitoSans-SemiBold.ttf in Resources */,
 			);
