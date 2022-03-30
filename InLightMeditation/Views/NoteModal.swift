@@ -17,7 +17,7 @@ struct NoteModal: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            Text("how was your experience?")
+            Text("reflections?")
                 .font(.headline)
             TextEditor(text: $text)
                 .padding(16)

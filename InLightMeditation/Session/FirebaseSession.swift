@@ -22,6 +22,7 @@ class FirebaseSession: ObservableObject {
     @Published var lastSessionStart: String = ""
     @Published var bestStreak: Int = 0
     @Published var totalMinutes: Int = 0
+    @Published var defaultTime: String = "10"
     
     var ref: DatabaseReference = Database.database().reference(withPath: "\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
     
@@ -33,6 +34,7 @@ class FirebaseSession: ObservableObject {
                 self.email = user.email ?? ""
                 print("logged in --- session")
                 self.ref = Database.database().reference(withPath: "\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
+                self.getSessions()
             } else {
                 print("logged out --- session")
                 self.clearMemory()
@@ -41,7 +43,9 @@ class FirebaseSession: ObservableObject {
     }
     
     func getSessions() {
+        print("getSessions is called")
         guard let userID = Auth.auth().currentUser?.uid else { return }
+        print("getSessions is called with userID: ", userID)
         ref.observe(DataEventType.value) { (snapshot) in
             self.items = []
             for child in snapshot.children {
@@ -65,6 +69,8 @@ class FirebaseSession: ObservableObject {
                 self.lastSessionStart = datavalue["lastSessionStart"] != nil ? datavalue["lastSessionStart"] as! String : ""
                 self.bestStreak = datavalue["bestStreak"] != nil ? datavalue["bestStreak"] as! Int : 0
                 self.totalMinutes = datavalue["totalMinutes"] != nil ? datavalue["totalMinutes"] as! Int : 0
+                self.defaultTime = datavalue["defaultTime"] != nil ? datavalue["defaultTime"] as! String : "10"
+                print("defaultTime is set: ", self.defaultTime)
             }
         }
     }
@@ -87,6 +93,7 @@ class FirebaseSession: ObservableObject {
         self.bestStreak = 0
         self.totalMinutes = 0
         self.email = ""
+        self.defaultTime = "10"
     }
     
     func signUp(email: String, password: String, handler: @escaping AuthDataResultCallback) {
@@ -116,6 +123,10 @@ class FirebaseSession: ObservableObject {
         ref.child("lastSessionStart").setValue(lastSessionStart)
         ref.child("bestStreak").setValue(bestStreak)
         ref.child("totalMinutes").setValue(totalMinutes)
+    }
+    
+    func updateDefaultTime(time: String) {
+        ref.child("defaultTime").setValue(time)
     }
     
     func updateSession(key: String, todo: String, isComplete: String) {

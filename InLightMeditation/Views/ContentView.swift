@@ -21,40 +21,41 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-                GeometryReader { geometry in
-                    VStack {
-                        if !session.isLoggedIn {
-                            LoginView()
-                        } else {
-                            Spacer()
-                            switch viewRouter.currentPage {
-                                case .timer:
-                                    TimerView(viewRouter: ViewRouter())
-                                case .profile:
-                                    Profile()
-                                case .timerProgress:
-                                    TimerProgress()
-                            }
-                            Spacer()
-                            Group {
-                                ZStack {
-                                    HStack {
-                                        Spacer()
-                                        Spacer()
-                                        TabBarIcon(viewRouter: viewRouter, page: .timer, width: geometry.size.width/5, height: 120, icon: "meditation_icon", tabName: "Meditate")
-                                        Spacer()
-                                        TabBarIcon(viewRouter: viewRouter, page: .profile, width: geometry.size.width/5, height: 120, icon: "user_icon", tabName: "Profile")
-                                        Spacer()
-                                    }
-                                    .padding(.bottom, 18)
+            GeometryReader { geometry in
+                VStack {
+                    if !session.isLoggedIn {
+                        LoginView()
+                    } else {
+                        Spacer()
+                        switch viewRouter.currentPage {
+                            case .timer:
+                                TimerView(viewRouter: ViewRouter())
+                            case .profile:
+                                Profile()
+                            case .timerProgress:
+                                TimerProgress()
+                        }
+                        Spacer()
+                        Group {
+                            ZStack {
+                                HStack {
+                                    Spacer()
+                                    TabBarIcon(viewRouter: viewRouter, page: .timer, width: geometry.size.width/5, height: 120, icon: "meditation_icon", tabName: "Meditate")
+                                    Spacer()
+                                    TabBarIcon(viewRouter: viewRouter, page: .profile, width: geometry.size.width/5, height: 120, icon: "user_icon", tabName: "Profile")
+                                    Spacer()
                                 }
+                                .padding(.vertical, 18)
+                                .overlay(Rectangle().frame(width: nil, height: 2, alignment: .top).foregroundColor(Color("mediumgreen")), alignment: .top)
                             }
                         }
+                        .background(Color("lightgreen"))
                     }
-                    .background(Color("ultralightyellow"))
-                    .ignoresSafeArea()
                 }
+                .background(Color("ultralightyellow"))
+                .ignoresSafeArea()
             }
+        }
     }
 }
 

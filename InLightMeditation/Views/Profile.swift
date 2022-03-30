@@ -28,8 +28,10 @@ struct Profile: View {
                     if session.isLoggedIn {
                         HStack {
                             Text("signed in as: \(session.email)")
+                                .foregroundColor(Color("textblack"))
                             Button(action: { signOut() }) {
                                 Text("sign out")
+                                    .foregroundColor(Color("lightgreen")) // light green
                             }
                         }
                     }
