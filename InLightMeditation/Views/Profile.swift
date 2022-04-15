@@ -27,8 +27,6 @@ struct Profile: View {
                 VStack {
                     if session.isLoggedIn {
                         HStack {
-                            Text("signed in as: \(session.email)")
-                                .foregroundColor(Color("textblack"))
                             Button(action: { signOut() }) {
                                 Text("sign out")
                                     .foregroundColor(Color("lightgreen")) // light green
@@ -94,7 +92,7 @@ struct Profile: View {
                                                     Text("\(meditation.duration) min")
                                                         .font(.system(size: 12.0))
                                                 }
-                                                Text("\(self.expandNote[meditation.id] == true ? meditation.note : "\(String(meditation.note.prefix(40))) ...")")
+                                                Text(self.renderNoteText(id: meditation.id, note: meditation.note))
                                                     .font(.system(size: 16.0))
                                             }
                                             .onTapGesture {
@@ -136,6 +134,17 @@ struct Profile: View {
             UIScrollView.appearance().backgroundColor = UIColor(Color.gray.opacity(0))
          }
         .animation(nil)
+    }
+    func renderNoteText(id: UUID, note: String) -> String {
+        if self.expandNote[id] == true {
+           return note
+        }
+        if note.count > 32 {
+            return "\(String(note.prefix(40))) ..."
+        }
+        return "\(String(note.prefix(40)))"
+//        ((String(meditation.note.count) > 100 ? "\(String(meditation.note.prefix(40))) ..."
+//                    : String(meditation.note.prefix(40)))"
     }
     func formatStartTime(startTime: String) -> String {
         let dateFormatterGet = DateFormatter()

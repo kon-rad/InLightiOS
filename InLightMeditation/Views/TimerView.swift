@@ -59,8 +59,9 @@ struct TimerView: View {
                     HStack {
                         Spacer()
                         Text(renderTime())
-                            .font(Font.system(size: 38, design: .monospaced))
-                            .frame(width: 160, height: 60, alignment: .center)
+                            .foregroundColor(Color("white"))
+                            .font(Font.system(size: 64, design: .monospaced))
+                            .frame(height: 60, alignment: .center)
                             .padding(.all, 10)
                             .onTapGesture {
                                 self.startTimer()
@@ -71,13 +72,22 @@ struct TimerView: View {
                     .edgesIgnoringSafeArea(.all)
                     .statusBar(hidden: true)
                     Spacer()
+                    Button(action: {
+                        self.startTimer()
+                    }) {
+                        HStack {
+                            Image(systemName: "xmark.circle")
+                                .imageScale(.large)
+                                .onTapGesture {
+                                    self.startTimer()
+                                }
+                        }
+                    }
+                    .buttonStyle(StartButtonStyle())
                     Spacer()
                 }
             }
             .frame(width: screenWidth, height: screenHeight)
-            .onTapGesture {
-                self.startTimer()
-            }
             .edgesIgnoringSafeArea(.all)
             .statusBar(hidden: true)
             .onAppear {
@@ -113,7 +123,6 @@ struct TimerView: View {
                         }
                         .buttonStyle(StartButtonStyle())
                         Button(action: {
-                            print("sound")
                             self.isSoundOn.toggle()
                         }) {
                             Image(self.isSoundOn ? "volume-up-line" : "sound_off")
@@ -128,7 +137,6 @@ struct TimerView: View {
                     Spacer()
                 }
                 EditTimeAlert(title: "Minutes", isShown: self.$editTime, text: self.$time, onDone: { text in
-                    print("onDone", text)
                     self.time = text
                     self.session.updateDefaultTime(time: text)
                 })
@@ -137,7 +145,6 @@ struct TimerView: View {
                     self.sessionNote = text
                     self.emoji = emoji
                     self.handleTimerCompleted()
-                    print("emoji selected: ", emoji)
                 })
             }
             .onAppear() {
@@ -199,8 +206,7 @@ struct TimerView: View {
     }
     func attemptSound() {
         if self.isSoundOn {
-            print("playing sound")
-            Sounds.playSounds(soundFile: "tibetan_bowl_1.m4a")
+            Sounds.playSounds(soundFile: "bell.mp3")
         }
     }
     func handleTimerCompleted() {
@@ -209,6 +215,7 @@ struct TimerView: View {
         let startTimeString = dateFormatter.string(from: startTime!)
         let endTimeString = dateFormatter.string(from: Date())
         print("handle timer completed", self.session.items.count)
+        
         let lastSessionStart = endTimeString;
         var currentStreak = self.session.currentStreak
         var bestStreak = self.session.bestStreak
@@ -225,7 +232,7 @@ struct TimerView: View {
                 currentStreak = 1
                 print("currentStreak is set to one: ", currentStreak)
             }
-            bestStreak = self.session.bestStreak > currentStreak + 1 ? self.session.bestStreak : currentStreak + 1;
+            bestStreak = self.session.bestStreak > currentStreak ? self.session.bestStreak : currentStreak;
         } else {
             currentStreak = 1
             bestStreak = 1
