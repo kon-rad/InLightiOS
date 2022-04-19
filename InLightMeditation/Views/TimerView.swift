@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Foundation
+import AVKit
 
 struct TimerView: View {
     
@@ -36,6 +37,8 @@ struct TimerView: View {
     @State var startTime: Date? = nil
     @State var initialTime: Int = 0
     
+    @State var audioPlayer: AVAudioPlayer!
+    
     @StateObject var viewRouter: ViewRouter
     
     private let screenWidth = UIScreen.main.bounds.width
@@ -44,6 +47,8 @@ struct TimerView: View {
 //    init(session: FirebaseSession) {
 //        self.time = session.defaultTime
 //    }
+    var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+
     
     var body: some View {
         if self.timerIsRunning {
@@ -92,6 +97,11 @@ struct TimerView: View {
             .statusBar(hidden: true)
             .onAppear {
                 UIApplication.shared.isIdleTimerDisabled = true
+                print("true set to screenlock")
+            }
+            .onDisappear {
+                UIApplication.shared.isIdleTimerDisabled = false
+                print("false set to screenlock")
             }
         } else {
             ZStack(alignment: .center) {
@@ -166,6 +176,10 @@ struct TimerView: View {
             self.stopTimer()
             return
         }
+        // Todo: implement background task
+        // start background task
+//        registerBackgroundTask()
+        
         self.viewRouter.currentPage = .timerProgress
         self.resetTimer()
         self.timerIsRunning = true
@@ -194,6 +208,20 @@ struct TimerView: View {
             }
         }
     }
+    // Todo: implement finish sound playing in the background - convert to time based calculations instead of timer
+//    mutating func registerBackgroundTask() {
+//      backgroundTask = UIApplication.shared.beginBackgroundTask { [self] in
+//        self.endBackgroundTask()
+//      }
+//      assert(backgroundTask != .invalid)
+//    }
+//
+//    mutating func endBackgroundTask() {
+//      print("Background task ended.")
+//      UIApplication.shared.endBackgroundTask(backgroundTask)
+//      backgroundTask = .invalid
+//    }
+    
     func stopTimer() {
         self.timerIsRunning = false
         self.timer?.invalidate()
@@ -205,8 +233,19 @@ struct TimerView: View {
         self.seconds = 0
     }
     func attemptSound() {
+        
+        
         if self.isSoundOn {
-            Sounds.playSounds(soundFile: "bell.mp3")
+//            Sounds.playSounds(soundFile: "bell.mp3")
+            let bellSound = Bundle.main.path(forResource: "bell", ofType: "mp3")
+            self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: bellSound!))
+        }
+    }
+    func stopSound() {
+        if self.isSoundOn {
+            self.audioPlayer.stop()
+//            Sounds.audioPlayer.stop()
+//            Sounds.playSounds(soundFile: "bell.mp3")
         }
     }
     func handleTimerCompleted() {

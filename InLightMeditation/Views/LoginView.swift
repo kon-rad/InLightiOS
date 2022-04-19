@@ -109,6 +109,13 @@ struct LoginView: View {
                 Text(self.errorMessage)
                     .foregroundColor(Color.init(hex: "#FE4A49"))
                     .padding(15)
+                if isLogin {
+                    Button(action: { passwordReset() }) {
+                        Text("reset password")
+                    }
+                        .foregroundColor(Color.init(hex: "#81b39b"))
+                        .padding()
+                }
                 Button(action: { loginOrSignup() }) {
                     AuthButtonContent(isLogin: $isLogin)
                 }
@@ -162,7 +169,20 @@ struct LoginView: View {
     func showMessagePrompt(message: String = "") {
         self.errorMessage = message;
     }
-    
+    func passwordReset() {
+        print("reset password")
+        if !email.isEmpty {
+            Auth.auth().sendPasswordReset(withEmail: email) { error in
+                if let error = error {
+                    self.showMessagePrompt(message: error.localizedDescription)
+                  return
+                }
+                self.showMessagePrompt(message: "Check your email for the reset password link")
+            }
+        } else {
+            self.showMessagePrompt(message: "Please enter your email")
+        }
+    }
     func loginOrSignup() {
         
         if isMagicLogin {

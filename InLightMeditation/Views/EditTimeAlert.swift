@@ -34,7 +34,6 @@ struct EditTimeAlert: View {
 //                    }
                 .textFieldStyle(PlainTextFieldStyle()) 
                 .padding(8)
-                .keyboardType(.numberPad)
                 .frame(width: 80)
                 .background(Color("lightgray"))
                 .cornerRadius(16)
