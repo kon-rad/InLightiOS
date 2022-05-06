@@ -16,4 +16,6 @@ enum Page {
     case timer
     case profile
     case timerProgress
+    case menu
+    case editProfile
 }

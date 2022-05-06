@@ -29,11 +29,17 @@ struct ContentView: View {
                         Spacer()
                         switch viewRouter.currentPage {
                             case .timer:
-                                TimerView(viewRouter: ViewRouter())
+                                TimerView(viewRouter: viewRouter)
                             case .profile:
-                                Profile()
+                                Profile(viewRouter: viewRouter)
                             case .timerProgress:
                                 TimerProgress()
+                            case .menu:
+                                MenuView(viewRouter: viewRouter)
+                                    .transition(.move(edge: .trailing))
+                            case .editProfile:
+                                EditProfileView(viewRouter: viewRouter)
+                                    .transition(.move(edge: .trailing))
                         }
                         Spacer()
                         Group {

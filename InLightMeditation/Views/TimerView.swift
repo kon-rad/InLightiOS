@@ -39,7 +39,7 @@ struct TimerView: View {
     
     @State var audioPlayer: AVAudioPlayer!
     
-    @StateObject var viewRouter: ViewRouter
+    @ObservedObject var viewRouter: ViewRouter
     
     private let screenWidth = UIScreen.main.bounds.width
     private let screenHeight = UIScreen.main.bounds.height + 20

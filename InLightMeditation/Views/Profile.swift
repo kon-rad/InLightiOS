@@ -11,12 +11,15 @@ struct Profile: View {
     
     @EnvironmentObject var session: FirebaseSession
     
+    @ObservedObject var viewRouter: ViewRouter
+    
     @State var currentStreak: Int16 = 0
     @State var bestStreak: Int16 = 0
     @State var totalMinutes: Int16 = 0
     @State private var expandNote: [UUID: Bool] = [:]
     
-    init() {
+    init(viewRouter: ViewRouter) {
+        self.viewRouter = viewRouter
         UINavigationBar.setAnimationsEnabled(false)
         UIScrollView.appearance().backgroundColor = UIColor(Color("ultralightyellow"))
     }
@@ -27,9 +30,18 @@ struct Profile: View {
                 VStack {
                     if session.isLoggedIn {
                         HStack {
-                            Button(action: { signOut() }) {
-                                Text("sign out")
-                                    .foregroundColor(Color("lightgreen")) // light green
+                            Spacer()
+                            Spacer()
+//                            Button(action: { signOut() }) {
+//                                Text("sign out")
+//                                    .foregroundColor(Color("lightgreen")) // light green
+//                            }
+                            Button(action: { showMenu() }) {
+                                Image("menu")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .padding(.trailing, 35)
+                                    .padding(.top, 10)
                             }
                         }
                     }
@@ -135,6 +147,9 @@ struct Profile: View {
          }
         .animation(nil)
     }
+    func showMenu() {
+        self.viewRouter.currentPage = .menu
+    }
     func renderNoteText(id: UUID, note: String) -> String {
         if self.expandNote[id] == true {
            return note
@@ -160,9 +175,6 @@ struct Profile: View {
         }
         return returnValue
     }
-    func signOut() {
-        session.signOut()
-    }
     func renderTime(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
@@ -180,7 +192,7 @@ struct Profile: View {
 
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
-        Profile()
+        Profile(viewRouter: ViewRouter())
     }
 }
 
