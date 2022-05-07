@@ -34,6 +34,9 @@
 		FA7077F926ED70D20045F362 /* Meditations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077F826ED70D20045F362 /* Meditations.swift */; };
 		FA7749DE2824D89D00D8D3D5 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7749DD2824D89D00D8D3D5 /* MenuView.swift */; };
 		FA7749E02825527500D8D3D5 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7749DF2825527500D8D3D5 /* EditProfileView.swift */; };
+		FA7749E42825944B00D8D3D5 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7749E32825944B00D8D3D5 /* StorageManager.swift */; };
+		FA7749E62825AF6F00D8D3D5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7749E52825AF6F00D8D3D5 /* ImagePicker.swift */; };
+		FA7749E82825B14B00D8D3D5 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7749E72825B14B00D8D3D5 /* ImagePickerView.swift */; };
 		FA873EDC27F00E48005EF398 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA873EDB27F00E48005EF398 /* logo.png */; };
 		FA873EDD27F00EB5005EF398 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA487908273DB8DC00BAF79A /* GoogleService-Info.plist */; };
 		FABB402526DB0E28006806CF /* NunitoSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */; };
@@ -117,6 +120,9 @@
 		FA7077F826ED70D20045F362 /* Meditations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meditations.swift; sourceTree = "<group>"; };
 		FA7749DD2824D89D00D8D3D5 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		FA7749DF2825527500D8D3D5 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		FA7749E32825944B00D8D3D5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		FA7749E52825AF6F00D8D3D5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		FA7749E72825B14B00D8D3D5 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		FA873ED827F0069C005EF398 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		FA873EDB27F00E48005EF398 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -278,6 +284,7 @@
 				FA25A5D427E025CB00261E6A /* NoteModal.swift */,
 				FA7749DD2824D89D00D8D3D5 /* MenuView.swift */,
 				FA7749DF2825527500D8D3D5 /* EditProfileView.swift */,
+				FA7749E72825B14B00D8D3D5 /* ImagePickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,6 +297,8 @@
 				FA7077F826ED70D20045F362 /* Meditations.swift */,
 				FA332FBE27CF041300E0AF73 /* Setup.swift */,
 				FA25A5D627E15A4100261E6A /* Emoji.swift */,
+				FA7749E32825944B00D8D3D5 /* StorageManager.swift */,
+				FA7749E52825AF6F00D8D3D5 /* ImagePicker.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -611,6 +620,7 @@
 			files = (
 				FA7077F326E8F0CE0045F362 /* Persistence.swift in Sources */,
 				FABB403526DB17D3006806CF /* TimerView.swift in Sources */,
+				FA7749E62825AF6F00D8D3D5 /* ImagePicker.swift in Sources */,
 				FA39A17826DACBA40016F9F3 /* SplashScreenView.swift in Sources */,
 				FA487907273D9DE500BAF79A /* LoginView.swift in Sources */,
 				FAFE3701278AE1870043E0D1 /* User.swift in Sources */,
@@ -624,11 +634,13 @@
 				FAFE3704278AE8220043E0D1 /* FirebaseSession.swift in Sources */,
 				FA332FBF27CF041300E0AF73 /* Setup.swift in Sources */,
 				FA25A5D527E025CC00261E6A /* NoteModal.swift in Sources */,
+				FA7749E42825944B00D8D3D5 /* StorageManager.swift in Sources */,
 				FA7077F726ED50BD0045F362 /* CurrentStreak.swift in Sources */,
 				FA7077B226E7226C0045F362 /* ContentView.swift in Sources */,
 				FA39A17626DACBA40016F9F3 /* InLightMeditationApp.swift in Sources */,
 				FA7749E02825527500D8D3D5 /* EditProfileView.swift in Sources */,
 				FA7077B526E8EE8C0045F362 /* InLight.xcdatamodeld in Sources */,
+				FA7749E82825B14B00D8D3D5 /* ImagePickerView.swift in Sources */,
 				FA25A5D727E15A4200261E6A /* Emoji.swift in Sources */,
 				FA7077A226E478120045F362 /* EditTimeAlert.swift in Sources */,
 				FA7077B026E71D2B0045F362 /* ViewRouter.swift in Sources */,
