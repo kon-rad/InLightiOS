@@ -9,12 +9,12 @@ import SwiftUI
 
 class ViewRouter: ObservableObject {
     
-    @Published var currentPage: Page = .timer
+    @Published var currentPage: Page = .profile
 }
 
 enum Page {
     case timer
     case profile
-    case menu
     case editProfile
+    case menu
 }

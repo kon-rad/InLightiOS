@@ -29,7 +29,7 @@ struct ContentView: View {
                         Spacer()
                         switch viewRouter.currentPage {
                             case .timer:
-                                TimerView(viewRouter: viewRouter)
+                                TimerView()
                             case .profile:
                                 Profile(viewRouter: viewRouter)
                             case .menu:

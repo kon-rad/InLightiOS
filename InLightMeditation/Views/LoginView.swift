@@ -114,7 +114,7 @@ struct LoginView: View {
                         Text("reset password")
                     }
                         .foregroundColor(Color.init(hex: "#81b39b"))
-                        .padding()
+                        .padding(.bottom, 12)
                 }
                 Button(action: { loginOrSignup() }) {
                     AuthButtonContent(isLogin: $isLogin)
@@ -131,11 +131,11 @@ struct LoginView: View {
             .onAppear(perform: getUser)
             .background(Color("ultralightyellow"))
             .ignoresSafeArea()
-            Image("plant_gradient")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .edgesIgnoringSafeArea(.top)
-                .mask(LinearGradient(gradient: Gradient(colors: [.clear, Color("ultralightyellow")]), startPoint: .bottom, endPoint: .top))
+//            Image("plant_gradient")
+//                .resizable()
+//                .aspectRatio(contentMode: .fit)
+//                .edgesIgnoringSafeArea(.top)
+//                .mask(LinearGradient(gradient: Gradient(colors: [.clear, Color("ultralightyellow")]), startPoint: .bottom, endPoint: .top))
         }
         
     }
@@ -242,7 +242,6 @@ struct LoginView: View {
                 } else {
                     self.email = ""
                     self.password = ""
-                    print("logged in")
                     self.showMessagePrompt(message: "")
                 }
             }
