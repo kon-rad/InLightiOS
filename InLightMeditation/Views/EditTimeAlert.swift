@@ -38,16 +38,26 @@ struct EditTimeAlert: View {
                 .background(Color("lightgray"))
                 .cornerRadius(16)
             HStack(spacing: 20) {
-                Button("save") {
+                Button(action: {
                     self.isShown = false
                     self.onDone(self.text)
                     self.endEditing()
+                }) {
+                    HStack {
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 16))
+                    }
                 }
                 .buttonStyle(SaveButtonStyle())
-                Button("Cancel") {
+                Button(action: {
                     self.isShown = false
                     self.onCancel()
                     self.endEditing()
+                }) {
+                    HStack {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16))
+                    }
                 }
                 .buttonStyle(CancelButtonStyle())
             }

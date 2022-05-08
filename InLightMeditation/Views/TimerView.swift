@@ -11,14 +11,7 @@ import AVKit
 
 struct TimerView: View {
     
-//    @Environment(\.managedObjectContext) private var viewContext
-    
-//    @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
-    
-//    @ObservedObject var session = FirebaseSession()
     @EnvironmentObject var session: FirebaseSession
-
-//    var meditations: FetchedResults<Meditation>
     
     @State var time: String = "10"
     @State var editTime: Bool = false
@@ -26,7 +19,7 @@ struct TimerView: View {
     
     @State var showNoteModal: Bool = false
     @State var sessionNote: String = ""
-    @State var emoji: String = ""
+    @State var stars: Int = 0
     
     @State var hours: Int = 0
     @State var minutes: Int = 0
@@ -44,9 +37,6 @@ struct TimerView: View {
     private let screenWidth = UIScreen.main.bounds.width
     private let screenHeight = UIScreen.main.bounds.height + 20
     
-//    init(session: FirebaseSession) {
-//        self.time = session.defaultTime
-//    }
     var backgroundTask: UIBackgroundTaskIdentifier = .invalid
 
     
@@ -150,10 +140,10 @@ struct TimerView: View {
                     self.time = text
                     self.session.updateDefaultTime(time: text)
                 })
-                NoteModal(isShown: self.$showNoteModal, text: "", emoji: "", onDone: {
-                    text, emoji in
+                NoteModal(isShown: self.$showNoteModal, text: "", stars: 0, onDone: {
+                    text, stars in
                     self.sessionNote = text
-                    self.emoji = emoji
+                    self.stars = stars
                     self.handleTimerCompleted()
                 })
             }
@@ -177,10 +167,10 @@ struct TimerView: View {
             return
         }
         // Todo: implement background task
+        // instead of this - change the timer to run on world clock not reimplementing a clock
         // start background task
 //        registerBackgroundTask()
         
-        self.viewRouter.currentPage = .timerProgress
         self.resetTimer()
         self.timerIsRunning = true
         self.minutes = Int(self.time)!
@@ -288,7 +278,7 @@ struct TimerView: View {
                 totalMinutes: totalMinutes,
                 duration: self.initialTime,
                 note: self.sessionNote,
-                emoji: self.emoji
+                stars: self.stars
             )
         } catch {
             print(error.localizedDescription)

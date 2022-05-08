@@ -17,6 +17,7 @@ struct InLightMeditationApp: App {
     let persistenceController = PersistenceController.shared
     
     @StateObject var session = FirebaseSession()
+    @StateObject var storage = StorageManager()
     
     init() {
        FirebaseApp.configure()
@@ -31,6 +32,7 @@ struct InLightMeditationApp: App {
             SplashScreenView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(session)
+                .environmentObject(storage)
         }
     }
 }

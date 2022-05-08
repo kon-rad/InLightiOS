@@ -36,7 +36,6 @@
 		FA7749E02825527500D8D3D5 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7749DF2825527500D8D3D5 /* EditProfileView.swift */; };
 		FA7749E42825944B00D8D3D5 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7749E32825944B00D8D3D5 /* StorageManager.swift */; };
 		FA7749E62825AF6F00D8D3D5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7749E52825AF6F00D8D3D5 /* ImagePicker.swift */; };
-		FA7749E82825B14B00D8D3D5 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7749E72825B14B00D8D3D5 /* ImagePickerView.swift */; };
 		FA873EDC27F00E48005EF398 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA873EDB27F00E48005EF398 /* logo.png */; };
 		FA873EDD27F00EB5005EF398 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA487908273DB8DC00BAF79A /* GoogleService-Info.plist */; };
 		FABB402526DB0E28006806CF /* NunitoSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */; };
@@ -55,7 +54,6 @@
 		FABB403226DB0E28006806CF /* NunitoSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB402326DB0E28006806CF /* NunitoSans-ExtraBoldItalic.ttf */; };
 		FABB403326DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB402426DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf */; };
 		FABB403526DB17D3006806CF /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB403426DB17D3006806CF /* TimerView.swift */; };
-		FACABE46271805AD0074BB91 /* TimerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACABE45271805AD0074BB91 /* TimerProgress.swift */; };
 		FAFE3701278AE1870043E0D1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE3700278AE1860043E0D1 /* User.swift */; };
 		FAFE3704278AE8220043E0D1 /* FirebaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE3703278AE8220043E0D1 /* FirebaseSession.swift */; };
 		FAFE3706278AF03A0043E0D1 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE3705278AF03A0043E0D1 /* Session.swift */; };
@@ -122,7 +120,6 @@
 		FA7749DF2825527500D8D3D5 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		FA7749E32825944B00D8D3D5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		FA7749E52825AF6F00D8D3D5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		FA7749E72825B14B00D8D3D5 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		FA873ED827F0069C005EF398 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		FA873EDB27F00E48005EF398 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -141,7 +138,6 @@
 		FABB402326DB0E28006806CF /* NunitoSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		FABB402426DB0E28006806CF /* NunitoSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		FABB403426DB17D3006806CF /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		FACABE45271805AD0074BB91 /* TimerProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProgress.swift; sourceTree = "<group>"; };
 		FAFE3700278AE1860043E0D1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FAFE3703278AE8220043E0D1 /* FirebaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSession.swift; sourceTree = "<group>"; };
 		FAFE3705278AF03A0043E0D1 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -279,12 +275,10 @@
 				FA7077AF26E71D2B0045F362 /* ViewRouter.swift */,
 				FA7077B126E7226C0045F362 /* ContentView.swift */,
 				FA7077F626ED50BD0045F362 /* CurrentStreak.swift */,
-				FACABE45271805AD0074BB91 /* TimerProgress.swift */,
 				FA487906273D9DE500BAF79A /* LoginView.swift */,
 				FA25A5D427E025CB00261E6A /* NoteModal.swift */,
 				FA7749DD2824D89D00D8D3D5 /* MenuView.swift */,
 				FA7749DF2825527500D8D3D5 /* EditProfileView.swift */,
-				FA7749E72825B14B00D8D3D5 /* ImagePickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -629,7 +623,6 @@
 				FA7749DE2824D89D00D8D3D5 /* MenuView.swift in Sources */,
 				FA7077A926E70A090045F362 /* Sounds.swift in Sources */,
 				FAFE3706278AF03A0043E0D1 /* Session.swift in Sources */,
-				FACABE46271805AD0074BB91 /* TimerProgress.swift in Sources */,
 				FA7077F926ED70D20045F362 /* Meditations.swift in Sources */,
 				FAFE3704278AE8220043E0D1 /* FirebaseSession.swift in Sources */,
 				FA332FBF27CF041300E0AF73 /* Setup.swift in Sources */,
@@ -640,7 +633,6 @@
 				FA39A17626DACBA40016F9F3 /* InLightMeditationApp.swift in Sources */,
 				FA7749E02825527500D8D3D5 /* EditProfileView.swift in Sources */,
 				FA7077B526E8EE8C0045F362 /* InLight.xcdatamodeld in Sources */,
-				FA7749E82825B14B00D8D3D5 /* ImagePickerView.swift in Sources */,
 				FA25A5D727E15A4200261E6A /* Emoji.swift in Sources */,
 				FA7077A226E478120045F362 /* EditTimeAlert.swift in Sources */,
 				FA7077B026E71D2B0045F362 /* ViewRouter.swift in Sources */,

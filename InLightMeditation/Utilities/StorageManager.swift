@@ -12,9 +12,9 @@ import Firebase
 public class StorageManager: ObservableObject {
     let storage = Storage.storage()
 
-    func upload(image: UIImage) {
+    func upload(image: UIImage, userId: String) -> Bool {
         // Create a storage reference
-        let storageRef = storage.reference().child("images/image.jpg")
+        let storageRef = storage.reference().child("avatars/\(userId)")
 
         // Resize the image to 200px with a custom extension
 //        let resizedImage = image.aspectFittedToHeight(200)
@@ -28,17 +28,20 @@ public class StorageManager: ObservableObject {
         metadata.contentType = "image/jpg"
 
         // Upload the image
+        var uploadSuccess = false;
         if let data = data {
             storageRef.putData(data, metadata: metadata) { (metadata, error) in
                 if let error = error {
                     print("Error while uploading file: ", error)
+                    uploadSuccess = false
                 }
-
                 if let metadata = metadata {
-                    print("Metadata: ", metadata)
+                    print("Saved Image!!! - Metadata: ", metadata)
+                    uploadSuccess = true
                 }
             }
         }
+        return uploadSuccess
     }
 
     func listAllFiles() {
@@ -74,7 +77,7 @@ public class StorageManager: ObservableObject {
         // List the items
         storageRef.list(withMaxResults: 1, completion: handler)
     }
-
+    
         // You can use the listItem() function above to get the StorageReference of the item you want to delete
     func deleteItem(item: StorageReference) {
         item.delete { error in

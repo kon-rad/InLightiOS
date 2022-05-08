@@ -32,8 +32,6 @@ struct ContentView: View {
                                 TimerView(viewRouter: viewRouter)
                             case .profile:
                                 Profile(viewRouter: viewRouter)
-                            case .timerProgress:
-                                TimerProgress()
                             case .menu:
                                 MenuView(viewRouter: viewRouter)
                                     .transition(.move(edge: .trailing))

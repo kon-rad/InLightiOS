@@ -15,16 +15,16 @@ struct Session: Identifiable, Hashable {
     let endTime: String
     let duration: Int
     let note: String
-    let emoji: String
+    let stars: Int
     let id = UUID()
     
-    init(startTime: String, endTime: String, duration: Int, note: String, emoji: String) {
+    init(startTime: String, endTime: String, duration: Int, note: String, stars: Int) {
         self.ref = nil
         self.startTime = startTime
         self.endTime = endTime
         self.duration = duration
         self.note = note
-        self.emoji = emoji
+        self.stars = stars
     }
     
     func toAnyObject() -> Any {
@@ -33,7 +33,7 @@ struct Session: Identifiable, Hashable {
             "endTime": endTime,
             "duration": duration,
             "note": note,
-            "emoji": emoji,
+            "stars": stars,
         ]
     }
 }

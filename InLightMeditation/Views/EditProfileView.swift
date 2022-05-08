@@ -16,8 +16,11 @@ struct EditProfileView: View {
     
     @State private var isShowPhotoLibrary = false
     @State private var image = UIImage()
+    @State private var updatedAvatar: Bool = false
     
     @EnvironmentObject var session: FirebaseSession
+    
+    @EnvironmentObject var storage: StorageManager
     
     var body: some View {
         VStack {
@@ -27,87 +30,121 @@ struct EditProfileView: View {
                 }) {
                     HStack {
                         Image(systemName: "chevron.backward.circle")
-                            .imageScale(.large)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 30, height: 30)
                             .onTapGesture {
                                 returnToMenu()
                             }
                             .foregroundColor(Color("textblack"))
                     }
                 }
-                .padding(.leading, 30)
                 Spacer()
             }
             VStack {
-                Image(uiImage: self.image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(maxWidth: 240, maxHeight: 240)
-                    .clipShape(Circle())
-                    .shadow(radius: 10)
-                    .overlay(Circle().stroke(Color("lightyellow"), lineWidth: 3))
+                if (updatedAvatar) {
+                    Image(uiImage: self.image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(maxWidth: 140, maxHeight: 140)
+                        .clipShape(Circle())
+                        .shadow(radius: 10)
+                        .overlay(Circle().stroke(Color("lightyellow"), lineWidth: 3))
+                } else {
+                    if (self.session.hasAvatar) {
+                        Image(uiImage: self.session.avatar!)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: 140, maxHeight: 140)
+                            .clipShape(Circle())
+                            .shadow(radius: 10)
+                            .overlay(Circle().stroke(Color("lightyellow"), lineWidth: 3))
+                    } else {
+                        Image("user_icon")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: 100, maxHeight: 100)
+                            .clipShape(Circle())
+                            .shadow(radius: 10)
+                            .overlay(Circle().stroke(Color("lightyellow"), lineWidth: 3))
+                    }
+                }
                 Button(action: {
                     self.isShowPhotoLibrary = true
                 }) {
                     HStack {
                         Image(systemName: "photo")
                             .font(.system(size: 16))
-     
-                        Text("photo library")
+                        Text("upload photo")
                             .font(.system(size: 16))
                     }
-                    .frame( minHeight: 0, maxHeight: 40)
-                    .background(Color("mediumgreen"))
-                    .foregroundColor(.white)
-                    .cornerRadius(18)
-                    .padding(.horizontal)
                 }
+                .buttonStyle(SaveButtonStyle())
+                .padding(.top, 6)
             }
-            TextField("User name", text: $username)
-                .font(.system(size: 15, weight: .regular, design: .default))
-                .keyboardType(.default)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 40, alignment: .center)
-                .animation(nil)
-            Text("Why I want to practice meditation?")
-                .padding(.top, 12)
-            TextField("motivation", text: $motivation)
-                .font(.system(size: 15, weight: .regular, design: .default))
-                .keyboardType(.default)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 40, alignment: .center)
-                .animation(nil)
+            VStack(alignment: .leading) {
+                Text("username:")
+                    .padding(.top, 28)
+                TextField("User name", text: $username)
+                    .font(.system(size: 15, weight: .regular, design: .default))
+                    .keyboardType(.default)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 40, alignment: .center)
+                    .textFieldStyle(.roundedBorder)
+                Text("Why do I practice meditation?")
+                    .padding(.top, 12)
+                TextEditor(text: $motivation)
+                    .textFieldStyle(.roundedBorder)
+                    .font(.system(size: 15, weight: .regular, design: .default))
+                    .keyboardType(.default)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .frame(height: 100)
+                    .padding(4)
+                    .overlay(RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.secondary).opacity(0.5))
+                    .background(Color.white)
+            }
             Button(action: { self.saveProfile() }) {
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 16))
- 
                     Text("save")
                         .font(.system(size: 16))
                 }
-                .frame( minHeight: 0, maxHeight: 40)
-                .background(Color("mediumgreen"))
-                .foregroundColor(.white)
-                .cornerRadius(18)
-                .padding(.horizontal)
-                
             }
+            .buttonStyle(SaveButtonStyle())
+            .padding(.top, 20)
+            Spacer()
         }
-        .padding(.leading, 25)
-        .padding(.trailing, 25)
+        .padding(.leading, 35)
+        .padding(.trailing, 35)
+        .padding(.top, 60)
         .sheet(isPresented: $isShowPhotoLibrary) {
-            ImagePicker(selectedImage: self.$image, sourceType: .photoLibrary)
+            ImagePicker(selectedImage: self.$image, updatedAvatar: self.$updatedAvatar, sourceType: .photoLibrary)
+        }
+        .onAppear {
+            if (self.session.username != nil) {
+                self.username = self.session.username!
+            }
+            if (self.session.motivation != nil) {
+                self.motivation = self.session.motivation!
+            }
         }
     }
     func saveProfile() {
-        print("save profile")
+        if (session.session != nil) {
+            guard let userId = session.session?.uid else { return }
+            if (self.updatedAvatar) {
+                storage.upload(image: self.image, userId: userId)
+            }
+        }
+        session.updateProfile(username: self.username, motivation: self.motivation)
+        self.viewRouter.currentPage = .profile
     }
     func returnToMenu() {
         self.viewRouter.currentPage = .menu
-    }
-    func uploadPhoto() {
-        print("uploading photo")
     }
 }
 

@@ -39,7 +39,7 @@ struct Profile: View {
                             Button(action: { showMenu() }) {
                                 Image("menu")
                                     .resizable()
-                                    .frame(width: 20, height: 20)
+                                    .frame(width: 30, height: 30)
                                     .padding(.trailing, 35)
                                     .padding(.top, 10)
                             }
@@ -48,10 +48,34 @@ struct Profile: View {
                     Spacer()
                     ScrollView(showsIndicators: false) {
                         VStack {
-                            Image("user_icon")
-                                .resizable()
-                                .frame(width: 70, height: 70.0)
-                                .padding(.top, 50)
+                            if (self.session.hasAvatar) {
+                                Image(uiImage: self.session.avatar!)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(maxWidth: 196, maxHeight: 196)
+                                    .clipShape(Circle())
+                                    .shadow(radius: 10)
+                                    .overlay(Circle().stroke(Color("lightyellow"), lineWidth: 3))
+                            } else {
+                                Image("user_icon")
+                                    .resizable()
+                                    .frame(width: 70, height: 70.0)
+                                    .padding(.top, 50)
+                            }
+                            if (session.username != nil) {
+                                Text(session.username!)
+                                    .padding(.top, 18)
+                                    .font(.subheadline)
+                            }
+                            if (session.motivation != nil) {
+                                Text("I meditate because:")
+                                    .padding(.top, 8)
+                                    .padding(.bottom, 2)
+                                    .font(Font.subheadline.weight(.bold))
+                                Text(session.motivation!)
+                                    .font(.subheadline)
+                                    .padding(.bottom, 4)
+                            }
                             HStack {
                                 Spacer()
                                 VStack {
@@ -98,7 +122,7 @@ struct Profile: View {
                                                 HStack {
                                                     Text("\(self.formatStartTime(startTime: meditation.startTime))")
                                                         .font(.headline).bold()
-                                                    Text("\(Emoji.renderEmoji(emoji: meditation.emoji))")
+                                                    Text("\(renderStars(stars: meditation.stars))")
                                                         .font(.system(size: 16.0))
                                                     Spacer()
                                                     Text("\(meditation.duration) min")
@@ -146,6 +170,16 @@ struct Profile: View {
             UIScrollView.appearance().backgroundColor = UIColor(Color.gray.opacity(0))
          }
         .animation(nil)
+    }
+    func renderStars(stars: Int) -> String{
+        if (stars < 1) {
+            return ""
+        }
+        var starsRender = ""
+        for i in 1...stars {
+            starsRender += "⭐"
+        }
+        return starsRender
     }
     func showMenu() {
         self.viewRouter.currentPage = .menu

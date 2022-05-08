@@ -12,8 +12,8 @@ struct NoteModal: View {
     let screenSize = UIScreen.main.bounds
     @Binding var isShown: Bool
     @State var text: String
-    @State var emoji: String
-    var onDone: (String, String) -> Void = { _,_  in }
+    @State var stars: Int
+    var onDone: (String, Int) -> Void = { _,_  in }
     
     var body: some View {
         VStack(spacing: 10) {
@@ -27,31 +27,39 @@ struct NoteModal: View {
                 }
                 .background(Color("lightgray"))
                 .cornerRadius(8)
-            Text("\(self.emoji != "" ? Emoji.renderEmoji(emoji: self.emoji) : "")")
+            Text("how in tune with your sense were you?")
                 .font(.headline)
-                .padding()
+                .padding(.top, 6)
+            Text("\(renderStars())")
+                .font(.headline)
+                .padding(.top, 6)
+                .frame(height: 40)
+                .padding(.bottom, 6)
             HStack(spacing: 10) {
-                Button("🌞") {
-                    self.emoji = "sun_with_face"
+                Button("⭐") {
+                    self.stars = 1
                 }
-                Button("🌤️") {
-                    self.emoji = "sun_behind_small_cloud"
+                Button("⭐") {
+                    self.stars = 2
                 }
-                Button("⛅") {
-                    self.emoji = "sun_behind_large_cloud"
+                Button("⭐") {
+                    self.stars = 3
                 }
-                Button("🌩️") {
-                    self.emoji = "cloud_with_lightening"
+                Button("⭐") {
+                    self.stars = 4
                 }
-                Button("⚡") {
-                    self.emoji = "lightening_bolt"
+                Button("⭐") {
+                    self.stars = 5
                 }
             }
             HStack {
-                Button("Okay") {
+                Button(action: {
                     self.isShown = false
-                    self.onDone(self.text, self.emoji)
+                    self.onDone(self.text, self.stars)
                     self.endEditing()
+                }) {
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 16))
                 }
                 .buttonStyle(SaveButtonStyle())
             }
@@ -66,6 +74,16 @@ struct NoteModal: View {
             color: Color(#colorLiteral(red: 0.8596749902, green: 0.854565084, blue: 0.8636032343, alpha: 1)),
             radius: 6, x: -9, y: -9
         )
+    }
+    func renderStars() -> String{
+        if (self.stars < 1) {
+            return ""
+        }
+        var starsRender = ""
+        for i in 1...self.stars {
+            starsRender += "⭐"
+        }
+        return starsRender
     }
     
     private func endEditing() {

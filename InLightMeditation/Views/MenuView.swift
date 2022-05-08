@@ -14,43 +14,57 @@ struct MenuView: View {
     @ObservedObject var viewRouter: ViewRouter
     
     var body: some View {
-        VStack {
-            HStack {
-                Button(action: {
-                    self.returnToProfile()
-                }) {
+        ZStack {
+                Color("ultralightyellow")
+                    .edgesIgnoringSafeArea(.all)
+            VStack {
+                HStack {
+                    Button(action: {
+                        self.returnToProfile()
+                    }) {
+                        HStack {
+                            Image(systemName: "chevron.backward.circle")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 30, height: 30)
+                                .onTapGesture {
+                                    self.returnToProfile()
+                                }
+                                .foregroundColor(Color("textblack"))
+                        }
+                    }
+                    .padding(.leading, 30)
+                    Spacer()
+                }
+                List {
                     HStack {
-                        Image(systemName: "chevron.backward.circle")
-                            .imageScale(.large)
+                        Image("signout")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 22, height: 22)
+                            .padding(.trailing, 4)
+                        Text("Sign Out")
                             .onTapGesture {
-                                self.returnToProfile()
+                                self.signOut()
                             }
-                            .foregroundColor(Color("textblack"))
+                    }
+                    HStack {
+                        Image("edit")
+                            .resizable()
+                            .frame(width: 22, height: 22)
+                            .padding(.trailing, 4)
+                        Text("Edit Profile")
+                            .onTapGesture {
+                                self.viewRouter.currentPage = .editProfile
+                            }
                     }
                 }
-                .padding(.leading, 30)
-                Spacer()
+                .listStyle(SidebarListStyle())
             }
-            List {
-                Text("Sign Out")
-                    .onTapGesture {
-                        self.signOut()
-                    }
-                Text("Edit Profile")
-                    .onTapGesture {
-                        self.viewRouter.currentPage = .editProfile
-                    }
-                Text("Info Center")
-                    .onTapGesture {
-                        print("Info Center")
-                    }
-            }
-            .background(Color("lightyellow"))
-            .listStyle(SidebarListStyle())
+            .padding(.top, 60)
+            .animation(Animation.easeIn.delay(0.25))
+            .transition(.slide)
         }
-        .padding(.top, 50)
-        .animation(Animation.easeIn.delay(0.25))
-        .transition(.slide)
     }
     func signOut() {
         session.signOut()

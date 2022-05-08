@@ -23,6 +23,12 @@ class FirebaseSession: ObservableObject {
     @Published var bestStreak: Int = 0
     @Published var totalMinutes: Int = 0
     @Published var defaultTime: String = "10"
+    @Published var avatar: UIImage?
+    @Published var hasAvatar: Bool = false
+    @Published var username: String?
+    @Published var motivation: String?
+    
+    let storage = Storage.storage()
     
     var ref: DatabaseReference = Database.database().reference(withPath: "\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
     
@@ -46,7 +52,11 @@ class FirebaseSession: ObservableObject {
         print("getSessions is called")
         guard let userID = Auth.auth().currentUser?.uid else { return }
         print("getSessions is called with userID: ", userID)
-        ref.observe(DataEventType.value) { (snapshot) in
+        
+        getAvatar(userID: userID)
+        
+        let sessionsRef: DatabaseReference = Database.database().reference(withPath: "\(userID)/sessions")
+        sessionsRef.observe(DataEventType.value) { (snapshot) in
             self.items = []
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot {
@@ -56,21 +66,28 @@ class FirebaseSession: ObservableObject {
                         let endTime = datavalue["endTime"] != nil ? datavalue["endTime"] as! String : ""
                         let duration = datavalue["duration"] != nil ? datavalue["duration"] as! Int : 0
                         let note = datavalue["note"] != nil ? datavalue["note"] as! String : ""
-                        let emoji = datavalue["emoji"] != nil ? datavalue["emoji"] as! String : ""
+                        let stars = datavalue["stars"] != nil ? datavalue["stars"] as! Int : 0
 
-                       let session = Session(startTime: startTime, endTime: endTime, duration: duration, note: note, emoji: emoji)
+                       let session = Session(startTime: startTime, endTime: endTime, duration: duration, note: note, stars: stars)
                        self.items.insert(session, at: 0)
                    }
-                
                 }
             }
+        }
+        
+        ref.observe(DataEventType.value) { (snapshot) in
             if let datavalue = snapshot.value as? [String:Any] {
                 self.currentStreak = datavalue["currentStreak"] != nil ? datavalue["currentStreak"] as! Int : 0
                 self.lastSessionStart = datavalue["lastSessionStart"] != nil ? datavalue["lastSessionStart"] as! String : ""
                 self.bestStreak = datavalue["bestStreak"] != nil ? datavalue["bestStreak"] as! Int : 0
                 self.totalMinutes = datavalue["totalMinutes"] != nil ? datavalue["totalMinutes"] as! Int : 0
                 self.defaultTime = datavalue["defaultTime"] != nil ? datavalue["defaultTime"] as! String : "10"
-                print("defaultTime is set: ", self.defaultTime)
+                if (datavalue["username"] != nil) {
+                    self.username = datavalue["username"] as! String
+                }
+                if (datavalue["motivation"] != nil) {
+                    self.motivation = datavalue["motivation"] as! String
+                }
             }
         }
     }
@@ -111,18 +128,38 @@ class FirebaseSession: ObservableObject {
             totalMinutes: Int,
             duration: Int,
             note: String,
-            emoji: String
+            stars: Int
     ) {
         // Generates number going up as time goes on, sets order of Sessions's by how old they are.
         let number = Int(Date.timeIntervalSinceReferenceDate * 1000)
         
-        let postRef = ref.child(String(number))
-        let sess = Session(startTime: startTime, endTime: endTime, duration: duration, note: note, emoji: emoji)
+        let postRef = ref.child("sessions").child(String(number))
+        let sess = Session(startTime: startTime, endTime: endTime, duration: duration, note: note, stars: stars)
         postRef.setValue(sess.toAnyObject())
         ref.child("currentStreak").setValue(currentStreak)
         ref.child("lastSessionStart").setValue(lastSessionStart)
         ref.child("bestStreak").setValue(bestStreak)
         ref.child("totalMinutes").setValue(totalMinutes)
+    }
+    
+    func getAvatar(userID: String) {
+        // Create a reference
+        let avatarRef = storage.reference().child("avatars/\(userID)")
+        
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        avatarRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+          if let error = error {
+              print("error downloading avatar", error)
+          } else {
+              self.avatar = UIImage(data: data!)!
+              self.hasAvatar = true
+          }
+        }
+    }
+    
+    func updateProfile(username: String, motivation: String) {
+        ref.child("username").setValue(username)
+        ref.child("motivation").setValue(motivation)
     }
     
     func updateDefaultTime(time: String) {
