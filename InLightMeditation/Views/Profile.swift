@@ -68,7 +68,7 @@ struct Profile: View {
                                     .font(.subheadline)
                             }
                             if (session.motivation != nil) {
-                                Text("I meditate because:")
+                                Text("I practice meditation because:")
                                     .padding(.top, 8)
                                     .padding(.bottom, 2)
                                     .font(Font.subheadline.weight(.bold))

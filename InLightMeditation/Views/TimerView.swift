@@ -29,6 +29,7 @@ struct TimerView: View {
     @State var timer: Timer? = nil
     @State var startTime: Date? = nil
     @State var initialTime: Int = 0
+    @State var zeroTime: Bool = false
     
     @State var audioPlayer: AVAudioPlayer!
     
@@ -56,9 +57,6 @@ struct TimerView: View {
                             .font(Font.system(size: 64, design: .monospaced))
                             .frame(height: 60, alignment: .center)
                             .padding(.all, 10)
-                            .onTapGesture {
-                                self.startTimer()
-                            }
                             .animation(nil)
                         Spacer()
                     }
@@ -167,51 +165,38 @@ struct TimerView: View {
             self.stopTimer()
             return
         }
-        // Todo: implement background task
-        // instead of this - change the timer to run on world clock not reimplementing a clock
-        // start background task
-//        registerBackgroundTask()
         
         self.resetTimer()
         self.timerIsRunning = true
         self.minutes = Int(self.time)!
+        self.seconds = 0
         self.initialTime = Int(self.time)!
         self.startTime = Date()
         self.attemptSound()
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
+            
+            let diff = Calendar.current.dateComponents([.minute, .second], from: self.startTime!, to: Date())
+            
+            self.seconds = 60 - Int(diff.second!)
+            self.minutes = self.initialTime - Int(diff.minute!) - 1
+            if (self.seconds == 60 ) {
+                self.seconds = 0
+            }
+            
             // note: make sure to remove the 'true' statement before committing - it's for development purposes only
-            if seconds == 0 && self.minutes == 0 {
-                print("timer completed!")
+            if self.seconds >= 0 && self.initialTime <= diff.minute! && !self.zeroTime {
+                self.zeroTime = true
+                self.seconds = 0
+                self.minutes = 0
+            } else if self.seconds >= 0 && self.initialTime <= diff.minute! && self.zeroTime {
+                self.zeroTime = false
                 self.showNoteModal = true
                 self.attemptSound()
                 self.stopTimer()
                 self.resetTimer()
-            } else if self.seconds == 0 {
-                self.seconds = 59
-                if self.minutes == 0 {
-                    self.minutes = 59
-                    self.hours -= 1
-                } else {
-                    self.minutes -= 1
-                }
-            } else {
-                self.seconds -= 1
             }
         }
     }
-    // Todo: implement finish sound playing in the background - convert to time based calculations instead of timer
-//    mutating func registerBackgroundTask() {
-//      backgroundTask = UIApplication.shared.beginBackgroundTask { [self] in
-//        self.endBackgroundTask()
-//      }
-//      assert(backgroundTask != .invalid)
-//    }
-//
-//    mutating func endBackgroundTask() {
-//      print("Background task ended.")
-//      UIApplication.shared.endBackgroundTask(backgroundTask)
-//      backgroundTask = .invalid
-//    }
     
     func stopTimer() {
         self.timerIsRunning = false
@@ -241,7 +226,6 @@ struct TimerView: View {
         dateFormatter.dateFormat = "YY, MMM d, HH:mm:ss"
         let startTimeString = dateFormatter.string(from: startTime!)
         let endTimeString = dateFormatter.string(from: Date())
-        print("handle timer completed", self.session.items.count)
         
         let lastSessionStart = endTimeString;
         var currentStreak = self.session.currentStreak
@@ -250,22 +234,17 @@ struct TimerView: View {
         if (self.session.items.count > 0) {
             let lastSession = self.session.items[0]
             let lastSessionObj = dateFormatter.date(from: lastSession.startTime)
-            print("lastSession: ", lastSession)
             // 129600 sec = 1.5 days
             if ((lastSessionObj?.addingTimeInterval(129600))!) >= startTime! {
                 currentStreak += 1
-                print("currentStreak is incremented: ", currentStreak)
             } else {
                 currentStreak = 1
-                print("currentStreak is set to one: ", currentStreak)
             }
             bestStreak = self.session.bestStreak > currentStreak ? self.session.bestStreak : currentStreak;
         } else {
             currentStreak = 1
             bestStreak = 1
         }
-        print("final currentStreak: ", currentStreak)
-        // Todo: fix bug of currentStreak
         do {
             session.uploadSession(
                 startTime: startTimeString,
@@ -320,4 +299,3 @@ struct CancelButtonStyle: ButtonStyle {
             .foregroundColor(Color.black)
     }
 }
-

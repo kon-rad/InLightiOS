@@ -20,8 +20,8 @@ struct GreenBorderTextField: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
         .padding(10)
-        .background(
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
                 .stroke(Color("lightgreen"), lineWidth: 1)
         )
     }

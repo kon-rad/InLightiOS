@@ -18,13 +18,13 @@ struct EditTimeAlert: View {
     var onCancel: () -> Void = { }
     
     var body: some View {
-        
         VStack(spacing: 20) {
             Text(title)
                 .font(.headline)
             TextField("", text: $text, onCommit:  {
                 UIApplication.shared.endEditing()
             })
+                .background(Color.white)
                 .keyboardType(.numberPad)
                 .onReceive(Just(text), perform: self.numericValidator)
                 .frame(width: 80)

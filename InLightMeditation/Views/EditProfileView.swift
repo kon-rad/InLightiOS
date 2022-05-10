@@ -96,7 +96,6 @@ struct EditProfileView: View {
                     .font(.system(size: 15, weight: .regular, design: .default))
                     .keyboardType(.default)
                     .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 40, alignment: .center)
-                    .background(Color.white)
                     .textFieldStyle(GreenBorderTextField())
                 Text("I practice meditation because:")
                     .padding(.top, 12)
@@ -109,7 +108,6 @@ struct EditProfileView: View {
                     .padding(4)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color("lightgreen"), lineWidth: 1))
-                    .background(Color.white)
             }
             .onTapGesture {
                 self.endTextEditing()

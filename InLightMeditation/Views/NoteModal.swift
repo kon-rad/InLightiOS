@@ -20,12 +20,12 @@ struct NoteModal: View {
             Text("reflections?")
                 .font(.headline)
             TextEditor(text: $text)
-                .padding(16)
+                .padding(10)
                 .frame(height: 200)
                 .onAppear {
                     UITextView.appearance().backgroundColor = .clear
                 }
-                .background(Color("lightgray"))
+                .background(Color.white)
                 .cornerRadius(10)
                 .overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("lightgreen"), lineWidth: 1))
@@ -37,6 +37,7 @@ struct NoteModal: View {
                 .padding(.top, 6)
                 .frame(height: 40)
                 .padding(.bottom, 6)
+                .animation(nil)
             HStack(spacing: 10) {
                 Button("⭐") {
                     self.stars = 1
