@@ -12,7 +12,7 @@ import Firebase
 public class StorageManager: ObservableObject {
     let storage = Storage.storage()
 
-    func upload(image: UIImage, userId: String) -> Bool {
+    func upload(image: UIImage, userId: String, completion:@escaping((Bool) -> ())) {
         // Create a storage reference
         let storageRef = storage.reference().child("avatars/\(userId)")
 
@@ -26,11 +26,11 @@ public class StorageManager: ObservableObject {
         // Change the content type to jpg. If you don't, it'll be saved as application/octet-stream type
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
-
+        
         // Upload the image
-        var uploadSuccess = false;
         if let data = data {
             storageRef.putData(data, metadata: metadata) { (metadata, error) in
+                var uploadSuccess = false;
                 if let error = error {
                     print("Error while uploading file: ", error)
                     uploadSuccess = false
@@ -39,9 +39,9 @@ public class StorageManager: ObservableObject {
                     print("Saved Image!!! - Metadata: ", metadata)
                     uploadSuccess = true
                 }
+                completion(uploadSuccess)
             }
         }
-        return uploadSuccess
     }
 
     func listAllFiles() {

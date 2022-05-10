@@ -27,16 +27,8 @@ struct EditTimeAlert: View {
             })
                 .keyboardType(.numberPad)
                 .onReceive(Just(text), perform: self.numericValidator)
-//                .onReceive(Just(text)) { newValue in
-//                    let filtered = newValue.filter { "0123456789".contains($0) }
-//                    if filtered != newValue {
-//                        self.text = filtered
-//                    }
-                .textFieldStyle(PlainTextFieldStyle()) 
-                .padding(8)
                 .frame(width: 80)
-                .background(Color("lightgray"))
-                .cornerRadius(16)
+                .textFieldStyle(GreenBorderTextField())
             HStack(spacing: 20) {
                 Button(action: {
                     self.isShown = false
@@ -73,6 +65,9 @@ struct EditTimeAlert: View {
     
     private func endEditing() {
         UIApplication.shared.endEditing()
+        if (self.text == "") {
+            self.text = "1"
+        }
     }
         
     func numericValidator(newValue: String) {

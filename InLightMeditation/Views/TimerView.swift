@@ -149,6 +149,9 @@ struct TimerView: View {
                 print("TimerView onAppear, self.session.defaultTime: ", self.session.defaultTime)
                 self.time = self.session.defaultTime
             }
+            .onTapGesture {
+                self.endTextEditing()
+            }
         }
     }
         
@@ -214,6 +217,7 @@ struct TimerView: View {
         self.timerIsRunning = false
         self.timer?.invalidate()
         self.timer = nil
+        self.stopSound()
     }
     func resetTimer() {
         self.hours = 0
@@ -221,19 +225,15 @@ struct TimerView: View {
         self.seconds = 0
     }
     func attemptSound() {
-        
-        
         if self.isSoundOn {
-//            Sounds.playSounds(soundFile: "bell.mp3")
             let bellSound = Bundle.main.path(forResource: "bell", ofType: "mp3")
             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: bellSound!))
+            audioPlayer?.play()
         }
     }
     func stopSound() {
         if self.isSoundOn {
             self.audioPlayer.stop()
-//            Sounds.audioPlayer.stop()
-//            Sounds.playSounds(soundFile: "bell.mp3")
         }
     }
     func handleTimerCompleted() {

@@ -41,6 +41,9 @@ struct EditProfileView: View {
                 }
                 Spacer()
             }
+            .onTapGesture {
+                self.endTextEditing()
+            }
             VStack {
                 if (updatedAvatar) {
                     Image(uiImage: self.image)
@@ -82,29 +85,34 @@ struct EditProfileView: View {
                 .buttonStyle(SaveButtonStyle())
                 .padding(.top, 6)
             }
+            .onTapGesture {
+                self.endTextEditing()
+            }
             VStack(alignment: .leading) {
                 Text("username:")
                     .padding(.top, 28)
                 TextField("User name", text: $username)
+                    .submitLabel(.done)
                     .font(.system(size: 15, weight: .regular, design: .default))
                     .keyboardType(.default)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
                     .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 40, alignment: .center)
-                    .textFieldStyle(.roundedBorder)
-                Text("Why do I practice meditation?")
+                    .background(Color.white)
+                    .textFieldStyle(GreenBorderTextField())
+                Text("I practice meditation because:")
                     .padding(.top, 12)
                 TextEditor(text: $motivation)
+                    .submitLabel(.search)
                     .textFieldStyle(.roundedBorder)
                     .font(.system(size: 15, weight: .regular, design: .default))
                     .keyboardType(.default)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
                     .frame(height: 100)
                     .padding(4)
-                    .overlay(RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.secondary).opacity(0.5))
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("lightgreen"), lineWidth: 1))
                     .background(Color.white)
+            }
+            .onTapGesture {
+                self.endTextEditing()
             }
             Button(action: { self.saveProfile() }) {
                 HStack {
@@ -117,6 +125,9 @@ struct EditProfileView: View {
             .buttonStyle(SaveButtonStyle())
             .padding(.top, 20)
             Spacer()
+        }
+        .onTapGesture {
+            self.endTextEditing()
         }
         .padding(.leading, 35)
         .padding(.trailing, 35)
@@ -132,16 +143,19 @@ struct EditProfileView: View {
                 self.motivation = self.session.motivation!
             }
         }
+        .ignoresSafeArea(.keyboard)
     }
     func saveProfile() {
+        session.updateProfile(username: self.username, motivation: self.motivation)
         if (session.session != nil) {
             guard let userId = session.session?.uid else { return }
             if (self.updatedAvatar) {
-                storage.upload(image: self.image, userId: userId)
+                storage.upload(image: self.image, userId: userId) { (status) in
+                    print("save image status: ", status)
+                    self.viewRouter.currentPage = .profile
+                }
             }
         }
-        session.updateProfile(username: self.username, motivation: self.motivation)
-        self.viewRouter.currentPage = .profile
     }
     func returnToMenu() {
         self.viewRouter.currentPage = .menu

@@ -127,6 +127,9 @@ struct LoginView: View {
                     .padding()
                 Spacer()
             }
+            .onTapGesture {
+                self.endTextEditing()
+            }
             .navigationBarTitle("")
             .onAppear(perform: getUser)
             .background(Color("ultralightyellow"))
@@ -136,6 +139,9 @@ struct LoginView: View {
 //                .aspectRatio(contentMode: .fit)
 //                .edgesIgnoringSafeArea(.top)
 //                .mask(LinearGradient(gradient: Gradient(colors: [.clear, Color("ultralightyellow")]), startPoint: .bottom, endPoint: .top))
+        }
+        .onTapGesture {
+            self.endTextEditing()
         }
         
     }

@@ -26,8 +26,10 @@ struct NoteModal: View {
                     UITextView.appearance().backgroundColor = .clear
                 }
                 .background(Color("lightgray"))
-                .cornerRadius(8)
-            Text("how in tune with your sense were you?")
+                .cornerRadius(10)
+                .overlay(RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color("lightgreen"), lineWidth: 1))
+            Text("how in tune were you with your senses?")
                 .font(.headline)
                 .padding(.top, 6)
             Text("\(renderStars())")
@@ -52,6 +54,9 @@ struct NoteModal: View {
                     self.stars = 5
                 }
             }
+            .onTapGesture {
+                self.endTextEditing()
+            }
             HStack {
                 Button(action: {
                     self.isShown = false
@@ -74,6 +79,9 @@ struct NoteModal: View {
             color: Color(#colorLiteral(red: 0.8596749902, green: 0.854565084, blue: 0.8636032343, alpha: 1)),
             radius: 6, x: -9, y: -9
         )
+        .onTapGesture {
+            self.endTextEditing()
+        }
     }
     func renderStars() -> String{
         if (self.stars < 1) {

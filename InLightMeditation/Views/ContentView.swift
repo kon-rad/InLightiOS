@@ -58,8 +58,10 @@ struct ContentView: View {
                 }
                 .background(Color("ultralightyellow"))
                 .ignoresSafeArea()
+                .ignoresSafeArea(.keyboard)
             }
         }
+        .ignoresSafeArea(.keyboard)
     }
 }
 
