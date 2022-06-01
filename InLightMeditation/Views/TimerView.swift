@@ -191,9 +191,9 @@ struct TimerView: View {
             } else if self.seconds >= 0 && self.initialTime <= diff.minute! && self.zeroTime {
                 self.zeroTime = false
                 self.showNoteModal = true
-                self.attemptSound()
                 self.stopTimer()
                 self.resetTimer()
+                self.attemptSound()
             }
         }
     }
