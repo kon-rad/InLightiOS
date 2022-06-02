@@ -133,9 +133,10 @@ struct TimerView: View {
                     Spacer()
                 }
                 EditTimeAlert(title: "Minutes", isShown: self.$editTime, text: self.$time, onDone: { text in
-                    self.time = text
-                    self.session.updateDefaultTime(time: text)
-                })
+                        self.time = text
+                        self.session.updateDefaultTime(time: text)
+                    }
+                )
                 NoteModal(isShown: self.$showNoteModal, text: "", stars: 0, onDone: {
                     text, stars in
                     self.sessionNote = text

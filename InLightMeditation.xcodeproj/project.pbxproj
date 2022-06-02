@@ -21,6 +21,7 @@
 		FA39A19326DACBA80016F9F3 /* InLightMeditationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A19226DACBA80016F9F3 /* InLightMeditationUITests.swift */; };
 		FA487907273D9DE500BAF79A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA487906273D9DE500BAF79A /* LoginView.swift */; };
 		FA59DAC727FCDBC60014B0B9 /* bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA59DAC627FCDBC60014B0B9 /* bell.mp3 */; };
+		FA6D693228482366005ACD94 /* DeleteProfileModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6D693128482366005ACD94 /* DeleteProfileModal.swift */; };
 		FA7077A226E478120045F362 /* EditTimeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077A126E478120045F362 /* EditTimeAlert.swift */; };
 		FA7077A926E70A090045F362 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077A826E70A090045F362 /* Sounds.swift */; };
 		FA7077AC26E70AC30045F362 /* tibetan_bowl_1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FA7077AB26E70AC30045F362 /* tibetan_bowl_1.m4a */; };
@@ -106,6 +107,7 @@
 		FA487906273D9DE500BAF79A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FA487908273DB8DC00BAF79A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA59DAC627FCDBC60014B0B9 /* bell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bell.mp3; sourceTree = "<group>"; };
+		FA6D693128482366005ACD94 /* DeleteProfileModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProfileModal.swift; sourceTree = "<group>"; };
 		FA7077A126E478120045F362 /* EditTimeAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimeAlert.swift; sourceTree = "<group>"; };
 		FA7077A826E70A090045F362 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		FA7077AB26E70AC30045F362 /* tibetan_bowl_1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = tibetan_bowl_1.m4a; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				FA25A5D427E025CB00261E6A /* NoteModal.swift */,
 				FA7749DD2824D89D00D8D3D5 /* MenuView.swift */,
 				FA7749DF2825527500D8D3D5 /* EditProfileView.swift */,
+				FA6D693128482366005ACD94 /* DeleteProfileModal.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 				FA7077B226E7226C0045F362 /* ContentView.swift in Sources */,
 				FA39A17626DACBA40016F9F3 /* InLightMeditationApp.swift in Sources */,
 				FA7749E02825527500D8D3D5 /* EditProfileView.swift in Sources */,
+				FA6D693228482366005ACD94 /* DeleteProfileModal.swift in Sources */,
 				FA7749EA2829E55E00D8D3D5 /* Extensions.swift in Sources */,
 				FA7077B526E8EE8C0045F362 /* InLight.xcdatamodeld in Sources */,
 				FA25A5D727E15A4200261E6A /* Emoji.swift in Sources */,

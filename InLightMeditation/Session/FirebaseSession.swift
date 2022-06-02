@@ -50,12 +50,12 @@ class FirebaseSession: ObservableObject {
     
     func getSessions() {
         print("getSessions is called")
-        guard let userID = Auth.auth().currentUser?.uid else { return }
-        print("getSessions is called with userID: ", userID)
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        print("getSessions is called with userID: ", userId)
         
-        getAvatar(userID: userID)
+        getAvatar(userId: userId)
         
-        let sessionsRef: DatabaseReference = Database.database().reference(withPath: "\(userID)/sessions")
+        let sessionsRef: DatabaseReference = Database.database().reference(withPath: "\(userId)/sessions")
         sessionsRef.observe(DataEventType.value) { (snapshot) in
             self.items = []
             for child in snapshot.children {
@@ -102,6 +102,40 @@ class FirebaseSession: ObservableObject {
         clearMemory()
     }
     
+    func deleteUser() {
+        let user = Auth.auth().currentUser
+        
+        deleteAvatar()
+        
+        user?.delete { error in
+          if let error = error {
+              print("error while deleting user: ", error)
+          } else {
+              self.clearMemory()
+          }
+        }
+    }
+    
+    func deleteAvatar() {
+        let user = Auth.auth().currentUser
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        let avatarRef = storage.reference().child("avatars/\(userId)")
+        
+        // Delete the file
+        avatarRef.delete { error in
+          if let error = error {
+            // Uh-oh, an error occurred!
+              print("error while deleting user avatar: ", error);
+          } else {
+            // File deleted successfully
+              print("delete user avatar: ", userId);
+              self.avatar = nil
+              self.hasAvatar = false
+          }
+        }
+    }
+    
     func clearMemory() {
         self.isLoggedIn = false
         self.session = nil
@@ -111,6 +145,10 @@ class FirebaseSession: ObservableObject {
         self.totalMinutes = 0
         self.email = ""
         self.defaultTime = "10"
+        self.avatar = nil
+        self.hasAvatar = false
+        self.motivation = ""
+        self.username = ""
     }
     
     func signUp(email: String, password: String, handler: @escaping AuthDataResultCallback) {
@@ -142,9 +180,9 @@ class FirebaseSession: ObservableObject {
         ref.child("totalMinutes").setValue(totalMinutes)
     }
     
-    func getAvatar(userID: String) {
+    func getAvatar(userId: String) {
         // Create a reference
-        let avatarRef = storage.reference().child("avatars/\(userID)")
+        let avatarRef = storage.reference().child("avatars/\(userId)")
         
         // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
         avatarRef.getData(maxSize: 1 * 1024 * 1024) { data, error in

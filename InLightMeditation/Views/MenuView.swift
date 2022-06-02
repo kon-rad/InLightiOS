@@ -13,10 +13,12 @@ struct MenuView: View {
     
     @ObservedObject var viewRouter: ViewRouter
     
+    @State var showDeleteProfileModal: Bool = false
+    
     var body: some View {
         ZStack {
-                Color("ultralightyellow")
-                    .edgesIgnoringSafeArea(.all)
+            Color("ultralightyellow")
+                .edgesIgnoringSafeArea(.all)
             VStack {
                 HStack {
                     Button(action: {
@@ -58,12 +60,31 @@ struct MenuView: View {
                                 self.viewRouter.currentPage = .editProfile
                             }
                     }
+                    Spacer()
                 }
                 .listStyle(SidebarListStyle())
+                HStack {
+                    Image("user-delete")
+                        .resizable()
+                        .frame(width: 22, height: 22)
+                        .padding(.trailing, 4)
+                    Text("Delete Profile")
+                        .onTapGesture {
+                            self.showDeleteProfileModal = true
+                        }
+                }
+                .padding(.leading, 30)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.top, 60)
             .animation(Animation.easeIn.delay(0.25))
             .transition(.slide)
+            DeleteProfileModal(
+                isShown: self.$showDeleteProfileModal,
+                onDelete: {
+                    self.session.deleteUser()
+                }
+            )
         }
     }
     func signOut() {

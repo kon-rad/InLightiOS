@@ -24,11 +24,11 @@ struct EditTimeAlert: View {
             TextField("", text: $text, onCommit:  {
                 UIApplication.shared.endEditing()
             })
-                .background(Color.white)
-                .keyboardType(.numberPad)
-                .onReceive(Just(text), perform: self.numericValidator)
-                .frame(width: 80)
-                .textFieldStyle(GreenBorderTextField())
+            .background(Color.white)
+            .keyboardType(.numberPad)
+            .onReceive(Just(text), perform: self.numericValidator)
+            .frame(width: 80)
+            .textFieldStyle(GreenBorderTextField())
             HStack(spacing: 20) {
                 Button(action: {
                     self.isShown = false

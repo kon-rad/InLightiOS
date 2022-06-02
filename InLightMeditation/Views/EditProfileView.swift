@@ -72,18 +72,32 @@ struct EditProfileView: View {
                             .overlay(Circle().stroke(Color("lightyellow"), lineWidth: 3))
                     }
                 }
-                Button(action: {
-                    self.isShowPhotoLibrary = true
-                }) {
-                    HStack {
-                        Image(systemName: "photo")
-                            .font(.system(size: 16))
-                        Text("upload photo")
-                            .font(.system(size: 16))
+                HStack {
+                    Button(action: {
+                        self.isShowPhotoLibrary = true
+                    }) {
+                        HStack {
+                            Image(systemName: "photo")
+                                .font(.system(size: 16))
+                            Text("upload")
+                                .font(.system(size: 16))
+                        }
                     }
+                    .buttonStyle(SaveButtonStyle())
+                    .padding(.top, 6)
+                    .padding(.trailing, 12)
+                    Button(action: {
+                        self.session.deleteAvatar()
+                    }) {
+                        HStack {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 16))
+                        }
+                    }
+                    .buttonStyle(CancelButtonStyle())
+                    .padding(.top, 6)
+                    
                 }
-                .buttonStyle(SaveButtonStyle())
-                .padding(.top, 6)
             }
             .onTapGesture {
                 self.endTextEditing()
@@ -152,6 +166,8 @@ struct EditProfileView: View {
                     print("save image status: ", status)
                     self.viewRouter.currentPage = .profile
                 }
+            } else {
+                self.viewRouter.currentPage = .profile
             }
         }
     }

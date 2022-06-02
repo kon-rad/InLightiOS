@@ -32,10 +32,6 @@ struct Profile: View {
                         HStack {
                             Spacer()
                             Spacer()
-//                            Button(action: { signOut() }) {
-//                                Text("sign out")
-//                                    .foregroundColor(Color("lightgreen")) // light green
-//                            }
                             Button(action: { showMenu() }) {
                                 Image("menu")
                                     .resizable()
