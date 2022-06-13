@@ -10,17 +10,9 @@ import SwiftUI
 struct CurrentStreak: View {
     
     var currentStreak: Int = 0
-    
-//    @Environment(\.managedObjectContext) private var viewContext
-    
-//    @FetchRequest(entity: Meditation.entity(), sortDescriptors: [])
-//
-//    var meditations: FetchedResults<Meditation>
-//    @State var currentStreak: Int16 = 44
-    
-//    init() {
-//        _currentStreak = State(initialValue: self.currentStreak ?? 0)
-//    }
+    @State private var purpleSquares: Int = 0
+    @State private var yellowSquares: Int = 0
+
     
     var body: some View {
         VStack {
@@ -37,15 +29,16 @@ struct CurrentStreak: View {
             }
         }
         .frame(width: 260)
-//        .onAppear() {
-//            self.currentStreak = self.currentStreak ?? 0
-//        }
+        .onAppear() {
+            self.purpleSquares = Int((Double(self.currentStreak) / 30.0).rounded(.down))
+            self.yellowSquares = self.currentStreak <= 30 ? self.currentStreak : self.currentStreak % 30
+        }
     }
 }
 
 struct CurrentStreak_Previews: PreviewProvider {
     static var previews: some View {
-        CurrentStreak()
+        CurrentStreak(currentStreak: 35)
     }
 }
 
