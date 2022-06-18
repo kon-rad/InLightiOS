@@ -19,9 +19,9 @@ struct CurrentStreak: View {
             ForEach (0 ..< Int(self.currentStreak), id: \.self) { index in
                 if (index == 0 || index % 7 == 0) {
                     if (self.currentStreak < (index + 7)) {
-                        StreakWeek(start: Int(index), end: Int(self.currentStreak))
+                        StreakRow(start: Int(index), end: Int(self.currentStreak), purple: self.purpleSquares)
                     } else {
-                        StreakWeek(start: Int(index), end: Int(index + 7))
+                        StreakRow(start: Int(index), end: Int(index + 7), purple: self.purpleSquares)
                     }
                 } else {
                     EmptyView()
@@ -42,9 +42,10 @@ struct CurrentStreak_Previews: PreviewProvider {
     }
 }
 
-struct StreakWeek: View {
+struct StreakRow: View {
     var start: Int
     var end: Int
+    var purpleSquares: Int
     
     var body: some View {
         HStack {
