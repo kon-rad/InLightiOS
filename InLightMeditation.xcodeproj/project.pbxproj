@@ -13,8 +13,6 @@
 		4B845838285EDFF9001C93D4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4B845837285EDFF9001C93D4 /* FirebaseFirestore */; };
 		4B84583A285EDFF9001C93D4 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 4B845839285EDFF9001C93D4 /* FirebaseFirestoreSwift-Beta */; };
 		4B84583C285EDFF9001C93D4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4B84583B285EDFF9001C93D4 /* FirebaseStorage */; };
-		BE4C1A7FAB8DA8B2611BAA5D /* Pods_InLightMeditation_InLightMeditationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CC1576D1C1C3AE050AA55 /* Pods_InLightMeditation_InLightMeditationUITests.framework */; };
-		F8975736DD10ECF700F75C3A /* Pods_InLightMeditationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7313DBE0A259AD519B5363D /* Pods_InLightMeditationTests.framework */; };
 		FA25A5D527E025CC00261E6A /* NoteModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25A5D427E025CB00261E6A /* NoteModal.swift */; };
 		FA25A5D727E15A4200261E6A /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25A5D627E15A4100261E6A /* Emoji.swift */; };
 		FA332FBF27CF041300E0AF73 /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA332FBE27CF041300E0AF73 /* Setup.swift */; };
@@ -84,15 +82,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1093F98AA3A1B751ADA4F913 /* Pods-InLightMeditation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditation.release.xcconfig"; path = "Target Support Files/Pods-InLightMeditation/Pods-InLightMeditation.release.xcconfig"; sourceTree = "<group>"; };
-		2488B5A6A77B13C9E1C58887 /* Pods-InLightMeditation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditation.debug.xcconfig"; path = "Target Support Files/Pods-InLightMeditation/Pods-InLightMeditation.debug.xcconfig"; sourceTree = "<group>"; };
-		2E91CADD875641D9EDC6A13C /* Pods-InLightMeditationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditationTests.release.xcconfig"; path = "Target Support Files/Pods-InLightMeditationTests/Pods-InLightMeditationTests.release.xcconfig"; sourceTree = "<group>"; };
-		6A77D7988D74F398185CE678 /* Pods-InLightMeditationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditationTests.debug.xcconfig"; path = "Target Support Files/Pods-InLightMeditationTests/Pods-InLightMeditationTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7F10AF5290C87691988C037F /* Pods-InLightMeditation-InLightMeditationUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditation-InLightMeditationUITests.debug.xcconfig"; path = "Target Support Files/Pods-InLightMeditation-InLightMeditationUITests/Pods-InLightMeditation-InLightMeditationUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A186774CF5D21EBAA6E69F92 /* Pods_InLightMeditation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InLightMeditation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D3046CF9AC12550C3998E225 /* Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig"; path = "Target Support Files/Pods-InLightMeditation-InLightMeditationUITests/Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig"; sourceTree = "<group>"; };
-		E7313DBE0A259AD519B5363D /* Pods_InLightMeditationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InLightMeditationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F52CC1576D1C1C3AE050AA55 /* Pods_InLightMeditation_InLightMeditationUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InLightMeditation_InLightMeditationUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA25A5D427E025CB00261E6A /* NoteModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModal.swift; sourceTree = "<group>"; };
 		FA25A5D627E15A4100261E6A /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		FA332FBD27CE9D1D00E0AF73 /* InLightMeditation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InLightMeditation.entitlements; sourceTree = "<group>"; };
@@ -170,7 +159,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8975736DD10ECF700F75C3A /* Pods_InLightMeditationTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,7 +166,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE4C1A7FAB8DA8B2611BAA5D /* Pods_InLightMeditation_InLightMeditationUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,24 +175,8 @@
 		AC47BC6D48DFA86D1354DF7F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2488B5A6A77B13C9E1C58887 /* Pods-InLightMeditation.debug.xcconfig */,
-				1093F98AA3A1B751ADA4F913 /* Pods-InLightMeditation.release.xcconfig */,
-				7F10AF5290C87691988C037F /* Pods-InLightMeditation-InLightMeditationUITests.debug.xcconfig */,
-				D3046CF9AC12550C3998E225 /* Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig */,
-				6A77D7988D74F398185CE678 /* Pods-InLightMeditationTests.debug.xcconfig */,
-				2E91CADD875641D9EDC6A13C /* Pods-InLightMeditationTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		D10E5BA00CAB7322154AB5BD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A186774CF5D21EBAA6E69F92 /* Pods_InLightMeditation.framework */,
-				F52CC1576D1C1C3AE050AA55 /* Pods_InLightMeditation_InLightMeditationUITests.framework */,
-				E7313DBE0A259AD519B5363D /* Pods_InLightMeditationTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		FA39A16926DACBA40016F9F3 = {
@@ -218,7 +189,6 @@
 				FA39A19126DACBA80016F9F3 /* InLightMeditationUITests */,
 				FA39A17326DACBA40016F9F3 /* Products */,
 				AC47BC6D48DFA86D1354DF7F /* Pods */,
-				D10E5BA00CAB7322154AB5BD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -401,7 +371,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA39A19A26DACBA80016F9F3 /* Build configuration list for PBXNativeTarget "InLightMeditationTests" */;
 			buildPhases = (
-				A7EDE5AFB9A5B406F0BB7393 /* [CP] Check Pods Manifest.lock */,
 				FA39A17F26DACBA80016F9F3 /* Sources */,
 				FA39A18026DACBA80016F9F3 /* Frameworks */,
 				FA39A18126DACBA80016F9F3 /* Resources */,
@@ -420,11 +389,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA39A19D26DACBA80016F9F3 /* Build configuration list for PBXNativeTarget "InLightMeditationUITests" */;
 			buildPhases = (
-				B01B5296B989DB37F2FA2D54 /* [CP] Check Pods Manifest.lock */,
 				FA39A18A26DACBA80016F9F3 /* Sources */,
 				FA39A18B26DACBA80016F9F3 /* Frameworks */,
 				FA39A18C26DACBA80016F9F3 /* Resources */,
-				A0DDF9333FA29179FD612303 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -525,70 +492,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A0DDF9333FA29179FD612303 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InLightMeditation-InLightMeditationUITests/Pods-InLightMeditation-InLightMeditationUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InLightMeditation-InLightMeditationUITests/Pods-InLightMeditation-InLightMeditationUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InLightMeditation-InLightMeditationUITests/Pods-InLightMeditation-InLightMeditationUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A7EDE5AFB9A5B406F0BB7393 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-InLightMeditationTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B01B5296B989DB37F2FA2D54 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-InLightMeditation-InLightMeditationUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FA39A16E26DACBA40016F9F3 /* Sources */ = {
@@ -774,7 +677,6 @@
 		};
 		FA39A19826DACBA80016F9F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2488B5A6A77B13C9E1C58887 /* Pods-InLightMeditation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -800,7 +702,6 @@
 		};
 		FA39A19926DACBA80016F9F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1093F98AA3A1B751ADA4F913 /* Pods-InLightMeditation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -826,7 +727,6 @@
 		};
 		FA39A19B26DACBA80016F9F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A77D7988D74F398185CE678 /* Pods-InLightMeditationTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -848,7 +748,6 @@
 		};
 		FA39A19C26DACBA80016F9F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E91CADD875641D9EDC6A13C /* Pods-InLightMeditationTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -870,7 +769,6 @@
 		};
 		FA39A19E26DACBA80016F9F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F10AF5290C87691988C037F /* Pods-InLightMeditation-InLightMeditationUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GA978N825M;
@@ -890,7 +788,6 @@
 		};
 		FA39A19F26DACBA80016F9F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3046CF9AC12550C3998E225 /* Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GA978N825M;
