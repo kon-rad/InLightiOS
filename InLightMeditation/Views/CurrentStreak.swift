@@ -36,8 +36,8 @@ struct CurrentStreak: View {
     }
 }
 
-struct CurrentStreak_Previews: PreviewProvider {
-    static var previews: some View {
+public struct CurrentStreak_Previews: PreviewProvider {
+    public static var previews: some View {
         CurrentStreak(currentStreak: 35)
     }
 }

@@ -65,11 +65,12 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ContentView(viewRouter: ViewRouter())
-        }
+public struct ContentView_Previews: PreviewProvider {
+    public static var previews: some View {
+        ContentView(viewRouter: ViewRouter())
+            .environmentObject(FirebaseSession())
+            .previewLayout(.fixed(width: 300, height: 600))
+            .frame(width: 300, height: 650)
     }
 }
 

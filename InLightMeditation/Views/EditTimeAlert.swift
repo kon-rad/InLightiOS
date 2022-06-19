@@ -83,9 +83,9 @@ struct EditTimeAlert: View {
     }
 }
 
-struct EditTimeAlert_Previews: PreviewProvider {
-    static var previews: some View {
-        EditTimeAlert(title: "Minutes", isShown: .constant(true), text: .constant("10"));
+public struct EditTimeAlert_Previews: PreviewProvider {
+    public static var previews: some View {
+        EditTimeAlert(title: "Minutes", isShown: .constant(true), text: .constant("10"))
     }
 }
 
