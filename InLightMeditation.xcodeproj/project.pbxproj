@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B845832285EDFF9001C93D4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4B845831285EDFF9001C93D4 /* FirebaseAnalytics */; };
+		4B845834285EDFF9001C93D4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4B845833285EDFF9001C93D4 /* FirebaseAuth */; };
+		4B845836285EDFF9001C93D4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 4B845835285EDFF9001C93D4 /* FirebaseDatabase */; };
+		4B845838285EDFF9001C93D4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4B845837285EDFF9001C93D4 /* FirebaseFirestore */; };
+		4B84583A285EDFF9001C93D4 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 4B845839285EDFF9001C93D4 /* FirebaseFirestoreSwift-Beta */; };
+		4B84583C285EDFF9001C93D4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4B84583B285EDFF9001C93D4 /* FirebaseStorage */; };
 		BE4C1A7FAB8DA8B2611BAA5D /* Pods_InLightMeditation_InLightMeditationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CC1576D1C1C3AE050AA55 /* Pods_InLightMeditation_InLightMeditationUITests.framework */; };
-		C335CDA17037B6FF413ACD0C /* Pods_InLightMeditation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A186774CF5D21EBAA6E69F92 /* Pods_InLightMeditation.framework */; };
 		F8975736DD10ECF700F75C3A /* Pods_InLightMeditationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7313DBE0A259AD519B5363D /* Pods_InLightMeditationTests.framework */; };
 		FA25A5D527E025CC00261E6A /* NoteModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25A5D427E025CB00261E6A /* NoteModal.swift */; };
 		FA25A5D727E15A4200261E6A /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25A5D627E15A4100261E6A /* Emoji.swift */; };
@@ -152,7 +157,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C335CDA17037B6FF413ACD0C /* Pods_InLightMeditation.framework in Frameworks */,
+				4B845832285EDFF9001C93D4 /* FirebaseAnalytics in Frameworks */,
+				4B845834285EDFF9001C93D4 /* FirebaseAuth in Frameworks */,
+				4B845836285EDFF9001C93D4 /* FirebaseDatabase in Frameworks */,
+				4B84583A285EDFF9001C93D4 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				4B84583C285EDFF9001C93D4 /* FirebaseStorage in Frameworks */,
+				4B845838285EDFF9001C93D4 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,17 +376,23 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA39A19726DACBA80016F9F3 /* Build configuration list for PBXNativeTarget "InLightMeditation" */;
 			buildPhases = (
-				5FC6228A69D1A7A6918BE02A /* [CP] Check Pods Manifest.lock */,
 				FA39A16E26DACBA40016F9F3 /* Sources */,
 				FA39A16F26DACBA40016F9F3 /* Frameworks */,
 				FA39A17026DACBA40016F9F3 /* Resources */,
-				134BAAFB500A0C947C41B322 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = InLightMeditation;
+			packageProductDependencies = (
+				4B845831285EDFF9001C93D4 /* FirebaseAnalytics */,
+				4B845833285EDFF9001C93D4 /* FirebaseAuth */,
+				4B845835285EDFF9001C93D4 /* FirebaseDatabase */,
+				4B845837285EDFF9001C93D4 /* FirebaseFirestore */,
+				4B845839285EDFF9001C93D4 /* FirebaseFirestoreSwift-Beta */,
+				4B84583B285EDFF9001C93D4 /* FirebaseStorage */,
+			);
 			productName = InLightMeditation;
 			productReference = FA39A17226DACBA40016F9F3 /* InLightMeditation.app */;
 			productType = "com.apple.product-type.application";
@@ -511,45 +527,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		134BAAFB500A0C947C41B322 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InLightMeditation/Pods-InLightMeditation-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InLightMeditation/Pods-InLightMeditation-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InLightMeditation/Pods-InLightMeditation-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5FC6228A69D1A7A6918BE02A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-InLightMeditation-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A0DDF9333FA29179FD612303 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -982,6 +959,39 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4B845831285EDFF9001C93D4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		4B845833285EDFF9001C93D4 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		4B845835285EDFF9001C93D4 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		4B845837285EDFF9001C93D4 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		4B845839285EDFF9001C93D4 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		4B84583B285EDFF9001C93D4 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		FA7077B326E8EE8B0045F362 /* InLight.xcdatamodeld */ = {
