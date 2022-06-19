@@ -75,7 +75,7 @@ public class StorageManager: ObservableObject {
         }
 
         // List the items
-        storageRef.list(withMaxResults: 1, completion: handler)
+        storageRef.list(maxResults: 1, completion: handler)
     }
     
         // You can use the listItem() function above to get the StorageReference of the item you want to delete
