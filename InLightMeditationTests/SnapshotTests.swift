@@ -4,6 +4,6 @@ import ViewSnapshotTesting
 
 class SnapshotTests: XCTestCase {
     func testPreviews() {
-        verifySnapshot(SplashScreenView_Previews.previews)
+        verifySnapshot(SplashScreenView_Previews.previews, "SplashScreen")
     }
 }
