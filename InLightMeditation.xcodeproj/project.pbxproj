@@ -118,7 +118,6 @@
 		FA7749E32825944B00D8D3D5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		FA7749E52825AF6F00D8D3D5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		FA7749E92829E55E00D8D3D5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		FA873ED827F0069C005EF398 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		FA873EDB27F00E48005EF398 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		FABB401726DB0E28006806CF /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -172,23 +171,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AC47BC6D48DFA86D1354DF7F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		FA39A16926DACBA40016F9F3 = {
 			isa = PBXGroup;
 			children = (
-				FA873ED827F0069C005EF398 /* Podfile.lock */,
 				FA7077B326E8EE8B0045F362 /* InLight.xcdatamodeld */,
 				FA39A17426DACBA40016F9F3 /* InLightMeditation */,
+				FA39A17326DACBA40016F9F3 /* Products */,
 				FA39A18626DACBA80016F9F3 /* InLightMeditationTests */,
 				FA39A19126DACBA80016F9F3 /* InLightMeditationUITests */,
-				FA39A17326DACBA40016F9F3 /* Products */,
-				AC47BC6D48DFA86D1354DF7F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
