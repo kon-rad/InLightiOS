@@ -81,8 +81,8 @@ struct SplashScreenView: View {
     }
 }
 
-struct SplashScreenView_Previews: PreviewProvider {
-    static var previews: some View {
+public struct SplashScreenView_Previews: PreviewProvider {
+    public static var previews: some View {
         Group {
             SplashScreenView()
         }
