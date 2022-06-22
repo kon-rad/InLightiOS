@@ -19,9 +19,9 @@ struct CurrentStreak: View {
             ForEach (0 ..< Int(self.currentStreak), id: \.self) { index in
                 if (index == 0 || index % 7 == 0) {
                     if (self.currentStreak < (index + 7)) {
-                        StreakRow(start: Int(index), end: Int(self.currentStreak), purple: self.purpleSquares)
+                        StreakRow(start: Int(index), end: Int(self.currentStreak), purpleSquares: self.purpleSquares)
                     } else {
-                        StreakRow(start: Int(index), end: Int(index + 7), purple: self.purpleSquares)
+                        StreakRow(start: Int(index), end: Int(index + 7), purpleSquares: self.purpleSquares)
                     }
                 } else {
                     EmptyView()
@@ -36,8 +36,8 @@ struct CurrentStreak: View {
     }
 }
 
-struct CurrentStreak_Previews: PreviewProvider {
-    static var previews: some View {
+public struct CurrentStreak_Previews: PreviewProvider {
+    public static var previews: some View {
         CurrentStreak(currentStreak: 35)
     }
 }

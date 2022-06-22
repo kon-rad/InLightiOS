@@ -220,9 +220,10 @@ struct Profile: View {
     }
 }
 
-struct Profile_Previews: PreviewProvider {
-    static var previews: some View {
+public struct Profile_Previews: PreviewProvider {
+    public static var previews: some View {
         Profile(viewRouter: ViewRouter())
+            .environmentObject(FirebaseSession())
     }
 }
 

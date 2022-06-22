@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BE4C1A7FAB8DA8B2611BAA5D /* Pods_InLightMeditation_InLightMeditationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CC1576D1C1C3AE050AA55 /* Pods_InLightMeditation_InLightMeditationUITests.framework */; };
-		C335CDA17037B6FF413ACD0C /* Pods_InLightMeditation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A186774CF5D21EBAA6E69F92 /* Pods_InLightMeditation.framework */; };
-		F8975736DD10ECF700F75C3A /* Pods_InLightMeditationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7313DBE0A259AD519B5363D /* Pods_InLightMeditationTests.framework */; };
+		4B845832285EDFF9001C93D4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4B845831285EDFF9001C93D4 /* FirebaseAnalytics */; };
+		4B845834285EDFF9001C93D4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4B845833285EDFF9001C93D4 /* FirebaseAuth */; };
+		4B845836285EDFF9001C93D4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 4B845835285EDFF9001C93D4 /* FirebaseDatabase */; };
+		4B845838285EDFF9001C93D4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4B845837285EDFF9001C93D4 /* FirebaseFirestore */; };
+		4B84583A285EDFF9001C93D4 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 4B845839285EDFF9001C93D4 /* FirebaseFirestoreSwift-Beta */; };
+		4B84583C285EDFF9001C93D4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4B84583B285EDFF9001C93D4 /* FirebaseStorage */; };
+		4BEFB0E7285EEE85000B714C /* SnapshotTestingPreviewGroup in Frameworks */ = {isa = PBXBuildFile; productRef = 4BEFB0E6285EEE85000B714C /* SnapshotTestingPreviewGroup */; };
+		4BEFB0E9285EEE85000B714C /* SwiftUI_SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4BEFB0E8285EEE85000B714C /* SwiftUI_SnapshotTesting */; };
+		4BEFB0EB285EEEA3000B714C /* SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFB0EA285EEEA3000B714C /* SnapshotTests.swift */; };
 		FA25A5D527E025CC00261E6A /* NoteModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25A5D427E025CB00261E6A /* NoteModal.swift */; };
 		FA25A5D727E15A4200261E6A /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25A5D627E15A4100261E6A /* Emoji.swift */; };
 		FA332FBF27CF041300E0AF73 /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA332FBE27CF041300E0AF73 /* Setup.swift */; };
@@ -79,15 +85,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1093F98AA3A1B751ADA4F913 /* Pods-InLightMeditation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditation.release.xcconfig"; path = "Target Support Files/Pods-InLightMeditation/Pods-InLightMeditation.release.xcconfig"; sourceTree = "<group>"; };
-		2488B5A6A77B13C9E1C58887 /* Pods-InLightMeditation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditation.debug.xcconfig"; path = "Target Support Files/Pods-InLightMeditation/Pods-InLightMeditation.debug.xcconfig"; sourceTree = "<group>"; };
-		2E91CADD875641D9EDC6A13C /* Pods-InLightMeditationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditationTests.release.xcconfig"; path = "Target Support Files/Pods-InLightMeditationTests/Pods-InLightMeditationTests.release.xcconfig"; sourceTree = "<group>"; };
-		6A77D7988D74F398185CE678 /* Pods-InLightMeditationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditationTests.debug.xcconfig"; path = "Target Support Files/Pods-InLightMeditationTests/Pods-InLightMeditationTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7F10AF5290C87691988C037F /* Pods-InLightMeditation-InLightMeditationUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditation-InLightMeditationUITests.debug.xcconfig"; path = "Target Support Files/Pods-InLightMeditation-InLightMeditationUITests/Pods-InLightMeditation-InLightMeditationUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A186774CF5D21EBAA6E69F92 /* Pods_InLightMeditation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InLightMeditation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D3046CF9AC12550C3998E225 /* Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig"; path = "Target Support Files/Pods-InLightMeditation-InLightMeditationUITests/Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig"; sourceTree = "<group>"; };
-		E7313DBE0A259AD519B5363D /* Pods_InLightMeditationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InLightMeditationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F52CC1576D1C1C3AE050AA55 /* Pods_InLightMeditation_InLightMeditationUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InLightMeditation_InLightMeditationUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BEFB0EA285EEEA3000B714C /* SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTests.swift; sourceTree = "<group>"; };
+		4BEFB0EC285EEEFC000B714C /* Snapshots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Snapshots; sourceTree = "<group>"; };
 		FA25A5D427E025CB00261E6A /* NoteModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModal.swift; sourceTree = "<group>"; };
 		FA25A5D627E15A4100261E6A /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		FA332FBD27CE9D1D00E0AF73 /* InLightMeditation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InLightMeditation.entitlements; sourceTree = "<group>"; };
@@ -124,7 +123,6 @@
 		FA7749E32825944B00D8D3D5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		FA7749E52825AF6F00D8D3D5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		FA7749E92829E55E00D8D3D5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		FA873ED827F0069C005EF398 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		FA873EDB27F00E48005EF398 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FABB401626DB0E28006806CF /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		FABB401726DB0E28006806CF /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -152,7 +150,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C335CDA17037B6FF413ACD0C /* Pods_InLightMeditation.framework in Frameworks */,
+				4B845832285EDFF9001C93D4 /* FirebaseAnalytics in Frameworks */,
+				4B845834285EDFF9001C93D4 /* FirebaseAuth in Frameworks */,
+				4B845836285EDFF9001C93D4 /* FirebaseDatabase in Frameworks */,
+				4B84583A285EDFF9001C93D4 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				4B84583C285EDFF9001C93D4 /* FirebaseStorage in Frameworks */,
+				4BEFB0E7285EEE85000B714C /* SnapshotTestingPreviewGroup in Frameworks */,
+				4B845838285EDFF9001C93D4 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8975736DD10ECF700F75C3A /* Pods_InLightMeditationTests.framework in Frameworks */,
+				4BEFB0E9285EEE85000B714C /* SwiftUI_SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,47 +172,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE4C1A7FAB8DA8B2611BAA5D /* Pods_InLightMeditation_InLightMeditationUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AC47BC6D48DFA86D1354DF7F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2488B5A6A77B13C9E1C58887 /* Pods-InLightMeditation.debug.xcconfig */,
-				1093F98AA3A1B751ADA4F913 /* Pods-InLightMeditation.release.xcconfig */,
-				7F10AF5290C87691988C037F /* Pods-InLightMeditation-InLightMeditationUITests.debug.xcconfig */,
-				D3046CF9AC12550C3998E225 /* Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig */,
-				6A77D7988D74F398185CE678 /* Pods-InLightMeditationTests.debug.xcconfig */,
-				2E91CADD875641D9EDC6A13C /* Pods-InLightMeditationTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		D10E5BA00CAB7322154AB5BD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A186774CF5D21EBAA6E69F92 /* Pods_InLightMeditation.framework */,
-				F52CC1576D1C1C3AE050AA55 /* Pods_InLightMeditation_InLightMeditationUITests.framework */,
-				E7313DBE0A259AD519B5363D /* Pods_InLightMeditationTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		FA39A16926DACBA40016F9F3 = {
 			isa = PBXGroup;
 			children = (
-				FA873ED827F0069C005EF398 /* Podfile.lock */,
 				FA7077B326E8EE8B0045F362 /* InLight.xcdatamodeld */,
 				FA39A17426DACBA40016F9F3 /* InLightMeditation */,
+				FA39A17326DACBA40016F9F3 /* Products */,
 				FA39A18626DACBA80016F9F3 /* InLightMeditationTests */,
 				FA39A19126DACBA80016F9F3 /* InLightMeditationUITests */,
-				FA39A17326DACBA40016F9F3 /* Products */,
-				AC47BC6D48DFA86D1354DF7F /* Pods */,
-				D10E5BA00CAB7322154AB5BD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -255,6 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				FA39A18726DACBA80016F9F3 /* InLightMeditationTests.swift */,
+				4BEFB0EA285EEEA3000B714C /* SnapshotTests.swift */,
+				4BEFB0EC285EEEFC000B714C /* Snapshots */,
 				FA39A18926DACBA80016F9F3 /* Info.plist */,
 			);
 			path = InLightMeditationTests;
@@ -366,17 +345,24 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA39A19726DACBA80016F9F3 /* Build configuration list for PBXNativeTarget "InLightMeditation" */;
 			buildPhases = (
-				5FC6228A69D1A7A6918BE02A /* [CP] Check Pods Manifest.lock */,
 				FA39A16E26DACBA40016F9F3 /* Sources */,
 				FA39A16F26DACBA40016F9F3 /* Frameworks */,
 				FA39A17026DACBA40016F9F3 /* Resources */,
-				134BAAFB500A0C947C41B322 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = InLightMeditation;
+			packageProductDependencies = (
+				4B845831285EDFF9001C93D4 /* FirebaseAnalytics */,
+				4B845833285EDFF9001C93D4 /* FirebaseAuth */,
+				4B845835285EDFF9001C93D4 /* FirebaseDatabase */,
+				4B845837285EDFF9001C93D4 /* FirebaseFirestore */,
+				4B845839285EDFF9001C93D4 /* FirebaseFirestoreSwift-Beta */,
+				4B84583B285EDFF9001C93D4 /* FirebaseStorage */,
+				4BEFB0E6285EEE85000B714C /* SnapshotTestingPreviewGroup */,
+			);
 			productName = InLightMeditation;
 			productReference = FA39A17226DACBA40016F9F3 /* InLightMeditation.app */;
 			productType = "com.apple.product-type.application";
@@ -385,7 +371,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA39A19A26DACBA80016F9F3 /* Build configuration list for PBXNativeTarget "InLightMeditationTests" */;
 			buildPhases = (
-				A7EDE5AFB9A5B406F0BB7393 /* [CP] Check Pods Manifest.lock */,
 				FA39A17F26DACBA80016F9F3 /* Sources */,
 				FA39A18026DACBA80016F9F3 /* Frameworks */,
 				FA39A18126DACBA80016F9F3 /* Resources */,
@@ -396,6 +381,9 @@
 				FA39A18526DACBA80016F9F3 /* PBXTargetDependency */,
 			);
 			name = InLightMeditationTests;
+			packageProductDependencies = (
+				4BEFB0E8285EEE85000B714C /* SwiftUI_SnapshotTesting */,
+			);
 			productName = InLightMeditationTests;
 			productReference = FA39A18326DACBA80016F9F3 /* InLightMeditationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -404,11 +392,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA39A19D26DACBA80016F9F3 /* Build configuration list for PBXNativeTarget "InLightMeditationUITests" */;
 			buildPhases = (
-				B01B5296B989DB37F2FA2D54 /* [CP] Check Pods Manifest.lock */,
 				FA39A18A26DACBA80016F9F3 /* Sources */,
 				FA39A18B26DACBA80016F9F3 /* Frameworks */,
 				FA39A18C26DACBA80016F9F3 /* Resources */,
-				A0DDF9333FA29179FD612303 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -453,6 +439,7 @@
 			mainGroup = FA39A16926DACBA40016F9F3;
 			packageReferences = (
 				FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				4BEFB0E5285EEE85000B714C /* XCRemoteSwiftPackageReference "SwiftUI-snapshot-testing" */,
 			);
 			productRefGroup = FA39A17326DACBA40016F9F3 /* Products */;
 			projectDirPath = "";
@@ -510,109 +497,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		134BAAFB500A0C947C41B322 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InLightMeditation/Pods-InLightMeditation-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InLightMeditation/Pods-InLightMeditation-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InLightMeditation/Pods-InLightMeditation-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5FC6228A69D1A7A6918BE02A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-InLightMeditation-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A0DDF9333FA29179FD612303 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InLightMeditation-InLightMeditationUITests/Pods-InLightMeditation-InLightMeditationUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InLightMeditation-InLightMeditationUITests/Pods-InLightMeditation-InLightMeditationUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InLightMeditation-InLightMeditationUITests/Pods-InLightMeditation-InLightMeditationUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A7EDE5AFB9A5B406F0BB7393 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-InLightMeditationTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B01B5296B989DB37F2FA2D54 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-InLightMeditation-InLightMeditationUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		FA39A16E26DACBA40016F9F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -652,6 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA39A18826DACBA80016F9F3 /* InLightMeditationTests.swift in Sources */,
+				4BEFB0EB285EEEA3000B714C /* SnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,7 +615,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -785,7 +670,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -797,7 +682,6 @@
 		};
 		FA39A19826DACBA80016F9F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2488B5A6A77B13C9E1C58887 /* Pods-InLightMeditation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -809,7 +693,6 @@
 				DEVELOPMENT_TEAM = GA978N825M;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = InLightMeditation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -824,7 +707,6 @@
 		};
 		FA39A19926DACBA80016F9F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1093F98AA3A1B751ADA4F913 /* Pods-InLightMeditation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -836,7 +718,6 @@
 				DEVELOPMENT_TEAM = GA978N825M;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = InLightMeditation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -851,14 +732,12 @@
 		};
 		FA39A19B26DACBA80016F9F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A77D7988D74F398185CE678 /* Pods-InLightMeditationTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GA978N825M;
 				INFOPLIST_FILE = InLightMeditationTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -874,14 +753,12 @@
 		};
 		FA39A19C26DACBA80016F9F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E91CADD875641D9EDC6A13C /* Pods-InLightMeditationTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GA978N825M;
 				INFOPLIST_FILE = InLightMeditationTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -897,7 +774,6 @@
 		};
 		FA39A19E26DACBA80016F9F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F10AF5290C87691988C037F /* Pods-InLightMeditation-InLightMeditationUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GA978N825M;
@@ -917,7 +793,6 @@
 		};
 		FA39A19F26DACBA80016F9F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3046CF9AC12550C3998E225 /* Pods-InLightMeditation-InLightMeditationUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GA978N825M;
@@ -977,6 +852,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4BEFB0E5285EEE85000B714C /* XCRemoteSwiftPackageReference "SwiftUI-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/paulz/SwiftUI-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -986,6 +869,49 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4B845831285EDFF9001C93D4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		4B845833285EDFF9001C93D4 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		4B845835285EDFF9001C93D4 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		4B845837285EDFF9001C93D4 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		4B845839285EDFF9001C93D4 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		4B84583B285EDFF9001C93D4 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA332FBC27CCA59700E0AF73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		4BEFB0E6285EEE85000B714C /* SnapshotTestingPreviewGroup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4BEFB0E5285EEE85000B714C /* XCRemoteSwiftPackageReference "SwiftUI-snapshot-testing" */;
+			productName = SnapshotTestingPreviewGroup;
+		};
+		4BEFB0E8285EEE85000B714C /* SwiftUI_SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4BEFB0E5285EEE85000B714C /* XCRemoteSwiftPackageReference "SwiftUI-snapshot-testing" */;
+			productName = SwiftUI_SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		FA7077B326E8EE8B0045F362 /* InLight.xcdatamodeld */ = {
